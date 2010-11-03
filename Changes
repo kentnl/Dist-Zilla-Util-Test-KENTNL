@@ -1,7 +1,11 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
-
+          Returns a Zilla instance if no magic is performed.
+          More documentation.
+          Default behaviour on a death.
+          Pass plugin to find_plugin callbacks
+    
 0.01000004 2010-11-03 21:28:59 Pacific/Auckland
           Refactored to actually work -_-
 
