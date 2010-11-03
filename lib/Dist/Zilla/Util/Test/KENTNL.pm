@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Dist::Zilla::Util::Test::KENTNL;
 BEGIN {
-  $Dist::Zilla::Util::Test::KENTNL::VERSION = '0.01000004';
+  $Dist::Zilla::Util::Test::KENTNL::VERSION = '0.01000011';
 }
 
 #ABSTRACT: KENTNL's DZil plugin testing tool.
@@ -45,11 +45,20 @@ sub test_config {
     $build_error = $_;
   };
 
+  # post_build_callback can be used like an error handler of sorts.
+  # if its defined its called, and no native build errors should occur
+  # ( Sort of a deferred but pre-defined catch clause )
+
+  # without this defined, if an error occurs, we rethrow it with die
+
   if ( $conf->{post_build_callback} ) {
     $conf->{post_build_callback}->({
       error => $build_error,
       instance => $instance,
     });
+  } elsif ( defined $build_error ) {
+    require Carp;
+    Carp::croak $build_error;
   }
 
   if ( $conf->{find_plugin} ){
@@ -66,14 +75,16 @@ sub test_config {
         $error = $_;
       };
       return $call->({
+        plugin => $plugin,
         error => $error,
         response => $response,
         instance => $instance,
       });
-    } else {
-      return $plugin;
     }
+    return $plugin;
   }
+
+  return $instance;
 }
 sub _expand_config_lines {
   my ( $config, $data )  = @_;
@@ -87,6 +98,8 @@ sub _expand_config_lines {
   });
   return 1;
 }
+
+# Here down is largely stolen from the t directory of Dist::Zilla
 
 sub _build_ini_builder {
   my ($starting_core) = @_;
@@ -160,7 +173,7 @@ Dist::Zilla::Util::Test::KENTNL - KENTNL's DZil plugin testing tool.
 
 =head1 VERSION
 
-version 0.01000004
+version 0.01000011
 
 =head1 METHODS
 
@@ -218,6 +231,40 @@ Generally, I find it easier to do 1-off function wrappers, i.e.:
 Which lets us do
 
   ok( make_plugin( inherit_version => 1 )->inherit_version , 'inherit_verion = 1 propagates' );
+
+=head4 parameters
+
+  my $foo = test_config({
+      dist_root => 'Some/path'    # optional, strongly recommended.
+      ini       => [              # optional, strongly recommended.
+          'BasicPlugin',
+          [ 'AdvancedPlugin' => { %pluginargs }],
+      ],
+      build    => 0/1              # works fine as 0, 1 tells it to call the ->build() method.
+      post_build_callback => sub {
+        my ( $conf )  = shift;
+        $conf->{error}    # any errors that occured during construction/build
+        $conf->{instance} # the constructed instance
+        # this is called immediately after construction, do what you will with this.
+        # mostly for convenience
+      },
+      find_plugin => 'Some::Plugin::Name', # makes test_config find and return the plugin that matched that name instead of
+                                           # the config instance
+
+      callback => {                        # overrides the return value of find_plugin if it is called
+        method => 'method_to_call',
+        args   => [qw( hello world )],
+        code   => sub {
+          my ($conf) = shift;
+          $conf->{plugin}   # the constructed plugin instance
+          $conf->{error}    # any errors discovered when calling ->method( args )
+          $conf->{instance} # the zilla instance
+          $conf->{response} # the return value of ->method( args )
+          # mostly just another convenience of declarative nature.
+          return someValueHere # this value will be returned by test_config
+        }
+      },
+  });
 
 =head1 AUTHOR
 
