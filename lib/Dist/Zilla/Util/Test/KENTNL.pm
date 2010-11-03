@@ -1,6 +1,9 @@
 use strict;
 use warnings;
 package Dist::Zilla::Util::Test::KENTNL;
+BEGIN {
+  $Dist::Zilla::Util::Test::KENTNL::VERSION = '0.01000001';
+}
 
 #ABSTRACT: KENTNL's DZil plugin testing tool.
 
@@ -18,62 +21,6 @@ use Sub::Exporter -setup => {
   groups => [ default => [ qw( -all ) ] ]
 };
 
-=method test_config
-
-This is pretty much why this module exists. Its a little perverse, but makes testing WAY easier.
-
-  my $plugin = test_config({
-    dist_root => 'corpus/dist/DZT',
-    ini       => [
-      'GatherDir',
-      [ 'Prereqs' => { 'Test::Simple' => '0.88' } ],
-    ],
-    post_build_callback => sub {
-        my $config = shift;
-        # Handy place to put post-construction test code.
-        die $config->{error} if $config->{error};
-    },
-    find_plugin => 'SomePluginName'
-  });
-
-Additionally, you can add this section
-
-  callback => {
-    method => 'metadata',
-    args   => [],
-    code   => sub {
-      my $data = shift;
-      print "Errors ( if any ) $data->{error} ";
-      dump  $data->{response}; # response from ->metadata
-      $data->{instance}->doMorestuffbyhand();
-      # ok( .... 'good place for a test!' )
-    },
-  }
-
-Generally, I find it easier to do 1-off function wrappers, i.e.:
-
-  sub make_plugin {
-    my @args = @_;
-    return test_config({
-        dist_root => 'corpus/dist/DZT',
-        ini => [
-          'GatherDir',
-          [ 'Prereqs' => {'Test::Simple' => '0.88' } ],
-          [ 'FakePlugin' => {@args } ],
-        ],
-        post_build_callback => sub {
-          my $config = shift;
-          die $config->{error} if $config->{error};
-        },
-        find_plugin => 'FakePlugin',
-    });
-  }
-
-Which lets us do
-
-  ok( make_plugin( inherit_version => 1 )->inherit_version , 'inherit_verion = 1 propagates' );
-
-=cut
 
 sub test_config {
   my ( $conf ) = shift;
@@ -197,3 +144,85 @@ sub _simple_ini {
 }
 
 1;
+
+__END__
+=pod
+
+=head1 NAME
+
+Dist::Zilla::Util::Test::KENTNL - KENTNL's DZil plugin testing tool.
+
+=head1 VERSION
+
+version 0.01000001
+
+=head1 METHODS
+
+=head2 test_config
+
+This is pretty much why this module exists. Its a little perverse, but makes testing WAY easier.
+
+  my $plugin = test_config({
+    dist_root => 'corpus/dist/DZT',
+    ini       => [
+      'GatherDir',
+      [ 'Prereqs' => { 'Test::Simple' => '0.88' } ],
+    ],
+    post_build_callback => sub {
+        my $config = shift;
+        # Handy place to put post-construction test code.
+        die $config->{error} if $config->{error};
+    },
+    find_plugin => 'SomePluginName'
+  });
+
+Additionally, you can add this section
+
+  callback => {
+    method => 'metadata',
+    args   => [],
+    code   => sub {
+      my $data = shift;
+      print "Errors ( if any ) $data->{error} ";
+      dump  $data->{response}; # response from ->metadata
+      $data->{instance}->doMorestuffbyhand();
+      # ok( .... 'good place for a test!' )
+    },
+  }
+
+Generally, I find it easier to do 1-off function wrappers, i.e.:
+
+  sub make_plugin {
+    my @args = @_;
+    return test_config({
+        dist_root => 'corpus/dist/DZT',
+        ini => [
+          'GatherDir',
+          [ 'Prereqs' => {'Test::Simple' => '0.88' } ],
+          [ 'FakePlugin' => {@args } ],
+        ],
+        post_build_callback => sub {
+          my $config = shift;
+          die $config->{error} if $config->{error};
+        },
+        find_plugin => 'FakePlugin',
+    });
+  }
+
+Which lets us do
+
+  ok( make_plugin( inherit_version => 1 )->inherit_version , 'inherit_verion = 1 propagates' );
+
+=head1 AUTHOR
+
+Kent Fredric <kentnl@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2010 by Kent Fredric <kentnl@cpan.org>.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
+
