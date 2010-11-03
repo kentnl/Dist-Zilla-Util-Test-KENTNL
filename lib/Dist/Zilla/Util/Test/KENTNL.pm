@@ -135,9 +135,10 @@ sub _expand_config_lines {
       $value = [ $value ] unless ref $value;
       $value->grep(sub{defined})->each(sub{
         my ( $index, $avalue ) = @_;
-        $config->push(sprintf("%s=%s", $key, $avalue));
+        $config->push(sprintf q{%s=%s}, $key, $avalue);
       });
   });
+  return 1;
 }
 
 sub _build_ini_builder {
@@ -153,7 +154,7 @@ sub _build_ini_builder {
     my @config;
 
     # Render the head section of dist.ini
-    _expand_config_lines->( \@config, $core_config );
+    _expand_config_lines( \@config, $core_config );
 
     @config->push(q{}) if length @config;
 
@@ -176,7 +177,7 @@ sub _build_ini_builder {
         @config->push(sprintf q{[%s]}, $moniker );
       }
 
-      _expand_config_lines->( \@config , $payload );
+      _expand_config_lines( \@config , $payload );
 
       @config->push(q{});
     });
