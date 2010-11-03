@@ -74,7 +74,7 @@ Which lets us do
   ok( make_plugin( inherit_version => 1 )->inherit_version , 'inherit_verion = 1 propagates' );
 
 
-=head5 parameters
+=head4 parameters
 
   my $foo = test_config({
       dist_root => 'Some/path'    # optional, strongly recommended.
@@ -144,7 +144,8 @@ sub test_config {
       instance => $instance,
     });
   } elsif ( defined $build_error ) {
-    die $build_error;
+    require Carp;
+    Carp::croak $build_error;
   }
 
   if ( $conf->{find_plugin} ){
