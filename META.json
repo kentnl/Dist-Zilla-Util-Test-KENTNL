@@ -57,7 +57,7 @@
    "provides" : {
       "Dist::Zilla::Util::Test::KENTNL" : {
          "file" : "lib/Dist/Zilla/Util/Test/KENTNL.pm",
-         "version" : "0.01000001"
+         "version" : "0.01000004"
       }
    },
    "release_status" : "stable",
@@ -69,7 +69,7 @@
          "web" : "http://github.com/kentfredric/Dist-Zilla-Util-Test-KENTNL/tree"
       }
    },
-   "version" : "0.01000001",
+   "version" : "0.01000004",
    "x_BuiltWith" : {
       "modules" : {},
       "perl" : "5.012002",

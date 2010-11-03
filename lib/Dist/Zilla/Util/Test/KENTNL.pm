@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Dist::Zilla::Util::Test::KENTNL;
 BEGIN {
-  $Dist::Zilla::Util::Test::KENTNL::VERSION = '0.01000001';
+  $Dist::Zilla::Util::Test::KENTNL::VERSION = '0.01000004';
 }
 
 #ABSTRACT: KENTNL's DZil plugin testing tool.
@@ -75,6 +75,18 @@ sub test_config {
     }
   }
 }
+sub _expand_config_lines {
+  my ( $config, $data )  = @_;
+  $data->each(sub{
+      my ( $key, $value ) = @_;
+      $value = [ $value ] unless ref $value;
+      $value->grep(sub{defined})->each(sub{
+        my ( $index, $avalue ) = @_;
+        $config->push(sprintf q{%s=%s}, $key, $avalue);
+      });
+  });
+  return 1;
+}
 
 sub _build_ini_builder {
   my ($starting_core) = @_;
@@ -84,48 +96,42 @@ sub _build_ini_builder {
     my (@arg) = @_;
     my $new_core = _HASH0($arg[0]) ? shift(@arg) : {};
 
-    my $core_config = { $starting_core->flatten, $new_core->flatten };
+    my $core_config = $starting_core->merge( $new_core );
 
-    my $config = q{};
+    my @config;
 
-    for my $key ($core_config->keys) {
-      my @values = ref $core_config->at( $key )
-                 ? $core_config->at( $key )->flatten
-                 : $core_config->at( $key );
+    # Render the head section of dist.ini
+    _expand_config_lines( \@config, $core_config );
 
-      $config .= "$key = $_\n" for @values->grep(sub{ defined });
-    }
+    @config->push(q{}) if length @config;
 
-    $config .= "\n" if length $config;
+    # render all body sections
+    @arg->each(sub{
+      my ( $index, $line ) = @_;
+      $line = [ $line, {} ] unless ref $line;
+      my $moniker = $line->shift;
+      my $name    = undef;
+      $name = $line->shift unless _HASH0($line->at(0));
+      my $payload = $line->shift || {};
 
-    for my $line (@arg) {
-      my @plugin = ref $line ? $line->flatten : ($line, {});
-      my $moniker = shift @plugin;
-      my $name    = _HASH0($plugin[0]) ? undef : shift @plugin;
-      my $payload = shift(@plugin) || {};
-      if( @plugin ){
+      if( $line->flatten ) {
         require Carp;
         Carp::croak(q{TOO MANY ARGS TO PLUGIN GAHLGHALAGH});
       }
-
-      $config .= '[' . $moniker;
-      $config .= ' / ' . $name if defined $name;
-      $config .= "]\n";
-
-      for my $key ($payload->keys) {
-        my @values = ref $payload->at( $key )
-                   ?  $payload->at( $key )->flatten
-                   : $payload->at( $key );
-
-        $config .= "$key = $_\n" for @values;
+      if ( defined $name ) {
+        @config->push(sprintf q{[%s / %s]}, $moniker, $name );
+      } else {
+        @config->push(sprintf q{[%s]}, $moniker );
       }
 
-      $config .= "\n";
-    }
+      _expand_config_lines( \@config , $payload );
 
-    return $config;
+      @config->push(q{});
+    });
+    return @config->join(qq{\n});
   }
 }
+
 
 ## no critic (Subroutines::ProhibitUnusedPrivateSubroutines)
 sub _dist_ini {
@@ -154,7 +160,7 @@ Dist::Zilla::Util::Test::KENTNL - KENTNL's DZil plugin testing tool.
 
 =head1 VERSION
 
-version 0.01000001
+version 0.01000004
 
 =head1 METHODS
 

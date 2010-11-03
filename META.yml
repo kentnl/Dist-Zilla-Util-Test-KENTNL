@@ -20,7 +20,7 @@ name: Dist-Zilla-Util-Test-KENTNL
 provides:
   Dist::Zilla::Util::Test::KENTNL:
     file: lib/Dist/Zilla/Util/Test/KENTNL.pm
-    version: 0.01000001
+    version: 0.01000004
 requires:
   Carp: 0
   Dist::Zilla::Tester: 0
@@ -31,7 +31,7 @@ requires:
 resources:
   homepage: http://github.com/kentfredric/Dist-Zilla-Util-Test-KENTNL/tree
   repository: git://github.com/kentfredric/Dist-Zilla-Util-Test-KENTNL.git
-version: 0.01000001
+version: 0.01000004
 x_BuiltWith:
   modules: {}
   perl: 5.012002

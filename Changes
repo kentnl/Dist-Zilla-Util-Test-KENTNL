@@ -1,5 +1,8 @@
 Revision history for Dist-Zilla-Util-Test-KENTNL
 
+0.01000004 2010-11-03 21:28:59 Pacific/Auckland
+          Refactored to actually work -_-
+
 0.01000001 2010-11-03 18:02:07 Pacific/Auckland
           First version.
 
