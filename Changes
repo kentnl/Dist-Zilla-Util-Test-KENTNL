@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          Refactored to actually work -_-
 
 0.01000001 2010-11-03 18:02:07 Pacific/Auckland
           First version.
