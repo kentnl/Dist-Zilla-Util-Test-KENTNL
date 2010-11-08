@@ -1,5 +1,6 @@
 use strict;
 use warnings;
+
 package Dist::Zilla::Util::Test::KENTNL;
 
 #ABSTRACT: KENTNL's DZil plugin testing tool.
@@ -8,14 +9,13 @@ use Try::Tiny;
 use Dist::Zilla::Tester qw( Builder );
 use Params::Util qw(_HASH0);
 use Moose::Autobox;
-
 use Sub::Exporter -setup => {
   exports => [
-    test_config =>
-    simple_ini  => \'_simple_ini',
-    dist_ini => '\_dist_ini',
+    'test_config',
+    simple_ini => \'_simple_ini',
+    dist_ini   => '\_dist_ini',
   ],
-  groups => [ default => [ qw( -all ) ] ]
+  groups => [ default => [qw( -all )] ]
 };
 
 =method test_config
@@ -110,12 +110,12 @@ Which lets us do
 =cut
 
 sub test_config {
-  my ( $conf ) = shift;
+  my ($conf) = shift;
   my $args = [];
   if ( $conf->{dist_root} ) {
     $args->[0] = { dist_root => $conf->{dist_root} };
   }
-  if ( $conf->{ini} ){
+  if ( $conf->{ini} ) {
     $args->[1] ||= {};
     $args->[1]->{add_files} ||= {};
     $args->[1]->{add_files}->{'source/dist.ini'} = _simple_ini()->( $conf->{ini}->flatten );
@@ -123,66 +123,78 @@ sub test_config {
   my $build_error = undef;
   my $instance;
   try {
-    $instance = Builder->from_config( $args->flatten );
+    $instance = Builder()->from_config( $args->flatten );
 
-    if ( $conf->{build} ){
+    if ( $conf->{build} ) {
       $instance->build();
     }
-  } catch {
+  }
+  catch {
     $build_error = $_;
   };
 
   # post_build_callback can be used like an error handler of sorts.
-  # if its defined its called, and no native build errors should occur
   # ( Sort of a deferred but pre-defined catch clause )
+  # if its defined its called, and no native build errors should occur
 
   # without this defined, if an error occurs, we rethrow it with die
 
   if ( $conf->{post_build_callback} ) {
-    $conf->{post_build_callback}->({
-      error => $build_error,
-      instance => $instance,
-    });
-  } elsif ( defined $build_error ) {
+    $conf->{post_build_callback}->(
+      {
+        error    => $build_error,
+        instance => $instance,
+      }
+    );
+  }
+  elsif ( defined $build_error ) {
     require Carp;
     Carp::croak $build_error;
   }
 
-  if ( $conf->{find_plugin} ){
+  if ( $conf->{find_plugin} ) {
     my $plugin = $instance->plugin_named( $conf->{find_plugin} );
-    if ( $conf->{callback} ){
-      my $error = undef;
-      my $method = $conf->{callback}->{method};
-      my $callargs   = $conf->{callback}->{args};
-      my $call   = $conf->{callback}->{code};
+    if ( $conf->{callback} ) {
+      my $error    = undef;
+      my $method   = $conf->{callback}->{method};
+      my $callargs = $conf->{callback}->{args};
+      my $call     = $conf->{callback}->{code};
       my $response;
       try {
         $response = $instance->$method( $callargs->flatten );
-      } catch {
+      }
+      catch {
         $error = $_;
       };
-      return $call->({
-        plugin => $plugin,
-        error => $error,
-        response => $response,
-        instance => $instance,
-      });
+      return $call->(
+        {
+          plugin   => $plugin,
+          error    => $error,
+          response => $response,
+          instance => $instance,
+        }
+      );
     }
     return $plugin;
   }
 
   return $instance;
 }
+
 sub _expand_config_lines {
-  my ( $config, $data )  = @_;
-  $data->each(sub{
+  my ( $config, $data ) = @_;
+  $data->each(
+    sub {
       my ( $key, $value ) = @_;
-      $value = [ $value ] unless ref $value;
-      $value->grep(sub{defined})->each(sub{
-        my ( $index, $avalue ) = @_;
-        $config->push(sprintf q{%s=%s}, $key, $avalue);
-      });
-  });
+      $value = [$value] unless ref $value;
+      $value->grep( sub { defined } )->each(
+        sub {
+          my ( $index, $avalue ) = @_;
+          $config->push( sprintf q{%s=%s}, $key, $avalue );
+        }
+      );
+    }
+  );
   return 1;
 }
 
@@ -194,9 +206,9 @@ sub _build_ini_builder {
 
   return sub {
     my (@arg) = @_;
-    my $new_core = _HASH0($arg[0]) ? shift(@arg) : {};
+    my $new_core = _HASH0( $arg[0] ) ? shift(@arg) : {};
 
-    my $core_config = $starting_core->merge( $new_core );
+    my $core_config = $starting_core->merge($new_core);
 
     my @config;
 
@@ -206,32 +218,34 @@ sub _build_ini_builder {
     @config->push(q{}) if length @config;
 
     # render all body sections
-    @arg->each(sub{
-      my ( $index, $line ) = @_;
-      $line = [ $line, {} ] unless ref $line;
-      my $moniker = $line->shift;
-      my $name    = undef;
-      $name = $line->shift unless _HASH0($line->at(0));
-      my $payload = $line->shift || {};
+    @arg->each(
+      sub {
+        my ( $index, $line ) = @_;
+        $line = [ $line, {} ] unless ref $line;
+        my $moniker = $line->shift;
+        my $name    = undef;
+        $name = $line->shift unless _HASH0( $line->at(0) );
+        my $payload = $line->shift || {};
 
-      if( $line->flatten ) {
-        require Carp;
-        Carp::croak(q{TOO MANY ARGS TO PLUGIN GAHLGHALAGH});
+        if ( $line->flatten ) {
+          require Carp;
+          Carp::croak(q{TOO MANY ARGS TO PLUGIN GAHLGHALAGH});
+        }
+        if ( defined $name ) {
+          @config->push( sprintf q{[%s / %s]}, $moniker, $name );
+        }
+        else {
+          @config->push( sprintf q{[%s]}, $moniker );
+        }
+
+        _expand_config_lines( \@config, $payload );
+
+        @config->push(q{});
       }
-      if ( defined $name ) {
-        @config->push(sprintf q{[%s / %s]}, $moniker, $name );
-      } else {
-        @config->push(sprintf q{[%s]}, $moniker );
-      }
-
-      _expand_config_lines( \@config , $payload );
-
-      @config->push(q{});
-    });
+    );
     return @config->join(qq{\n});
-  }
+    }
 }
-
 
 ## no critic (Subroutines::ProhibitUnusedPrivateSubroutines)
 sub _dist_ini {
@@ -239,14 +253,16 @@ sub _dist_ini {
 }
 
 sub _simple_ini {
-  return _build_ini_builder({
-    name     => 'DZT-Sample',
-    abstract => 'Sample DZ Dist',
-    version  => '0.001',
-    author   => 'E. Xavier Ample <example@example.org>',
-    license  => 'Perl_5',
-    copyright_holder => 'E. Xavier Ample',
-  });
+  return _build_ini_builder(
+    {
+      name             => 'DZT-Sample',
+      abstract         => 'Sample DZ Dist',
+      version          => '0.001',
+      author           => 'E. Xavier Ample <example@example.org>',
+      license          => 'Perl_5',
+      copyright_holder => 'E. Xavier Ample',
+    }
+  );
 }
 
 1;
