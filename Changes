@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.01000510 2010-11-09 03:01:08 Pacific/Auckland
           Fix ns::ac problems.
           Add possible solve for Builder() not existing.
           Add some tests.
