@@ -1,5 +1,10 @@
 Revision history for Dist-Zilla-Util-Test-KENTNL
 
+0.01000510 2010-11-09 03:01:08 Pacific/Auckland
+          Fix ns::ac problems.
+          Add possible solve for Builder() not existing.
+          Add some tests.
+
 0.01000011 2010-11-04 04:01:43 Pacific/Auckland
           Returns a Zilla instance if no magic is performed.
           More documentation.

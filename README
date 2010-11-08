@@ -2,7 +2,7 @@ NAME
     Dist::Zilla::Util::Test::KENTNL - KENTNL's DZil plugin testing tool.
 
 VERSION
-    version 0.01000011
+    version 0.01000510
 
 METHODS
   test_config

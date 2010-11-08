@@ -11,6 +11,7 @@ my %module_build_args = (
     'File::Find' => '0',
     'File::Temp' => '0',
     'Module::Build' => '0.3601',
+    'Test::Fatal' => '0',
     'Test::More' => '0.88'
   },
   'configure_requires' => {
@@ -21,7 +22,7 @@ my %module_build_args = (
     'Kent Fredric <kentnl@cpan.org>'
   ],
   'dist_name' => 'Dist-Zilla-Util-Test-KENTNL',
-  'dist_version' => '0.01000011',
+  'dist_version' => '0.01000510',
   'license' => 'perl',
   'module_name' => 'Dist::Zilla::Util::Test::KENTNL',
   'recommends' => {},
