@@ -5,6 +5,11 @@ Revision history for {{$dist->name}}
   - Move to @Author::KENTNL
   - Update critic rules
 
+  [Internals]
+  - A lot of the internal code has been nuked and it just steals it
+    from Test::DZil which is now CPANized. This leaves this as a glorified wrapper for that, 
+    that adds a tonne of easy.
+
 0.01000510 2010-11-09 03:01:08 Pacific/Auckland
           Fix ns::ac problems.
           Add possible solve for Builder() not existing.
