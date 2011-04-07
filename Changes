@@ -3,6 +3,7 @@ Revision history for {{$dist->name}}
 {{$NEXT}}
   [Packaging]
   - Move to @Author::KENTNL
+  - Update critic rules
 
 0.01000510 2010-11-09 03:01:08 Pacific/Auckland
           Fix ns::ac problems.
