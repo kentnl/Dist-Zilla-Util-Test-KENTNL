@@ -1,6 +1,18 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ [Dependencies]
+ - Drop Moose::Autobox
+ - Drop Params::Util
+ - Add Test::DZil ( Dist::Zilla 4.200002 )
+
+ [Dependenices:Development]
+ - Development reports @Author::KENTNL
+
+ [Interface]
+ - no longer export simple_ini or dist_ini, ask Test::DZil if you want
+   those.
+
  [Internals]
  - A lot of the internal code has been nuked and it just steals it from
    Test::DZil which is now CPANized. This leaves this as a glorified
@@ -10,6 +22,11 @@ Revision history for {{$dist->name}}
  - Move to @Author::KENTNL
  - Update critic rules
  - Rework Changes to CPAN::Changes form.
+ - Ship .perltidyrc
+
+ [Tests]
+ - Added CPAN::Changes tests
+ - Dropped portability tests.
 
 0.01000510 2010-11-08T14:01:08Z
  - Fix ns::ac problems.
