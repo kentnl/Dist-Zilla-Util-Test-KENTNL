@@ -3,23 +3,18 @@ use warnings;
 
 package Dist::Zilla::Util::Test::KENTNL;
 BEGIN {
-  $Dist::Zilla::Util::Test::KENTNL::VERSION = '0.01000510';
+  $Dist::Zilla::Util::Test::KENTNL::VERSION = '0.01015821';
 }
 
 #ABSTRACT: KENTNL's DZil plugin testing tool.
 
 use Try::Tiny;
 use Dist::Zilla::Tester qw( Builder );
-use Params::Util qw(_HASH0);
-use Moose::Autobox;
 use Sub::Exporter -setup => {
-  exports => [
-    'test_config',
-    simple_ini => \'_simple_ini',
-    dist_ini   => '\_dist_ini',
-  ],
-  groups => [ default => [qw( -all )] ]
+  exports => [ 'test_config', ],
+  groups  => [ default => [qw( -all )] ]
 };
+use Test::DZil qw(simple_ini);
 
 
 sub test_config {
@@ -31,12 +26,12 @@ sub test_config {
   if ( $conf->{ini} ) {
     $args->[1] ||= {};
     $args->[1]->{add_files} ||= {};
-    $args->[1]->{add_files}->{'source/dist.ini'} = _simple_ini()->( $conf->{ini}->flatten );
+    $args->[1]->{add_files}->{'source/dist.ini'} = simple_ini( @{ $conf->{ini} } );
   }
   my $build_error = undef;
   my $instance;
   try {
-    $instance = Builder()->from_config( $args->flatten );
+    $instance = Builder()->from_config( @{$args} );
 
     if ( $conf->{build} ) {
       $instance->build();
@@ -94,90 +89,6 @@ sub test_config {
   return $instance;
 }
 
-sub _expand_config_lines {
-  my ( $config, $data ) = @_;
-  $data->each(
-    sub {
-      my ( $key, $value ) = @_;
-      $value = [$value] unless ref $value;
-      $value->grep( sub { defined } )->each(
-        sub {
-          my ( $index, $avalue ) = @_;
-          $config->push( sprintf q{%s=%s}, $key, $avalue );
-        }
-      );
-    }
-  );
-  return 1;
-}
-
-# Here down is largely stolen from the t directory of Dist::Zilla
-
-sub _build_ini_builder {
-  my ($starting_core) = @_;
-  $starting_core ||= {};
-
-  return sub {
-    my (@arg) = @_;
-    my $new_core = _HASH0( $arg[0] ) ? shift(@arg) : {};
-
-    my $core_config = $starting_core->merge($new_core);
-
-    my @config;
-
-    # Render the head section of dist.ini
-    _expand_config_lines( \@config, $core_config );
-
-    @config->push(q{}) if length @config;
-
-    # render all body sections
-    @arg->each(
-      sub {
-        my ( $index, $line ) = @_;
-        $line = [ $line, {} ] unless ref $line;
-        my $moniker = $line->shift;
-        my $name    = undef;
-        $name = $line->shift unless _HASH0( $line->at(0) );
-        my $payload = $line->shift || {};
-
-        if ( $line->flatten ) {
-          require Carp;
-          Carp::croak(q{TOO MANY ARGS TO PLUGIN GAHLGHALAGH});
-        }
-        if ( defined $name ) {
-          @config->push( sprintf q{[%s / %s]}, $moniker, $name );
-        }
-        else {
-          @config->push( sprintf q{[%s]}, $moniker );
-        }
-
-        _expand_config_lines( \@config, $payload );
-
-        @config->push(q{});
-      }
-    );
-    return @config->join(qq{\n});
-    }
-}
-
-## no critic (Subroutines::ProhibitUnusedPrivateSubroutines)
-sub _dist_ini {
-  return _build_ini_builder;
-}
-
-sub _simple_ini {
-  return _build_ini_builder(
-    {
-      name             => 'DZT-Sample',
-      abstract         => 'Sample DZ Dist',
-      version          => '0.001',
-      author           => 'E. Xavier Ample <example@example.org>',
-      license          => 'Perl_5',
-      copyright_holder => 'E. Xavier Ample',
-    }
-  );
-}
-
 1;
 
 __END__
@@ -189,7 +100,7 @@ Dist::Zilla::Util::Test::KENTNL - KENTNL's DZil plugin testing tool.
 
 =head1 VERSION
 
-version 0.01000510
+version 0.01015821
 
 =head1 METHODS
 
@@ -288,7 +199,7 @@ Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Kent Fredric <kentnl@cpan.org>.
+This software is copyright (c) 2011 by Kent Fredric <kentnl@cpan.org>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

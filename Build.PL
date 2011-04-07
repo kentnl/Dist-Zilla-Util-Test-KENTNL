@@ -22,7 +22,7 @@ my %module_build_args = (
     'Kent Fredric <kentnl@cpan.org>'
   ],
   'dist_name' => 'Dist-Zilla-Util-Test-KENTNL',
-  'dist_version' => '0.01000510',
+  'dist_version' => '0.01015821',
   'license' => 'perl',
   'module_name' => 'Dist::Zilla::Util::Test::KENTNL',
   'recommends' => {},
@@ -30,9 +30,8 @@ my %module_build_args = (
   'requires' => {
     'Carp' => '0',
     'Dist::Zilla::Tester' => '0',
-    'Moose::Autobox' => '0',
-    'Params::Util' => '0',
     'Sub::Exporter' => '0',
+    'Test::DZil' => '0',
     'Try::Tiny' => '0'
   },
   'script_files' => []
