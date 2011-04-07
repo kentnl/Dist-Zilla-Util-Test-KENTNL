@@ -247,7 +247,6 @@ sub _build_ini_builder {
     }
 }
 
-## no critic (Subroutines::ProhibitUnusedPrivateSubroutines)
 sub _dist_ini {
   return _build_ini_builder;
 }
