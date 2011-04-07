@@ -113,12 +113,12 @@ sub test_config {
   if ( $conf->{ini} ) {
     $args->[1] ||= {};
     $args->[1]->{add_files} ||= {};
-    $args->[1]->{add_files}->{'source/dist.ini'} = simple_ini( $conf->{ini}->flatten );
+    $args->[1]->{add_files}->{'source/dist.ini'} = simple_ini( @{ $conf->{ini} } );
   }
   my $build_error = undef;
   my $instance;
   try {
-    $instance = Builder()->from_config( $args->flatten );
+    $instance = Builder()->from_config( @{$args} );
 
     if ( $conf->{build} ) {
       $instance->build();
