@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.01015821 2011-04-07T01:33:45Z
  [Dependencies]
  - Drop Moose::Autobox
  - Drop Params::Util
