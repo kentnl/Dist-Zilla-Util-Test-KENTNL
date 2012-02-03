@@ -3,7 +3,10 @@ use warnings;
 
 package Dist::Zilla::Util::Test::KENTNL;
 BEGIN {
-  $Dist::Zilla::Util::Test::KENTNL::VERSION = '0.01015821';
+  $Dist::Zilla::Util::Test::KENTNL::AUTHORITY = 'cpan:KENTNL';
+}
+{
+  $Dist::Zilla::Util::Test::KENTNL::VERSION = '0.01015822';
 }
 
 #ABSTRACT: KENTNL's DZil plugin testing tool.
@@ -100,7 +103,7 @@ Dist::Zilla::Util::Test::KENTNL - KENTNL's DZil plugin testing tool.
 
 =head1 VERSION
 
-version 0.01015821
+version 0.01015822
 
 =head1 METHODS
 
@@ -199,7 +202,7 @@ Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2011 by Kent Fredric <kentnl@cpan.org>.
+This software is copyright (c) 2012 by Kent Fredric <kentnl@cpan.org>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
