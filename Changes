@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.01015823 2013-04-09T02:43:44Z
  - Maintenance Release for MB 0.4004
 
  [Dependencies::Added / develop requires]
