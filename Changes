@@ -1,0 +1,75 @@
+Revision history for Dist-Zilla-Util-Test-KENTNL
+
+0.01015823 2013-04-09T02:38:53Z
+
+0.01015822 2012-02-03T03:21:20Z
+ - Maintenance Release.
+
+ [Dependencies::Changed]
+ - develop suggests : Dist::Zilla::PluginBundle::Author::KENTNL v1.0.0 ->
+   v1.2.0
+
+ [Dependencies::New]
+ - runtime requires : perl 5.006
+ - runtime requires : strict
+ - runtime requires : warnings
+
+ [Dependencies::Removed]
+ - test requires : English
+
+ [Internals]
+ - All namespaces export $AUTHORITY
+ - $VERSION no longer in BEGIN
+
+ [Packaging]
+ - Update LICENSE ( Year, Indent, Address )
+ - extratests moved to xt/
+ - Git urls moved to https://
+ - exports x_authority
+ - Git based versioning
+
+0.01015821 2011-04-07T01:33:45Z
+ [Dependencies]
+ - Drop Moose::Autobox
+ - Drop Params::Util
+ - Add Test::DZil ( Dist::Zilla 4.200002 )
+
+ [Dependenices:Development]
+ - Development reports @Author::KENTNL
+
+ [Interface]
+ - no longer export simple_ini or dist_ini, ask Test::DZil if you want
+   those.
+
+ [Internals]
+ - A lot of the internal code has been nuked and it just steals it from
+   Test::DZil which is now CPANized. This leaves this as a glorified
+   wrapper for that, that adds a tonne of easy.
+
+ [Packaging]
+ - Move to @Author::KENTNL
+ - Update critic rules
+ - Rework Changes to CPAN::Changes form.
+ - Ship .perltidyrc
+
+ [Tests]
+ - Added CPAN::Changes tests
+ - Dropped portability tests.
+
+0.01000510 2010-11-08T14:01:08Z
+ - Fix ns::ac problems.
+ - Add possible solve for Builder() not existing.
+ - Add some tests.
+
+0.01000011 2010-11-03T15:01:43Z
+ - Returns a Zilla instance if no magic is performed.
+ - More documentation.
+ - Default behaviour on a death.
+ - Pass plugin to find_plugin callbacks
+
+0.01000004 2010-11-03T08:28:59Z
+ - Refactored to actually work -_-
+
+0.01000001 2010-11-03T05:02:07Z
+ - First version.
+
