@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::Util::Test::KENTNL::AUTHORITY = 'cpan:KENTNL';
 }
 {
-  $Dist::Zilla::Util::Test::KENTNL::VERSION = '0.01015823';
+  $Dist::Zilla::Util::Test::KENTNL::VERSION = '0.01015824';
 }
 
 #ABSTRACT: KENTNL's DZil plugin testing tool.
@@ -104,7 +104,7 @@ Dist::Zilla::Util::Test::KENTNL - KENTNL's DZil plugin testing tool.
 
 =head1 VERSION
 
-version 0.01015823
+version 0.01015824
 
 =head1 METHODS
 

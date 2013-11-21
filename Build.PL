@@ -7,17 +7,17 @@ use Module::Build 0.3601;
 
 my %module_build_args = (
   "build_requires" => {
-    "Module::Build" => "0.4004"
+    "Module::Build" => "0.4202"
   },
   "configure_requires" => {
-    "Module::Build" => "0.4004"
+    "Module::Build" => "0.4202"
   },
   "dist_abstract" => "KENTNL's DZil plugin testing tool.",
   "dist_author" => [
     "Kent Fredric <kentnl\@cpan.org>"
   ],
   "dist_name" => "Dist-Zilla-Util-Test-KENTNL",
-  "dist_version" => "0.01015823",
+  "dist_version" => "0.01015824",
   "license" => "perl",
   "module_name" => "Dist::Zilla::Util::Test::KENTNL",
   "recommends" => {},
@@ -34,25 +34,22 @@ my %module_build_args = (
   },
   "script_files" => [],
   "test_requires" => {
-    "File::Find" => 0,
-    "File::Temp" => 0,
     "Test::Fatal" => 0,
-    "Test::More" => "0.98"
+    "Test::More" => "1.001002"
   }
 );
 
 
+my %fallback_build_requires = (
+  "Module::Build" => "0.4202",
+  "Test::Fatal" => 0,
+  "Test::More" => "1.001002"
+);
+
+
 unless ( eval { Module::Build->VERSION(0.4004) } ) {
-  my $tr = delete $module_build_args{test_requires};
-  my $br = $module_build_args{build_requires};
-  for my $mod ( keys %$tr ) {
-    if ( exists $br->{$mod} ) {
-      $br->{$mod} = $tr->{$mod} if $tr->{$mod} > $br->{$mod};
-    }
-    else {
-      $br->{$mod} = $tr->{$mod};
-    }
-  }
+  delete $module_build_args{test_requires};
+  $module_build_args{build_requires} = \%fallback_build_requires;
 }
 
 my $build = Module::Build->new(%module_build_args);
