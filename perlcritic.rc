@@ -16,9 +16,13 @@ allow_includes = 1
 
 [-Documentation::RequirePodSections]
 
+[-Documentation::RequirePODUseEncodingUTF8]
+
 [-Miscellanea::ProhibitUselessNoCritic]
 
 [-Miscellanea::RequireRcsKeywords]
+
+[-Modules::RequireExplicitPackage]
 
 [-Editor::RequireEmacsFileVariables]
 
