@@ -26,6 +26,9 @@ allow_includes = 1
 
 [-Editor::RequireEmacsFileVariables]
 
+[Lax::RequireExplicitPackage::ExceptForPragmata]
+supported_parameters = strict warnings utf8
+
 [Documentation::PodSpelling]
 spell_command = aspell list --lang en_US
 stop_words = metadata KiokuDB KENTNL KENTNL's DZil plugin
