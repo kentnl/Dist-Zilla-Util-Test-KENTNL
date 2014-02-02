@@ -1,14 +1,24 @@
 Revision history for Dist-Zilla-Util-Test-KENTNL
 
-1.000000 2014-02-02T07:03:57Z
+1.000000 2014-02-02T07:08:06Z
+ [00 Major]
+ - Toolkit switched to EUMM
+ - Toolkit deps softened to recommendations.
+
+ [Dependencies::Aggregate]
+ - 5.008 : was 197
+ - 5.010 : was 178
+ - 5.019 : was 161
+ - Limited by DZIL → Path::Class → Module::Build
+
  [Dependencies::Stats]
  - Dependencies changed since 0.01015824, see Changes.deps{,.all,.dev} for
    details
- - build: ↑1
- - configure: ↑1
- - develop: +6 ↑1 -7
+ - build: -1
+ - configure: +2 -1
+ - develop: +7 ↑1 -9
  - runtime: +1 ↑1
- - test: +6
+ - test: +8 ↓1
 
 0.01015824 2013-11-21T10:47:13Z
  [00 Maintenance]
