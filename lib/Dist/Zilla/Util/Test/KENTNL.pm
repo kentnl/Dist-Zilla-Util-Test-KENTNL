@@ -186,6 +186,8 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 Dist::Zilla::Util::Test::KENTNL - KENTNL's DZil plugin testing tool
