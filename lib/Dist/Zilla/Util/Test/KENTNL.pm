@@ -5,7 +5,9 @@ use utf8;
 
 package Dist::Zilla::Util::Test::KENTNL;
 
-#ABSTRACT: KENTNL's DZil plugin testing tool.
+#ABSTRACT: KENTNL's DZil plugin testing tool
+
+# AUTHORITY
 
 use Try::Tiny;
 use Dist::Zilla::Tester qw( Builder );
