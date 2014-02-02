@@ -1,0 +1,72 @@
+1.000000
+ [Added / runtime requires]
+ - utf8
+
+ [Added / test recommends]
+ - CPAN::Meta
+ - CPAN::Meta::Requirements 2.120900
+
+ [Added / test requires]
+ - ExtUtils::MakeMaker
+ - File::Spec::Functions
+ - List::Util
+ - version
+
+ [Changed / build requires]
+ - Module::Build 0.4202 → 0.4204
+
+ [Changed / configure requires]
+ - Module::Build 0.4202 → 0.4204
+
+ [Changed / runtime requires]
+ - perl 5.006 → 5.008
+
+0.01015824 2013-11-21T10:47:13Z
+ [Changed / build requires]
+ - Module::Build 0.4004 → 0.4202
+
+ [Changed / configure requires]
+ - Module::Build 0.4004 → 0.4202
+
+ [Changed / test requires]
+ - Test::More 0.98 → 1.001002
+
+ [Removed / test requires]
+ - File::Find
+ - File::Temp
+
+0.01015823 2013-04-09T02:43:44Z
+ [Changed / build requires]
+ - Module::Build 0.3601 → 0.4004
+
+ [Changed / configure requires]
+ - Module::Build 0.3601 → 0.4004
+
+ [Changed / test requires]
+ - Test::More 0.88 → 0.98
+
+0.01015822 2012-02-03T03:21:20Z
+ [Added / runtime requires]
+ - perl 5.006
+ - strict
+ - warnings
+
+ [Removed / test requires]
+ - English
+
+0.01015821 2011-04-07T01:33:45Z
+ [Added / runtime requires]
+ - Test::DZil
+
+ [Removed / runtime requires]
+ - Moose::Autobox
+ - Params::Util
+
+0.01000510 2010-11-08T14:01:08Z
+ [Added / test requires]
+ - Test::Fatal
+
+0.01000011 2010-11-03T15:01:43Z
+
+0.01000004 2010-11-03T08:28:59Z
+

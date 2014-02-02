@@ -1,81 +1,28 @@
 Revision history for Dist-Zilla-Util-Test-KENTNL
 
-1.000000 2014-02-02T06:57:54Z
+1.000000 2014-02-02T07:01:08Z
+ [Dependencies::Stats]
+ - Dependencies changed since 0.01015824, see Changes.deps{,.all,.dev} for
+   details
+ - build: ↑1
+ - configure: ↑1
+ - develop: +6 ↑1 -7
+ - runtime: +1 ↑1
+ - test: +6
 
 0.01015824 2013-11-21T10:47:13Z
  [00 Maintenance]
 
- [Dependencies::Added / develop requires]
- - Dist::Zilla::Plugin::Author::KENTNL::MinimumPerl
- - Dist::Zilla::Plugin::Authority 1.006
- - Dist::Zilla::Plugin::AutoPrereqs
- - Dist::Zilla::Plugin::CheckExtraTests
- - Dist::Zilla::Plugin::ConfirmRelease
- - Dist::Zilla::Plugin::EOLTests
- - Dist::Zilla::Plugin::Git::Check
- - Dist::Zilla::Plugin::Git::Commit
- - Dist::Zilla::Plugin::Git::CommitBuild
- - Dist::Zilla::Plugin::Git::GatherDir
- - Dist::Zilla::Plugin::Git::NextVersion
- - Dist::Zilla::Plugin::Git::Tag
- - Dist::Zilla::Plugin::GithubMeta
- - Dist::Zilla::Plugin::License
- - Dist::Zilla::Plugin::Manifest
- - Dist::Zilla::Plugin::ManifestSkip
- - Dist::Zilla::Plugin::MetaConfig
- - Dist::Zilla::Plugin::MetaData::BuiltWith
- - Dist::Zilla::Plugin::MetaJSON
- - Dist::Zilla::Plugin::MetaProvides::Package 1.14000001
- - Dist::Zilla::Plugin::MetaTests
- - Dist::Zilla::Plugin::MetaYAML
- - Dist::Zilla::Plugin::ModuleBuild
- - Dist::Zilla::Plugin::NextRelease
- - Dist::Zilla::Plugin::PkgVersion
- - Dist::Zilla::Plugin::PodCoverageTests
- - Dist::Zilla::Plugin::PodSyntaxTests
- - Dist::Zilla::Plugin::PodWeaver
- - Dist::Zilla::Plugin::Prereqs
- - Dist::Zilla::Plugin::Prereqs::MatchInstalled
- - Dist::Zilla::Plugin::PruneCruft
- - Dist::Zilla::Plugin::ReadmeAnyFromPod
- - Dist::Zilla::Plugin::ReadmeFromPod
- - Dist::Zilla::Plugin::ReportVersions::Tiny
- - Dist::Zilla::Plugin::Test::CPAN::Changes
- - Dist::Zilla::Plugin::Test::Compile::PerFile
- - Dist::Zilla::Plugin::Test::Kwalitee
- - Dist::Zilla::Plugin::Test::MinimumVersion
- - Dist::Zilla::Plugin::Test::Perl::Critic
- - Dist::Zilla::Plugin::TestRelease
- - Dist::Zilla::Plugin::Twitter
- - Dist::Zilla::Plugin::UploadToCPAN
- - Dist::Zilla::PluginBundle::Author::KENTNL 2.002001
- - Test::CPAN::Changes 0.19
- - Test::Kwalitee 1.12
+ [Dependencies::Noteworthy]
+ - Ramp MB and TM
 
- [Dependencies::Added / develop suggests]
- - Dist::Zilla::PluginBundle::Author::KENTNL::Lite v1.3.0
-
- [Dependencies::Changed / build requires]
- - Module::Build 0.4004 → 0.4202
-
- [Dependencies::Changed / configure requires]
- - Module::Build 0.4004 → 0.4202
-
- [Dependencies::Changed / test requires]
- - Test::More 0.98 → 1.001002
-
- [Dependencies::Removed / develop recommends]
- - Dist::Zilla::PluginBundle::Author::KENTNL::Lite v1.3.0
-
- [Dependencies::Removed / develop requires]
- - Dist::Zilla::PluginBundle::Author::KENTNL::Lite
-
- [Dependencies::Removed / develop suggests]
- - Dist::Zilla::PluginBundle::Author::KENTNL v1.7.2
-
- [Dependencies::Removed / test requires]
- - File::Find
- - File::Temp
+ [Dependencies::Stats]
+ - Dependencies changed since 0.01015823, see Changes.deps{,.all,.dev} for
+   details
+ - build: ↑1
+ - configure: ↑1
+ - develop: +46 -3
+ - test: ↑1 -2
 
  [Packaging]
  - use new fallback code for MB
@@ -89,27 +36,16 @@ Revision history for Dist-Zilla-Util-Test-KENTNL
 0.01015823 2013-04-09T02:43:44Z
  - Maintenance Release for MB 0.4004
 
- [Dependencies::Added / develop requires]
- - Pod::Coverage::TrustPod
- - Test::CPAN::Meta
- - Test::Pod 1.41
- - Test::Pod::Coverage 1.08
- - version 0.9901
+ [Dependencies::Noteworthy]
+ - Ramp MB and TM
 
- [Dependencies::Changed / build requires]
- - Module::Build 0.3601 → 0.4004
-
- [Dependencies::Changed / configure requires]
- - Module::Build 0.3601 → 0.4004
-
- [Dependencies::Changed / develop recommends]
- - Dist::Zilla::PluginBundle::Author::KENTNL::Lite 0.01009803 → v1.3.0
-
- [Dependencies::Changed / develop suggests]
- - Dist::Zilla::PluginBundle::Author::KENTNL v1.2.0 → v1.7.2
-
- [Dependencies::Changed / test requires]
- - Test::More 0.88 → 0.98
+ [Dependencies::Stats]
+ - Dependencies changed since 0.01015822, see Changes.deps{,.all,.dev} for
+   details
+ - build: ↑1
+ - configure: ↑1
+ - develop: +5 ↑2
+ - test: ↑1
 
  [Documentation]
  - Copyright year update.
@@ -124,17 +60,15 @@ Revision history for Dist-Zilla-Util-Test-KENTNL
 0.01015822 2012-02-03T03:21:20Z
  - Maintenance Release.
 
- [Dependencies::Changed]
- - develop suggests : Dist::Zilla::PluginBundle::Author::KENTNL v1.0.0 ->
-   v1.2.0
+ [Dependencies::Noteworthy]
+ - perl 5.006 is now minimum
 
- [Dependencies::New]
- - runtime requires : perl 5.006
- - runtime requires : strict
- - runtime requires : warnings
-
- [Dependencies::Removed]
- - test requires : English
+ [Dependencies::Stats]
+ - Dependencies changed since 0.01015821, see Changes.deps{,.all,.dev} for
+   details
+ - develop: ↑1
+ - runtime: +3
+ - test: -1
 
  [Internals]
  - All namespaces export $AUTHORITY
@@ -148,13 +82,16 @@ Revision history for Dist-Zilla-Util-Test-KENTNL
  - Git based versioning
 
 0.01015821 2011-04-07T01:33:45Z
- [Dependencies]
+ [Dependencies::Noteworthy]
  - Drop Moose::Autobox
  - Drop Params::Util
  - Add Test::DZil ( Dist::Zilla 4.200002 )
 
- [Dependenices:Development]
- - Development reports @Author::KENTNL
+ [Dependencies::Stats]
+ - Dependencies changed since 0.01000510, see Changes.deps{,.all,.dev} for
+   details
+ - develop: +3 -3
+ - runtime: +1 -2
 
  [Interface]
  - no longer export simple_ini or dist_ini, ask Test::DZil if you want
@@ -179,6 +116,11 @@ Revision history for Dist-Zilla-Util-Test-KENTNL
  - Fix ns::ac problems.
  - Add possible solve for Builder() not existing.
  - Add some tests.
+
+ [Dependencies::Stats]
+ - Dependencies changed since 0.01000011, see Changes.deps{,.all,.dev} for
+   details
+ - test: +1
 
 0.01000011 2010-11-03T15:01:43Z
  - Returns a Zilla instance if no magic is performed.
