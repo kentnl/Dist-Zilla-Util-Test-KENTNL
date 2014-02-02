@@ -1,5 +1,5 @@
 {
-   "abstract" : "KENTNL's DZil plugin testing tool.",
+   "abstract" : "KENTNL's DZil plugin testing tool",
    "author" : [
       "Kent Fredric <kentnl@cpan.org>"
    ],
@@ -87,8 +87,9 @@
             "Sub::Exporter" : "0",
             "Test::DZil" : "0",
             "Try::Tiny" : "0",
-            "perl" : "5.006",
+            "perl" : "5.008",
             "strict" : "0",
+            "utf8" : "0",
             "warnings" : "0"
          }
       },
@@ -110,7 +111,7 @@
    "provides" : {
       "Dist::Zilla::Util::Test::KENTNL" : {
          "file" : "lib/Dist/Zilla/Util/Test/KENTNL.pm",
-         "version" : "1.000000"
+         "version" : "0.010158"
       }
    },
    "release_status" : "stable",
@@ -125,7 +126,7 @@
          "web" : "https://github.com/kentfredric/Dist-Zilla-Util-Test-KENTNL"
       }
    },
-   "version" : "1.000000",
+   "version" : "0.010158",
    "x_BuiltWith" : {
       "modules" : {
          "CPAN::Meta" : "2.133380",
@@ -192,6 +193,7 @@
          "Test::Pod::Coverage" : "1.08",
          "Try::Tiny" : "0.19",
          "strict" : "1.08",
+         "utf8" : "1.13",
          "version" : "0.9907",
          "warnings" : "1.21"
       },

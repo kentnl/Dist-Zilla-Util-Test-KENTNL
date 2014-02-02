@@ -1,11 +1,15 @@
+use 5.008;    # utf8
 use strict;
 use warnings;
+use utf8;
 
 package Dist::Zilla::Util::Test::KENTNL;
-$Dist::Zilla::Util::Test::KENTNL::VERSION = '1.000000';
-#ABSTRACT: KENTNL's DZil plugin testing tool.
+$Dist::Zilla::Util::Test::KENTNL::VERSION = '0.010158';
+#ABSTRACT: KENTNL's DZil plugin testing tool
 
-use Try::Tiny;
+#AUTHORITY
+
+use Try::Tiny qw( try catch );
 use Dist::Zilla::Tester qw( Builder );
 use Sub::Exporter -setup => {
   exports => [ 'test_config', ],
@@ -184,11 +188,11 @@ __END__
 
 =head1 NAME
 
-Dist::Zilla::Util::Test::KENTNL - KENTNL's DZil plugin testing tool.
+Dist::Zilla::Util::Test::KENTNL - KENTNL's DZil plugin testing tool
 
 =head1 VERSION
 
-version 1.000000
+version 0.010158
 
 =head1 METHODS
 

@@ -116,8 +116,9 @@ my $static_prereqs = do { my $x = {
                                       'Sub::Exporter' => '0',
                                       'Test::DZil' => '0',
                                       'Try::Tiny' => '0',
-                                      'perl' => '5.006',
+                                      'perl' => '5.008',
                                       'strict' => '0',
+                                      'utf8' => '0',
                                       'warnings' => '0'
                                     }
                     },

@@ -13,12 +13,12 @@ my %module_build_args = (
   "configure_requires" => {
     "Module::Build" => "0.4204"
   },
-  "dist_abstract" => "KENTNL's DZil plugin testing tool.",
+  "dist_abstract" => "KENTNL's DZil plugin testing tool",
   "dist_author" => [
     "Kent Fredric <kentnl\@cpan.org>"
   ],
   "dist_name" => "Dist-Zilla-Util-Test-KENTNL",
-  "dist_version" => "1.000000",
+  "dist_version" => "0.010158",
   "license" => "perl",
   "module_name" => "Dist::Zilla::Util::Test::KENTNL",
   "recommends" => {},
@@ -29,8 +29,9 @@ my %module_build_args = (
     "Sub::Exporter" => 0,
     "Test::DZil" => 0,
     "Try::Tiny" => 0,
-    "perl" => "5.006",
+    "perl" => "5.008",
     "strict" => 0,
+    "utf8" => 0,
     "warnings" => 0
   },
   "script_files" => [],
