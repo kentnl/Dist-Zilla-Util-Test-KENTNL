@@ -1,14 +1,16 @@
 Revision history for Dist-Zilla-Util-Test-KENTNL
 
-1.000000 2014-02-02T07:08:06Z
+1.000000 2014-02-02T07:19:39Z
  [00 Major]
  - Toolkit switched to EUMM
  - Toolkit deps softened to recommendations.
+ - Version moved to mantissa = 6 ( primary reason for 0 → 1 )
 
  [Dependencies::Aggregate]
- - 5.008 : was 197
- - 5.010 : was 178
- - 5.019 : was 161
+ - 5.008 : was 197 → 199 :(
+ - 5.010 : was 178 → 184 :(
+ - 5.019 : was 161 → 164 :(
+ - Growth induced in dependencies.
  - Limited by DZIL → Path::Class → Module::Build
 
  [Dependencies::Stats]
