@@ -2,13 +2,7 @@ use strict;
 use warnings;
 
 package Dist::Zilla::Util::Test::KENTNL;
-BEGIN {
-  $Dist::Zilla::Util::Test::KENTNL::AUTHORITY = 'cpan:KENTNL';
-}
-{
-  $Dist::Zilla::Util::Test::KENTNL::VERSION = '0.01015824';
-}
-
+$Dist::Zilla::Util::Test::KENTNL::VERSION = '1.000000';
 #ABSTRACT: KENTNL's DZil plugin testing tool.
 
 use Try::Tiny;
@@ -18,6 +12,96 @@ use Sub::Exporter -setup => {
   groups  => [ default => [qw( -all )] ]
 };
 use Test::DZil qw(simple_ini);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 sub test_config {
@@ -104,7 +188,7 @@ Dist::Zilla::Util::Test::KENTNL - KENTNL's DZil plugin testing tool.
 
 =head1 VERSION
 
-version 0.01015824
+version 1.000000
 
 =head1 METHODS
 
@@ -203,7 +287,7 @@ Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Kent Fredric <kentnl@cpan.org>.
+This software is copyright (c) 2014 by Kent Fredric <kentnl@cpan.org>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
