@@ -9,7 +9,7 @@ package Dist::Zilla::Util::Test::KENTNL;
 
 # AUTHORITY
 
-use Try::Tiny;
+use Try::Tiny qw( try catch );
 use Dist::Zilla::Tester qw( Builder );
 use Sub::Exporter -setup => {
   exports => [ 'test_config', ],
