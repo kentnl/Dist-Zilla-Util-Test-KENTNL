@@ -13,7 +13,7 @@ use Try::Tiny qw( try catch );
 use Dist::Zilla::Tester qw( Builder );
 use Sub::Exporter -setup => {
   exports => [ 'test_config', ],
-  groups  => [ default => [qw( -all )] ]
+  groups  => [ default => [qw( -all )] ],
 };
 use Test::DZil qw(simple_ini);
 
