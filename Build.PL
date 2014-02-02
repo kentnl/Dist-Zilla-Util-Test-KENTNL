@@ -18,7 +18,7 @@ my %module_build_args = (
     "Kent Fredric <kentnl\@cpan.org>"
   ],
   "dist_name" => "Dist-Zilla-Util-Test-KENTNL",
-  "dist_version" => "0.010158",
+  "dist_version" => "1.000000",
   "license" => "perl",
   "module_name" => "Dist::Zilla::Util::Test::KENTNL",
   "recommends" => {},

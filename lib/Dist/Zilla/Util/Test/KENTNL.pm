@@ -4,7 +4,7 @@ use warnings;
 use utf8;
 
 package Dist::Zilla::Util::Test::KENTNL;
-$Dist::Zilla::Util::Test::KENTNL::VERSION = '0.010158';
+$Dist::Zilla::Util::Test::KENTNL::VERSION = '1.000000';
 #ABSTRACT: KENTNL's DZil plugin testing tool
 
 #AUTHORITY
@@ -13,7 +13,7 @@ use Try::Tiny qw( try catch );
 use Dist::Zilla::Tester qw( Builder );
 use Sub::Exporter -setup => {
   exports => [ 'test_config', ],
-  groups  => [ default => [qw( -all )] ]
+  groups  => [ default => [qw( -all )] ],
 };
 use Test::DZil qw(simple_ini);
 
@@ -194,7 +194,7 @@ Dist::Zilla::Util::Test::KENTNL - KENTNL's DZil plugin testing tool
 
 =head1 VERSION
 
-version 0.010158
+version 1.000000
 
 =head1 METHODS
 

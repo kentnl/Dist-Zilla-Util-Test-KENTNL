@@ -111,7 +111,7 @@
    "provides" : {
       "Dist::Zilla::Util::Test::KENTNL" : {
          "file" : "lib/Dist/Zilla/Util/Test/KENTNL.pm",
-         "version" : "0.010158"
+         "version" : "1.000000"
       }
    },
    "release_status" : "stable",
@@ -126,7 +126,7 @@
          "web" : "https://github.com/kentfredric/Dist-Zilla-Util-Test-KENTNL"
       }
    },
-   "version" : "0.010158",
+   "version" : "1.000000",
    "x_BuiltWith" : {
       "modules" : {
          "CPAN::Meta" : "2.133380",
