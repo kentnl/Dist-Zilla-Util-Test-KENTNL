@@ -1,5 +1,4 @@
 severity = 1
-exclude = RequireTidyCode RequirePodSections ProhibitPostfixControls RequireRcsKeywords RequireExplicitPackage
 include = Moose::ProhibitMultipleWiths Moose::ProhibitNewMethod Moose::RequireCleanNamespace Moose::RequireMakeImmutable
 color = 1
 verbose = 9
@@ -9,7 +8,31 @@ allow_includes = 1
 
 [CodeLayout::ProhibitTrailingWhitespace]
 
+[-CodeLayout::RequireTidyCode]
+
+[-CodeLayout::RequireASCII]
+
+[-CodeLayout::ProhibitHashBarewords]
+
+[-Compatibility::PodMinimumVersion]
+
+[-Documentation::RequirePodSections]
+
+[-Documentation::RequirePODUseEncodingUTF8]
+
+[-Miscellanea::ProhibitUselessNoCritic]
+
+[-Miscellanea::RequireRcsKeywords]
+
+[-Modules::RequireExplicitPackage]
+
+[-Editor::RequireEmacsFileVariables]
+
+[Lax::RequireExplicitPackage::ExceptForPragmata]
+allowed_pragmata = strict warnings utf8 perlversion
+
 [Documentation::PodSpelling]
+spell_command = aspell list --lang en_US
 stop_words = metadata KiokuDB KENTNL KENTNL's DZil plugin
 
 [Subroutines::ProhibitUnusedPrivateSubroutines]
@@ -21,7 +44,8 @@ equivalent_modules = Moose
 [TestingAndDebugging::RequireUseWarnings]
 equivalent_modules = Moose
 
-
+[Tics::ProhibitLongLines]
+base_max = 130
 
 
 
