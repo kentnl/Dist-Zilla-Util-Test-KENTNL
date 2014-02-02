@@ -7,7 +7,7 @@ package Dist::Zilla::Util::Test::KENTNL;
 $Dist::Zilla::Util::Test::KENTNL::VERSION = '1.000000';
 #ABSTRACT: KENTNL's DZil plugin testing tool
 
-#AUTHORITY
+our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
 use Try::Tiny qw( try catch );
 use Dist::Zilla::Tester qw( Builder );
