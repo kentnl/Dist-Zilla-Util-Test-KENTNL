@@ -4,7 +4,9 @@ use warnings;
 use utf8;
 
 package Dist::Zilla::Util::Test::KENTNL;
-$Dist::Zilla::Util::Test::KENTNL::VERSION = '1.000000';
+
+our $VERSION = '1.000001';
+
 #ABSTRACT: KENTNL's DZil plugin testing tool
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
@@ -194,7 +196,7 @@ Dist::Zilla::Util::Test::KENTNL - KENTNL's DZil plugin testing tool
 
 =head1 VERSION
 
-version 1.000000
+version 1.000001
 
 =head1 METHODS
 
