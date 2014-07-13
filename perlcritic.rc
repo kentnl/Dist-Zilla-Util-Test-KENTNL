@@ -86,7 +86,7 @@ allow_includes = 1
 
 [CodeLayout::RequireTrailingCommas]
 
-[-CodeLayout::RequireUseUTF8]
+[CodeLayout::RequireUseUTF8]
 
 [Compatibility::ConstantLeadingUnderscore]
 
@@ -124,7 +124,7 @@ allow_includes = 1
 
 [Documentation::PodSpelling]
 spell_command = aspell list --lang en_US
-stop_words = CPAN subclassing Weyl
+stop_words = KENTNL DZil
 
 [Documentation::ProhibitAdjacentLinks]
 
