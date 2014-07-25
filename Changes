@@ -1,5 +1,15 @@
 Revision history for Dist-Zilla-Util-Test-KENTNL
 
+1.000002 2014-07-25T06:22:28Z
+ [00 Trivial]
+ - Migrate github links to org
+ - Newer report versions script autoadded.
+
+ [Dependencies::Stats]
+ - Dependencies changed since 1.000001, see misc/*.deps* for details
+ - develop: (suggests: ↑1)
+ - test: +2 ↑1 (recommends: +1)
+
 1.000001 2014-07-13T18:11:06Z
  [00 Trivial]
  - Minor packaging changes.
