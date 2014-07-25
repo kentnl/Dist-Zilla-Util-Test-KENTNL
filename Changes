@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.000002 2014-07-25T06:22:28Z
  [00 Trivial]
  - Migrate github links to org
  - Newer report versions script autoadded.
