@@ -1,6 +1,10 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ [00 Trivial]
+ - Migrate github links to org
+ - Newer report versions script autoadded.
+
  [Dependencies::Stats]
  - Dependencies changed since 1.000001, see misc/*.deps* for details
  - develop: (suggests: ↑1)
