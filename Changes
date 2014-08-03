@@ -1,10 +1,17 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ [00 Trivial]
+ - Migrate github links to org ( was advised in last release ... was wrong -_- )
+
+ [Dependencies::Stats]
+ - Dependencies changed since 1.000002, see misc/*.deps* for details
+ - configure: ↓1
+ - develop: (suggests: ↑1)
+ - test: -4 (recommends: ↑1 -2)
 
 1.000002 2014-07-25T06:22:28Z
  [00 Trivial]
- - Migrate github links to org
  - Newer report versions script autoadded.
 
  [Dependencies::Stats]
