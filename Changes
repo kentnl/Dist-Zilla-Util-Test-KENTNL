@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.000003 2014-08-03T12:37:40Z
  [00 Trivial]
  - Migrate github links to org ( was advised in last release ... was wrong -_- )
 
