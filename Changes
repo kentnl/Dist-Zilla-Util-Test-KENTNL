@@ -1,6 +1,9 @@
 Revision history for Dist-Zilla-Util-Test-KENTNL
 
 1.000004 2014-08-06T21:38:37Z
+ [Dependencies::Stats]
+ - Dependencies changed since 1.000003, see misc/*.deps* for details
+ - develop: (suggests: ↑1)
 
 1.000003 2014-08-03T12:37:40Z
  [00 Trivial]
