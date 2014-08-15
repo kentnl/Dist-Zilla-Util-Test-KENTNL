@@ -1,6 +1,9 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ [Dependencies::Stats]
+ - Dependencies changed since 1.000003, see misc/*.deps* for details
+ - develop: +1 (suggests: ↑1)
 
 1.000003 2014-08-03T12:37:40Z
  [00 Trivial]
