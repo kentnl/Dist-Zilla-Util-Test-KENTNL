@@ -32,14 +32,16 @@ has files => (
 );
 
 has tempdir => (
-  is      => ro =>,
-  lazy    => 1,
-  default => sub {
-    my $tempdir = Path::Tiny->tempdir;
-    note "Creating fake dist in $tempdir";
-    return $tempdir;
-  },
+  is         => ro =>,
+  lazy_build => 1,
 );
+
+sub _build_tempdir {
+  my ($self) = @_;
+  my $tempdir = Path::Tiny->tempdir;
+  $self->tb->note("Creating fake dist in $tempdir");
+  return $tempdir;
+}
 
 has builder => (
   is         => ro =>,
