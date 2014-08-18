@@ -143,15 +143,12 @@ sub prereqs_deeply {
 sub has_messages {
   my $nargs = ( my ( $self, $label, $map ) = @_ );
 
-  if ( $nargs == 1 ) {
-    croak 'Invalid number of arguments ( < 2 )';
-  }
-  if ( $nargs == 2 ) {
+  croak 'Invalid number of arguments ( < 2 )' if 1 == $nargs;
+  croak 'Invalid number of arguments ( > 3 )' if $nargs > 3;
+
+  if ( 2 == $nargs ) {
     $map   = $label;
     $label = 'log messages check';
-  }
-  if ( $nargs > 3 ) {
-    croak 'Invalid number of arguments ( > 3 )';
   }
   return subtest $label => sub {
     plan tests => 1 + scalar @{$map};
