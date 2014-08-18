@@ -1,9 +1,15 @@
 Revision history for Dist-Zilla-Util-Test-KENTNL
 
-1.001000 2014-08-15T22:52:11Z
+1.001000 2014-08-18T21:14:28Z
+ [00 Major]
+ - add `dztest` function.
+ - add `::dztest` package which has been floating around in various dists so far.
+
  [Dependencies::Stats]
  - Dependencies changed since 1.000003, see misc/*.deps* for details
- - develop: +1 (suggests: ↑1)
+ - develop: +2 ↑1 (suggests: ↑2)
+ - runtime: +5 (recommends: +1)
+ - test: -1
 
 1.000003 2014-08-03T12:37:40Z
  [00 Trivial]
