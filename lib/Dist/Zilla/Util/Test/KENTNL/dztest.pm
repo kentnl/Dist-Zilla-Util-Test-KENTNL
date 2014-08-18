@@ -469,7 +469,7 @@ You probably want C<built_file>.
   $test->source_file( $path  );
   $test->source_file( \@path );
 
-Returns undef if the file does not exist.
+Returns C<undef> if the file does not exist.
 
   if ( my $content = $test->source_file('dist.ini') ) {
     print $content->slurp_raw;
@@ -491,7 +491,7 @@ Construct the internal builder object safely. Returns exceptions or undef.
 
 Ensure the distribution is built safely, returns exceptions or undef.
 
-  if ( $test->safe_build ) { 
+  if ( $test->safe_build ) {
     say "Failed build";
   }
 
@@ -501,7 +501,7 @@ Test ( as in, C<Test::More::ok> ) that a file exists in the C<dzil> build output
 
 Also returns it if it exists.
 
-  $test->test_has_built_file('dist.ini');  # ok/fail 
+  $test->test_has_built_file('dist.ini');  # ok/fail
 
   my $object = test->test_has_built_file('dist.ini'); # ok/fail + return
 
