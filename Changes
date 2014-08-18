@@ -1,6 +1,13 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ [Bugfix]
+ - Not all versions of Data::DPath exist on <5.10, so if you happen to say "Ignore that" somehow the dpath related
+   tests will instead TODOskip
+
+ [Dependencies::Stats]
+ - Dependencies changed since 1.001000, see misc/*.deps* for details
+ - runtime: +1
 
 1.001000 2014-08-18T21:14:28Z
  [00 Major]
