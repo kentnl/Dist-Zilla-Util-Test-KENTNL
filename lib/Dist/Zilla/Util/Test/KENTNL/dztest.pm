@@ -15,7 +15,7 @@ use Carp qw( croak );
 use Moose qw( has );
 use Test::DZil qw( Builder );
 use Test::Fatal qw( exception );
-use Test::More qw( note explain pass fail diag subtest ok plan is is_deeply );
+use Test::More qw( note explain pass fail diag subtest ok plan is is_deeply BAIL_OUT );
 use Path::Tiny qw(path);
 
 has files => (
