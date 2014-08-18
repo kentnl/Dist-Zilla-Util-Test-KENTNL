@@ -135,7 +135,7 @@ sub build_ok {
 
       $self->note_builddir_files;
       return;
-    }
+    },
   );
 }
 
@@ -149,7 +149,7 @@ sub prereqs_deeply {
       $self->tb->note( $self->tb->explain( $meta->{prereqs} ) );
       is_deeply( $meta->{prereqs}, $prereqs, 'Prereqs match expected set' );
       return;
-    }
+    },
   );
 }
 
@@ -188,7 +188,7 @@ sub has_messages {
       if ($need_diag) {
         $self->tb->diag( $self->tb->explain($log) );
       }
-    }
+    },
   );
 
 }
@@ -213,7 +213,7 @@ sub had_message {
       }
       $self->tb->diag( $self->tb->explain($log) );
       $self->tb->fail("No log messages matched $regex");
-    }
+    },
   );
 }
 
