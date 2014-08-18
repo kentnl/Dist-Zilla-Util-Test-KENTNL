@@ -109,9 +109,11 @@ sub _note_path_files {
 sub test_has_built_file {
   my ( $self, @path ) = @_;
   my $file = $self->_build_root->child(@path);
-  my $ok = defined $file and -e $file and not -d $file;
-  $self->tb->ok( defined $file, "$file exists" );
-  return $file if $ok;
+  if ( defined $file and -e $file and not -d $file ) {
+    $self->tb->ok( 1, "$file exists" );
+    return $file;
+  }
+  $self->tb->ok( undef, "$file exists" ); 
   return;
 }
 
