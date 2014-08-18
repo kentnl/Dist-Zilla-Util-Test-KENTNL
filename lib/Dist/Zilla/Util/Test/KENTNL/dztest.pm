@@ -130,12 +130,12 @@ sub build_ok {
 
 sub prereqs_deeply {
   my ( $self, $prereqs ) = @_;
-  return subtest "distmeta prereqs comparison" => sub {
+  return subtest 'distmeta prereqs comparison' => sub {
     plan tests => 2;
     ok( defined $self->built_json, 'distmeta defined' );
     my $meta = $self->built_json;
     note explain $meta->{prereqs};
-    is_deeply( $meta->{prereqs}, $prereqs, "Prereqs match expected set" );
+    is_deeply( $meta->{prereqs}, $prereqs, 'Prereqs match expected set' );
     return;
   };
 }
@@ -144,14 +144,14 @@ sub has_messages {
   my $nargs = ( my ( $self, $label, $map ) = @_ );
 
   if ( $nargs == 1 ) {
-    croak "Invalid number of arguments ( < 2 )";
+    croak 'Invalid number of arguments ( < 2 )';
   }
   if ( $nargs == 2 ) {
     $map   = $label;
-    $label = "log messages check";
+    $label = 'log messages check';
   }
   if ( $nargs > 3 ) {
-    croak "Invalid number of arguments ( > 3 )";
+    croak 'Invalid number of arguments ( > 3 )';
   }
   return subtest $label => sub {
     plan tests => 1 + scalar @{$map};
@@ -161,7 +161,7 @@ sub has_messages {
   test: for my $entry ( @{$map} ) {
       my ( $regex, $reason ) = @{$entry};
       $reason = ": $reason" if $reason;
-      $reason = "" unless $reason;
+      $reason = q[] unless $reason;
       my $i = 0;
       for my $item ( @{$log} ) {
         if ( $item =~ $regex ) {
@@ -183,7 +183,9 @@ sub has_messages {
 
 sub had_message {
   my ( $self, $regex, $reason ) = @_;
-  return subtest "log message check: $reason" => sub {
+  $reason = ": $reason" if $reason;
+  $reason = q[] unless $reason;
+  return subtest "log message check$reason" => sub {
     plan tests => 2;
     my $log = $self->builder->log_messages;
     ok( scalar @{$log}, ' has messages' );
