@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.001001 2014-08-18T23:05:17Z
  [Bugfix]
  - Not all versions of Data::DPath exist on <5.10, so if you happen to say "Ignore that" somehow the dpath related
    tests will instead TODOskip
