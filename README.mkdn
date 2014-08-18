@@ -4,9 +4,15 @@ Dist::Zilla::Util::Test::KENTNL - KENTNL's DZil plugin testing tool
 
 # VERSION
 
-version 1.000004
+version 1.001000
 
 # METHODS
+
+## `dztest`
+
+Creates a [`Dist::Zilla::Util::Test::KENTNL`](https://metacpan.org/pod/Dist::Zilla::Util::Test::KENTNL::dztest) object.
+
+This is a much more sane approach to testing than `test_config`
 
 ## test\_config
 
