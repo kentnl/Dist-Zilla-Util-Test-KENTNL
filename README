@@ -6,7 +6,7 @@ VERSION
 
 METHODS
   "dztest"
-    Creates a Dist::Zilla::Util::Test::KENTNL::dztest object.
+    Creates a "Dist::Zilla::Util::Test::KENTNL" object.
 
     This is a much more sane approach to testing than "test_config"
 

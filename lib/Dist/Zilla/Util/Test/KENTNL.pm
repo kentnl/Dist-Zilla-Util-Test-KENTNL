@@ -216,7 +216,7 @@ version 1.000004
 
 =head2 C<dztest>
 
-Creates a L<< Dist::Zilla::Util::Test::KENTNL::dztest >> object.
+Creates a L<< C<Dist::Zilla::Util::Test::KENTNL>|Dist::Zilla::Util::Test::KENTNL::dztest >> object.
 
 This is a much more sane approach to testing than C<test_config>
 
