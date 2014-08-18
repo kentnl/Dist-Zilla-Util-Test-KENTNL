@@ -193,7 +193,7 @@ sub dztest {
   use Moose;
   use Test::DZil;
   use Test::Fatal;
-  use Test::More;
+  use Test::More qw( note explain pass fail diag subtest ok );
   use Path::Tiny qw(path);
 
   has files => (
