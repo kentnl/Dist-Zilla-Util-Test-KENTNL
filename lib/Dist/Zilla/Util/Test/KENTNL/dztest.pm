@@ -323,7 +323,9 @@ sub _subtest_has_messages {
   }
   if ($need_diag) {
     $self->tb->diag( $self->tb->explain($log) );
+    return;
   }
+  return 1;
 }
 
 sub has_messages {
@@ -448,7 +450,7 @@ version 1.000004
 
 =head1 METHODS
 
-=head2 c<add_file>
+=head2 C<add_file>
 
 Add a file to the scratch directory to be built.
 
