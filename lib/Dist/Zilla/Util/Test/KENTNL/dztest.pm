@@ -573,7 +573,7 @@ This is just a more memorable version of
 
 Test that there are messages, and all the given rules match messages.
 
-  $test->has_messages( 'Some descriptor', [ 
+  $test->has_messages( 'Some descriptor', [
      [ $regex, $description ],
      [ $regex, $description ],
   ]);
