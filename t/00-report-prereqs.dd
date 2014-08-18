@@ -66,18 +66,12 @@ do { my $x = {
                                     }
                     },
        'runtime' => {
-                      'recommends' => {
-                                        'Test::More' => '1.001003'
-                                      },
                       'requires' => {
                                       'Carp' => '0',
                                       'Dist::Zilla::Tester' => '0',
-                                      'Moose' => '0',
-                                      'Path::Tiny' => '0',
+                                      'Dist::Zilla::Util::Test::KENTNL::dztest' => '0',
                                       'Sub::Exporter' => '0',
                                       'Test::DZil' => '0',
-                                      'Test::Fatal' => '0',
-                                      'Test::More' => '0.89',
                                       'Try::Tiny' => '0',
                                       'perl' => '5.008',
                                       'strict' => '0',
@@ -94,6 +88,7 @@ do { my $x = {
                    'requires' => {
                                    'ExtUtils::MakeMaker' => '0',
                                    'File::Spec' => '0',
+                                   'Test::Fatal' => '0',
                                    'Test::More' => '0.89'
                                  }
                  }
