@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.001000 2014-08-18T21:14:28Z
  [00 Major]
  - add `dztest` function.
  - add `::dztest` package which has been floating around in various dists so far.
