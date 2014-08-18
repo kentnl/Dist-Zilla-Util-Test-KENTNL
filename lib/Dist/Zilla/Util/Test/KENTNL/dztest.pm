@@ -21,7 +21,12 @@ use Module::Runtime qw( require_module );
 
 ## no critic (ValuesAndExpressions::ProhibitConstantPragma,ErrorHandling::RequireCheckingReturnValueOfEval)
 use constant CAN_DPATH => eval { require_module('Data::DPath'); 1 };
-BEGIN { Data::DPath->import('dpath') if CAN_DPATH };
+use subs 'dpath';
+BEGIN { 
+  if ( CAN_DPATH ) {
+    Data::DPath->import('dpath');
+  }
+};
 
 ## use critic
 
@@ -191,7 +196,7 @@ sub has_messages {
 
 sub _subtest_meta_path_deeply {
   my ( $self, $expression, $expected ) = @_;
-  my (@results) = Data::DPath::dpath($expression)->match( $self->builder->distmeta );
+  my (@results) = dpath($expression)->match( $self->builder->distmeta );
   $self->tb->ok( @results > 0, "distmeta matched expression $expression" );
   $self->tb->note( $self->tb->explain( \@results ) );
   Test::More::is_deeply( \@results, $expected, 'distmeta matched expectations' );

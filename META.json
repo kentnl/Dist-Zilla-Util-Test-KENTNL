@@ -98,6 +98,7 @@
             "constant" : "0",
             "perl" : "5.008",
             "strict" : "0",
+            "subs" : "0",
             "utf8" : "0",
             "warnings" : "0"
          }
@@ -207,6 +208,7 @@
          "Try::Tiny" : "0.22",
          "constant" : "1.31",
          "strict" : "1.08",
+         "subs" : "1.02",
          "utf8" : "1.14",
          "warnings" : "1.24"
       },
