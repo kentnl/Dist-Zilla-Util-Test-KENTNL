@@ -5,6 +5,8 @@ use utf8;
 
 package Dist::Zilla::Util::Test::KENTNL::dztest;
 
+our $VERSION = '1.000004';
+
 # ABSTRACT: Shared dist testing logic for easy dzil things
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
@@ -12,7 +14,7 @@ our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 use Moose qw( has );
 use Test::DZil qw( Builder );
 use Test::Fatal qw( exception );
-use Test::More qw( note explain pass fail diag subtest ok plan );
+use Test::More qw( note explain pass fail diag subtest ok plan is is_deeply );
 use Path::Tiny qw(path);
 
 has files => (
@@ -58,7 +60,7 @@ sub _build_builder {
 
 sub configure {
   my ($self) = @_;
-  $self->builder;
+  return $self->builder;
 }
 
 sub safe_configure {
@@ -70,7 +72,7 @@ sub safe_configure {
 
 sub build {
   my ($self) = @_;
-  $self->builder->build;
+  return $self->builder->build;
 }
 
 sub safe_build {
@@ -86,22 +88,23 @@ sub _build_root {
 }
 
 sub _note_path_files {
-  my ( $self, $path ) = @_;
-  my $i = path($path)->iterator( { recurse => 1 } );
+  my ( undef, $root_path ) = @_;
+  my $i = path($root_path)->iterator( { recurse => 1 } );
   while ( my $path = $i->() ) {
     next if -d $path;
-    note "$path : " . $path->stat->size . " " . $path->stat->mode;
+    note "$path : " . $path->stat->size . q[ ] . $path->stat->mode;
   }
+  return;
 }
 
 sub note_tempdir_files {
   my ($self) = @_;
-  $self->_note_path_files( $self->tempdir );
+  return $self->_note_path_files( $self->tempdir );
 }
 
 sub note_builddir_files {
   my ($self) = @_;
-  $self->_note_path_files( $self->_build_root );
+  return $self->_note_path_files( $self->_build_root );
 }
 
 sub built_json {
@@ -124,6 +127,7 @@ sub build_ok {
     is( $self->safe_build, undef, "Can build" );
 
     $self->note_builddir_files;
+    return;
   };
 }
 
@@ -135,6 +139,7 @@ sub prereqs_deeply {
     my $meta = $self->built_json;
     note explain $meta->{prereqs};
     is_deeply( $meta->{prereqs}, $prereqs, "Prereqs match expected set" );
+    return;
   };
 }
 
