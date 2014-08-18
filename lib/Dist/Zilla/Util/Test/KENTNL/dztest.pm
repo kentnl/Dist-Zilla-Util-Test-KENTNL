@@ -51,7 +51,7 @@ sub add_file {
 sub has_source_file {
   my ( $self, $path ) = @_;
   return unless -e $self->tempdir->child($path);
-  return -f $self->tempdir->child($path);
+  return not -d $self->tempdir->child($path);
 }
 
 sub _build_builder {
@@ -66,9 +66,7 @@ sub configure {
 
 sub safe_configure {
   my ($self) = @_;
-  return exception {
-    $self->configure;
-  };
+  return exception { $self->configure };
 }
 
 sub build {
@@ -78,9 +76,7 @@ sub build {
 
 sub safe_build {
   my ($self) = @_;
-  return exception {
-    $self->build;
-  };
+  return exception { $self->build };
 }
 
 sub _build_root {
@@ -123,9 +119,9 @@ sub build_ok {
     }
     $self->note_tempdir_files;
 
-    is( $self->safe_configure, undef, "Can load config" );
+    is( $self->safe_configure, undef, 'Can load config' );
 
-    is( $self->safe_build, undef, "Can build" );
+    is( $self->safe_build, undef, 'Can build' );
 
     $self->note_builddir_files;
     return;
