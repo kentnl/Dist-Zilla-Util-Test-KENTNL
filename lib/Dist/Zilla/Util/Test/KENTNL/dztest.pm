@@ -273,6 +273,18 @@ sub _subtest_prereqs_deeply {
   return;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
 sub prereqs_deeply {
   my ( $self, $prereqs ) = @_;
   return $self->tb->subtest(
@@ -294,7 +306,6 @@ sub _test_has_message {
     }
     $i++;
   }
-  $need_diag = 1;
   $self->tb->ok( undef, "No log messages matched $regex$reason" );
   return;
 }
@@ -511,6 +522,16 @@ Recursively walk C<builddir>(output) and note its contents.
 Build the dist safely, and report "Ok" if the dist builds ok, spewing file listings via C<note>
 
 C<BAIL_OUT> is triggered if any of C<add_file> don't arrive in the intended location.
+
+=head2 C<prereqs_deeply>
+
+Demand C<distmeta> C<prereqs> exactly match those specified.
+
+  $test->prereqs_deeply( { hash } );
+
+This is just a more memorable version of
+
+  $test->meta_path_deeply('/prereqs/', { });
 
 =head1 AUTHOR
 
