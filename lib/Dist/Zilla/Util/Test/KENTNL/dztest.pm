@@ -15,7 +15,7 @@ use Carp qw( croak );
 use Moose qw( has );
 use Test::DZil qw( Builder );
 use Test::Fatal qw( exception );
-use Test::More;    # note explain pass fail diag subtest ok plan is is_deeply BAIL_OUT
+use Test::More qw( is_deeply );
 use Path::Tiny qw(path);
 
 has tb => (
@@ -92,11 +92,11 @@ sub _build_root {
 }
 
 sub _note_path_files {
-  my ( undef, $root_path ) = @_;
+  my ( $self, $root_path ) = @_;
   my $i = path($root_path)->iterator( { recurse => 1 } );
   while ( my $path = $i->() ) {
     next if -d $path;
-    note "$path : " . $path->stat->size . q[ ] . $path->stat->mode;
+    $self->tb->note( "$path : " . $path->stat->size . q[ ] . $path->stat->mode );
   }
   return;
 }
@@ -118,33 +118,37 @@ sub built_json {
 
 sub build_ok {
   my ($self) = @_;
-  return subtest 'Configure and build' => sub {
-    plan tests => 2;
-    for my $file ( values %{ $self->files } ) {
-      next if -e $file and not -d $file;
-      BAIL_OUT("expected file $file failed to add to tempdir");
+  return $self->tb->subtest(
+    'Configure and build' => sub {
+      $self->tb->plan( tests => 2 );
+      for my $file ( values %{ $self->files } ) {
+        next if -e $file and not -d $file;
+        $self->tb->BAIL_OUT("expected file $file failed to add to tempdir");
+      }
+      $self->note_tempdir_files;
+
+      $self->tb->is_eq( $self->safe_configure, undef, 'Can load config' );
+
+      $self->tb->is_eq( $self->safe_build, undef, 'Can build' );
+
+      $self->note_builddir_files;
+      return;
     }
-    $self->note_tempdir_files;
-
-    is( $self->safe_configure, undef, 'Can load config' );
-
-    is( $self->safe_build, undef, 'Can build' );
-
-    $self->note_builddir_files;
-    return;
-  };
+  );
 }
 
 sub prereqs_deeply {
   my ( $self, $prereqs ) = @_;
-  return subtest 'distmeta prereqs comparison' => sub {
-    plan tests => 2;
-    ok( defined $self->built_json, 'distmeta defined' );
-    my $meta = $self->built_json;
-    note explain $meta->{prereqs};
-    is_deeply( $meta->{prereqs}, $prereqs, 'Prereqs match expected set' );
-    return;
-  };
+  return $self->tb->subtest(
+    'distmeta prereqs comparison' => sub {
+      $self->tb->plan( tests => 2 );
+      $self->tb->ok( defined $self->built_json, 'distmeta defined' );
+      my $meta = $self->built_json;
+      $self->tb->note( $self->tb->explain( $meta->{prereqs} ) );
+      is_deeply( $meta->{prereqs}, $prereqs, 'Prereqs match expected set' );
+      return;
+    }
+  );
 }
 
 sub has_messages {
@@ -157,31 +161,33 @@ sub has_messages {
     $map   = $label;
     $label = 'log messages check';
   }
-  return subtest $label => sub {
-    plan tests => 1 + scalar @{$map};
-    my $log = $self->builder->log_messages;
-    ok( scalar @{$log}, ' has messages' );
-    my $need_diag;
-  MESSAGETEST: for my $entry ( @{$map} ) {
-      my ( $regex, $reason ) = @{$entry};
-      $reason = ": $reason" if $reason;
-      $reason = q[] unless $reason;
-      my $i = 0;
-      for my $item ( @{$log} ) {
-        if ( $item =~ $regex ) {
-          note qq[item $i: ], explain $item;
-          pass("log message $i matched $regex$reason");
-          next MESSAGETEST;
+  return $self->tb->subtest(
+    $label => sub {
+      $self->tb->plan( tests => 1 + scalar @{$map} );
+      my $log = $self->builder->log_messages;
+      $self->tb->ok( scalar @{$log}, ' has messages' );
+      my $need_diag;
+    MESSAGETEST: for my $entry ( @{$map} ) {
+        my ( $regex, $reason ) = @{$entry};
+        $reason = ": $reason" if $reason;
+        $reason = q[] unless $reason;
+        my $i = 0;
+        for my $item ( @{$log} ) {
+          if ( $item =~ $regex ) {
+            $self->tb->note( qq[item $i: ], $self->tb->explain($item) );
+            $self->tb->pass("log message $i matched $regex$reason");
+            next MESSAGETEST;
+          }
+          $i++;
         }
-        $i++;
+        $need_diag = 1;
+        $self->tb->fail("No log messages matched $regex$reason");
       }
-      $need_diag = 1;
-      fail("No log messages matched $regex$reason");
+      if ($need_diag) {
+        $self->tb->diag( $self->tb->explain($log) );
+      }
     }
-    if ($need_diag) {
-      diag explain $log;
-    }
-  };
+  );
 
 }
 
@@ -189,22 +195,24 @@ sub had_message {
   my ( $self, $regex, $reason ) = @_;
   $reason = ": $reason" if $reason;
   $reason = q[] unless $reason;
-  return subtest "log message check$reason" => sub {
-    plan tests => 2;
-    my $log = $self->builder->log_messages;
-    ok( scalar @{$log}, ' has messages' );
-    my $i = 0;
-    for my $item ( @{$log} ) {
-      if ( $item =~ $regex ) {
-        note qq[item $i: ], explain $item;
-        pass("log message $i matched $regex");
-        return;
+  return $self->tb->subtest(
+    "log message check$reason" => sub {
+      $self->tb->plan( tests => 2 );
+      my $log = $self->builder->log_messages;
+      $self->tb->ok( scalar @{$log}, ' has messages' );
+      my $i = 0;
+      for my $item ( @{$log} ) {
+        if ( $item =~ $regex ) {
+          $self->tb->note( qq[item $i: ], $self->tb->explain($item) );
+          $self->tb->pass("log message $i matched $regex");
+          return;
+        }
+        $i++;
       }
-      $i++;
+      $self->tb->diag( $self->tb->explain($log) );
+      $self->tb->fail("No log messages matched $regex");
     }
-    diag explain $log;
-    fail("No log messages matched $regex");
-  };
+  );
 }
 
 no Moose;
