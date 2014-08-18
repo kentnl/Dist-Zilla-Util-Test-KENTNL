@@ -18,7 +18,12 @@ use Test::Fatal qw( exception );
 use Test::More qw( );
 use Path::Tiny qw(path);
 use Module::Runtime qw( require_module );
+
+## no critic (ValuesAndExpressions::ProhibitConstantPragma,ErrorHandling::RequireCheckingReturnValueOfEval)
 use constant CAN_DPATH => eval { require_module('Data::DPath'); 1 };
+BEGIN { Data::DPath->import('dpath') if CAN_DPATH };
+
+## use critic
 
 
 
