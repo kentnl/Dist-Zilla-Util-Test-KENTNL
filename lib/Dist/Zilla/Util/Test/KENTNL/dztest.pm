@@ -275,6 +275,51 @@ Dist::Zilla::Util::Test::KENTNL::dztest - Shared dist testing logic for easy dzi
 
 version 1.000004
 
+=head1 SYNOPSIS
+
+  use Test::More;
+  use Test::DZil qw( simple_ini );
+  use Dist::Zilla::Util::Test::KENTNL qw( dztest );
+
+  my $test = dztest;
+
+  ## utility method.
+  $test->add_file( 'dist.ini', simple_ini( .... ));
+
+  ## build the dist
+  # 1x subtest
+  $test->build_ok;
+
+  ## assert prereqs are identical to the hash
+  ## extracting them from distmeta
+  # 1x subtest
+  $test->prereqs_deeply( { } );
+
+  ## Test for specific log messages by regex
+  # 1x subtest
+  #  - tests there are messages
+  #  - each regex must match a message
+  my @list = (
+    [ $regex, $indepdent_reason ],
+    [ $regex ],
+  );
+  $test->has_messages( $reason, \@list );
+
+  ## Test for any deep structure addressed
+  ## By a Data::DPath expression
+  # 1x subtest
+  #   - asserts the expression returns a result
+  #   - compares the structure against the expected one.
+  $test->meta_path_deeply(
+      '/author/*/[1]',
+      [ 'E. Xavier Ample <example@example.org>' ],
+      'The 1st author is the example author emitted by simple_ini'
+  );
+
+  ## Test for a file existing on the build side
+  ## and return it if it exists.
+  my $file = $test->test_has_built_file('dist.ini');
+
 =head1 AUTHOR
 
 Kent Fredric <kentnl@cpan.org>

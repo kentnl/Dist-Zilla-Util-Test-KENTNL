@@ -5,6 +5,11 @@ VERSION
     version 1.000004
 
 METHODS
+  "dztest"
+    Creates a Dist::Zilla::Util::Test::KENTNL::dztest object.
+
+    This is a much more sane approach to testing than "test_config"
+
   test_config
     This is pretty much why this module exists. Its a little perverse, but
     makes testing WAY easier.

@@ -27,6 +27,20 @@ use Test::DZil qw(simple_ini);
 
 
 
+sub dztest {
+  my (@args) = @_;
+  require Dist::Zilla::Util::Test::KENTNL::dztest;
+  return Dist::Zilla::Util::Test::KENTNL::dztest->new(@args);
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -182,12 +196,6 @@ sub test_config {
   return $instance;
 }
 
-sub dztest {
-  my (@args) = @_;
-  require Dist::Zilla::Util::Test::KENTNL::dztest;
-  return Dist::Zilla::Util::Test::KENTNL::dztest->new(@args);
-}
-
 1;
 
 __END__
@@ -205,6 +213,12 @@ Dist::Zilla::Util::Test::KENTNL - KENTNL's DZil plugin testing tool
 version 1.000004
 
 =head1 METHODS
+
+=head2 C<dztest>
+
+Creates a L<< Dist::Zilla::Util::Test::KENTNL::dztest >> object.
+
+This is a much more sane approach to testing than C<test_config>
 
 =head2 test_config
 
