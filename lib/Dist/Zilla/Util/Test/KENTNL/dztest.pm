@@ -11,6 +11,7 @@ our $VERSION = '1.000004';
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
+use Carp qw( croak );
 use Moose qw( has );
 use Test::DZil qw( Builder );
 use Test::Fatal qw( exception );
@@ -117,7 +118,7 @@ sub build_ok {
   return subtest 'Configure and build' => sub {
     plan tests => 2;
     for my $file ( values %{ $self->files } ) {
-      next if -e $file and -f $file;
+      next if -e $file and not -d $file;
       BAIL_OUT("expected file $file failed to add to tempdir");
     }
     $self->note_tempdir_files;
@@ -147,14 +148,14 @@ sub has_messages {
   my $nargs = ( my ( $self, $label, $map ) = @_ );
 
   if ( $nargs == 1 ) {
-    die "Invalid number of arguments ( < 2 )";
+    croak "Invalid number of arguments ( < 2 )";
   }
   if ( $nargs == 2 ) {
     $map   = $label;
     $label = "log messages check";
   }
   if ( $nargs > 3 ) {
-    die "Invalid number of arguments ( > 3 )";
+    croak "Invalid number of arguments ( > 3 )";
   }
   return subtest $label => sub {
     plan tests => 1 + scalar @{$map};
