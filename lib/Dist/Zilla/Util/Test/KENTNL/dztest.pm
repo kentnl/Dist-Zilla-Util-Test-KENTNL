@@ -21,13 +21,8 @@ use Module::Runtime qw( require_module );
 
 ## no critic (ValuesAndExpressions::ProhibitConstantPragma,ErrorHandling::RequireCheckingReturnValueOfEval)
 use constant CAN_DPATH => eval { require_module('Data::DPath'); 1 };
-use subs 'dpath';
-BEGIN {
-  if ( CAN_DPATH ) {
-    Data::DPath->import('dpath');
-  }
-}
-
+sub dpath($);
+BEGIN { CAN_DPATH and Data::DPath->import('dpath') }
 ## use critic
 
 

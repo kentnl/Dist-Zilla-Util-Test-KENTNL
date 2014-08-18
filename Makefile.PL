@@ -32,7 +32,6 @@ my %WriteMakefileArgs = (
     "Try::Tiny" => 0,
     "constant" => 0,
     "strict" => 0,
-    "subs" => 0,
     "utf8" => 0,
     "warnings" => 0
   },
@@ -63,7 +62,6 @@ my %FallbackPrereqs = (
   "Try::Tiny" => 0,
   "constant" => 0,
   "strict" => 0,
-  "subs" => 0,
   "utf8" => 0,
   "warnings" => 0
 );
