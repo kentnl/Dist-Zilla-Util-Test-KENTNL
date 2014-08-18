@@ -50,7 +50,7 @@ has builder => (
   handles    => {
     distmeta => 'distmeta',
     build    => 'build',
-  }
+  },
 );
 
 sub _file_list {
@@ -291,7 +291,7 @@ sub prereqs_deeply {
     'distmeta prereqs comparison' => sub {
       $self->tb->plan( tests => 2 );
       $self->_subtest_prereqs_deeply($prereqs);
-    }
+    },
   );
 }
 
