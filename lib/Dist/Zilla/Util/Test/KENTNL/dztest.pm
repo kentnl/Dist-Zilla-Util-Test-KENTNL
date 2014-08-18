@@ -211,6 +211,7 @@ sub _todo_meta_path_deeply {
   }
   $self->tb->todo_skip("distmeta matched expression $expression needs Data::DPath");
   $self->tb->todo_skip('distmeta matched expectations needs Data::DPath');
+  return;
 }
 
 sub meta_path_deeply {
