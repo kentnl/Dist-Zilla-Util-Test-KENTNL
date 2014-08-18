@@ -113,7 +113,7 @@ sub test_has_built_file {
     $self->tb->ok( 1, "$file exists" );
     return $file;
   }
-  $self->tb->ok( undef, "$file exists" ); 
+  $self->tb->ok( undef, "$file exists" );
   return;
 }
 
@@ -250,9 +250,9 @@ sub meta_path_deeply {
       my (@results) = dpath($expression)->match( $self->builder->distmeta );
       $self->tb->ok( @results > 0, "distmeta matched expression $expression" );
       $self->tb->note( $self->tb->explain( \@results ) );
-      Test::More::is_deeply( \@results, $expected, "distmeta matched expectations" );
+      Test::More::is_deeply( \@results, $expected, 'distmeta matched expectations' );
       return;
-    }
+    },
   );
 }
 
