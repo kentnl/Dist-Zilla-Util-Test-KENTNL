@@ -17,7 +17,8 @@ use Test::DZil qw( Builder );
 use Test::Fatal qw( exception );
 use Test::More qw( );
 use Path::Tiny qw(path);
-use Data::DPath qw( dpath );
+use Module::Runtime qw( require_module );
+use constant CAN_DPATH => eval { require_module('Data::DPath'); 1 };
 
 
 
@@ -183,6 +184,25 @@ sub has_messages {
 
 
 
+sub _subtest_meta_path_deeply {
+  my ( $self, $expression, $expected ) = @_;
+  my (@results) = Data::DPath::dpath($expression)->match( $self->builder->distmeta );
+  $self->tb->ok( @results > 0, "distmeta matched expression $expression" );
+  $self->tb->note( $self->tb->explain( \@results ) );
+  Test::More::is_deeply( \@results, $expected, 'distmeta matched expectations' );
+  return;
+}
+
+sub _todo_meta_path_deeply {
+  my ( $self, $expression ) = @_;
+  if ( not $self->{diaged} ) {
+    $self->{diaged} = 1;
+    $self->tb->diag("Data::DPath needed to accurately perform some of this test");
+  }
+  $self->tb->todo_skip("distmeta matched expression $expression needs Data::DPath");
+  $self->tb->todo_skip("distmeta matched expectations needs Data::DPath");
+}
+
 sub meta_path_deeply {
   my ( $self, $expression, $expected, $reason ) = @_;
   if ( not $reason ) {
@@ -191,11 +211,10 @@ sub meta_path_deeply {
   return $self->tb->subtest(
     $reason => sub {
       $self->tb->plan( tests => 2 );
-      my (@results) = dpath($expression)->match( $self->builder->distmeta );
-      $self->tb->ok( @results > 0, "distmeta matched expression $expression" );
-      $self->tb->note( $self->tb->explain( \@results ) );
-      Test::More::is_deeply( \@results, $expected, 'distmeta matched expectations' );
-      return;
+      if (CAN_DPATH) {
+        return $self->_subtest_meta_path_deeply( $expression, $expected );
+      }
+      return $self->_todo_meta_path_deeply($expression);
     },
   );
 }
