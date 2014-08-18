@@ -622,6 +622,8 @@ Assert there are messages, and this single message exists:
 
   $test->has_message( $regex, $description );
 
+=for Pod::Coverage CAN_DPATH
+
 =head1 AUTHOR
 
 Kent Fredric <kentnl@cpan.org>
