@@ -19,6 +19,201 @@ use Test::More qw( );
 use Path::Tiny qw(path);
 use Data::DPath qw( dpath );
 
+
+
+
+
+
+
+
+
+
+
+
+
+sub add_file {
+  my ( $self, $path, $content ) = @_;
+  my $target = $self->tempdir->child( _file_list($path) );
+  $target->parent->mkpath;
+  $target->spew($content);
+  $self->files->{ $target->relative( $self->tempdir ) } = $target;
+  return;
+}
+
+
+
+
+
+
+
+
+
+sub _subtest_build_ok {
+  my ($self) = @_;
+
+  for my $file ( values %{ $self->files } ) {
+    next if -e $file and not -d $file;
+    return $self->tb->BAIL_OUT("expected file $file failed to add to tempdir");
+  }
+  $self->note_tempdir_files;
+
+  $self->tb->is_eq( $self->safe_configure, undef, 'Can load config' );
+
+  $self->tb->is_eq( $self->safe_build, undef, 'Can build' );
+
+  $self->note_builddir_files;
+  return;
+}
+
+sub build_ok {
+  my ($self) = @_;
+  return $self->tb->subtest(
+    'Configure and build' => sub {
+      $self->tb->plan( tests => 2 );
+      return $self->_subtest_build_ok;
+    },
+  );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+sub prereqs_deeply {
+  my ( $self, $prereqs ) = @_;
+  return $self->tb->subtest(
+    'distmeta prereqs comparison' => sub {
+      $self->tb->plan( tests => 2 );
+      $self->_subtest_prereqs_deeply($prereqs);
+    },
+  );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+sub _test_has_message {
+  my ( $self, $log, $regex, $reason ) = @_;
+  my $i = 0;
+  for my $item ( @{$log} ) {
+    if ( $item =~ $regex ) {
+      $self->tb->note( qq[item $i: ], $self->tb->explain($item) );
+      $self->tb->ok( 1, "log message $i matched $regex$reason" );
+      return 1;
+    }
+    $i++;
+  }
+  $self->tb->ok( undef, "No log messages matched $regex$reason" );
+  return;
+}
+
+sub _subtest_has_messages {
+  my ( $self, $map ) = @_;
+  my $log = $self->builder->log_messages;
+  $self->tb->ok( scalar @{$log}, ' has messages' );
+  my $need_diag;
+  for my $entry ( @{$map} ) {
+    my ( $regex, $reason ) = @{$entry};
+    $reason = ": $reason" if $reason;
+    $reason = q[] unless $reason;
+    $need_diag = 1 unless $self->_test_has_message( $log, $regex, $reason );
+  }
+  if ($need_diag) {
+    $self->tb->diag( $self->tb->explain($log) );
+    return;
+  }
+  return 1;
+}
+
+sub has_messages {
+  my $nargs = ( my ( $self, $label, $map ) = @_ );
+
+  croak 'Invalid number of arguments ( < 2 )' if 1 == $nargs;
+  croak 'Invalid number of arguments ( > 3 )' if $nargs > 3;
+
+  if ( 2 == $nargs ) {
+    $map   = $label;
+    $label = 'log messages check';
+  }
+  return $self->tb->subtest(
+    $label => sub {
+      $self->tb->plan( tests => 1 + scalar @{$map} );
+      $self->_subtest_has_messages($map);
+    },
+  );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sub meta_path_deeply {
+  my ( $self, $expression, $expected, $reason ) = @_;
+  if ( not $reason ) {
+    $reason = "distmeta at $expression matches expected";
+  }
+  return $self->tb->subtest(
+    $reason => sub {
+      $self->tb->plan( tests => 2 );
+      my (@results) = dpath($expression)->match( $self->builder->distmeta );
+      $self->tb->ok( @results > 0, "distmeta matched expression $expression" );
+      $self->tb->note( $self->tb->explain( \@results ) );
+      Test::More::is_deeply( \@results, $expected, 'distmeta matched expectations' );
+      return;
+    },
+  );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+sub test_has_built_file {
+  my ( $self, $path ) = @_;
+  my $file = $self->_build_root->child( _file_list($path) );
+  if ( defined $file and -e $file and not -d $file ) {
+    $self->tb->ok( 1, "$file exists" );
+    return $file;
+  }
+  $self->tb->ok( undef, "$file exists" );
+  return;
+}
+
 has tb => (
   is      => ro =>,
   lazy    => 1,
@@ -59,27 +254,6 @@ sub _file_list {
     return @{$file};
   }
   return ($file);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-sub add_file {
-  my ( $self, $path, $content ) = @_;
-  my $target = $self->tempdir->child( _file_list($path) );
-  $target->parent->mkpath;
-  $target->spew($content);
-  $self->files->{ $target->relative( $self->tempdir ) } = $target;
-  return;
 }
 
 
@@ -176,29 +350,6 @@ sub _note_path_files {
 
 
 
-
-
-
-
-sub test_has_built_file {
-  my ( $self, $path ) = @_;
-  my $file = $self->_build_root->child( _file_list($path) );
-  if ( defined $file and -e $file and not -d $file ) {
-    $self->tb->ok( 1, "$file exists" );
-    return $file;
-  }
-  $self->tb->ok( undef, "$file exists" );
-  return;
-}
-
-
-
-
-
-
-
-
-
 sub built_file {
   my ( $self, $path ) = @_;
   my $file = $self->_build_root->child( _file_list($path) );
@@ -229,41 +380,6 @@ sub note_builddir_files {
   return $self->_note_path_files( $self->_build_root );
 }
 
-
-
-
-
-
-
-
-
-sub _subtest_build_ok {
-  my ($self) = @_;
-
-  for my $file ( values %{ $self->files } ) {
-    next if -e $file and not -d $file;
-    return $self->tb->BAIL_OUT("expected file $file failed to add to tempdir");
-  }
-  $self->note_tempdir_files;
-
-  $self->tb->is_eq( $self->safe_configure, undef, 'Can load config' );
-
-  $self->tb->is_eq( $self->safe_build, undef, 'Can build' );
-
-  $self->note_builddir_files;
-  return;
-}
-
-sub build_ok {
-  my ($self) = @_;
-  return $self->tb->subtest(
-    'Configure and build' => sub {
-      $self->tb->plan( tests => 2 );
-      return $self->_subtest_build_ok;
-    },
-  );
-}
-
 sub _subtest_prereqs_deeply {
   my ( $self, $prereqs ) = @_;
   my $meta = $self->distmeta;
@@ -271,90 +387,6 @@ sub _subtest_prereqs_deeply {
   $self->tb->note( $self->tb->explain( $meta->{prereqs} ) );
   Test::More::is_deeply( $meta->{prereqs}, $prereqs, 'Prereqs match expected set' );
   return;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-sub prereqs_deeply {
-  my ( $self, $prereqs ) = @_;
-  return $self->tb->subtest(
-    'distmeta prereqs comparison' => sub {
-      $self->tb->plan( tests => 2 );
-      $self->_subtest_prereqs_deeply($prereqs);
-    },
-  );
-}
-
-
-
-
-
-
-
-
-
-
-
-
-sub _test_has_message {
-  my ( $self, $log, $regex, $reason ) = @_;
-  my $i = 0;
-  for my $item ( @{$log} ) {
-    if ( $item =~ $regex ) {
-      $self->tb->note( qq[item $i: ], $self->tb->explain($item) );
-      $self->tb->ok( 1, "log message $i matched $regex$reason" );
-      return 1;
-    }
-    $i++;
-  }
-  $self->tb->ok( undef, "No log messages matched $regex$reason" );
-  return;
-}
-
-sub _subtest_has_messages {
-  my ( $self, $map ) = @_;
-  my $log = $self->builder->log_messages;
-  $self->tb->ok( scalar @{$log}, ' has messages' );
-  my $need_diag;
-  for my $entry ( @{$map} ) {
-    my ( $regex, $reason ) = @{$entry};
-    $reason = ": $reason" if $reason;
-    $reason = q[] unless $reason;
-    $need_diag = 1 unless $self->_test_has_message( $log, $regex, $reason );
-  }
-  if ($need_diag) {
-    $self->tb->diag( $self->tb->explain($log) );
-    return;
-  }
-  return 1;
-}
-
-sub has_messages {
-  my $nargs = ( my ( $self, $label, $map ) = @_ );
-
-  croak 'Invalid number of arguments ( < 2 )' if 1 == $nargs;
-  croak 'Invalid number of arguments ( > 3 )' if $nargs > 3;
-
-  if ( 2 == $nargs ) {
-    $map   = $label;
-    $label = 'log messages check';
-  }
-  return $self->tb->subtest(
-    $label => sub {
-      $self->tb->plan( tests => 1 + scalar @{$map} );
-      $self->_subtest_has_messages($map);
-    },
-  );
 }
 
 sub _subtest_has_message {
@@ -382,38 +414,6 @@ sub has_message {
     "log message check$reason" => sub {
       $self->tb->plan( tests => 2 );
       $self->_subtest_has_message( $regex, $reason );
-    },
-  );
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-sub meta_path_deeply {
-  my ( $self, $expression, $expected, $reason ) = @_;
-  if ( not $reason ) {
-    $reason = "distmeta at $expression matches expected";
-  }
-  return $self->tb->subtest(
-    $reason => sub {
-      $self->tb->plan( tests => 2 );
-      my (@results) = dpath($expression)->match( $self->builder->distmeta );
-      $self->tb->ok( @results > 0, "distmeta matched expression $expression" );
-      $self->tb->note( $self->tb->explain( \@results ) );
-      Test::More::is_deeply( \@results, $expected, 'distmeta matched expectations' );
-      return;
     },
   );
 }
@@ -494,65 +494,6 @@ Add a file to the scratch directory to be built.
   $test->add_file('lib/Foo.pm', $content );
   $test->add_file([ 'lib','Foo.pm' ], $content );
 
-=head2 C<source_file>
-
-Re-fetch content added with C<add_file>.
-
-You probably want C<built_file>.
-
-  $test->source_file( $path  );
-  $test->source_file( \@path );
-
-Returns C<undef> if the file does not exist.
-
-  if ( my $content = $test->source_file('dist.ini') ) {
-    print $content->slurp_raw;
-  }
-
-=head2 C<configure>
-
-Construct the internal builder object.
-
-  $test->configure;
-
-=head2 C<csafe_configure>
-
-Construct the internal builder object safely. Returns exceptions or C<undef>.
-
-  if( $test->configure ) { say "configure failed" }
-
-=head2 C<safe_build>
-
-Ensure the distribution is built safely, returns exceptions or C<undef>.
-
-  if ( $test->safe_build ) {
-    say "Failed build";
-  }
-
-=head2 C<test_has_built_file>
-
-Test ( as in, C<Test::More::ok> ) that a file exists in the C<dzil> build output directory.
-
-Also returns it if it exists.
-
-  $test->test_has_built_file('dist.ini');  # ok/fail
-
-  my $object = test->test_has_built_file('dist.ini'); # ok/fail + return
-
-=head2 C<built_file>
-
-Returns the named file if it exists in the build, C<undef> otherwise.
-
-  my $file = $test->built_file('dist.ini');
-
-=head2 C<note_tempdir_files>
-
-Recursively walk C<tempdir> and note its contents.
-
-=head2 C<note_builddir_files>
-
-Recursively walk C<builddir>(output) and note its contents.
-
 =head2 C<build_ok>
 
 Build the dist safely, and report C<ok> if the dist builds C<ok>, spewing file listings via C<note>
@@ -578,12 +519,6 @@ Test that there are messages, and all the given rules match messages.
      [ $regex, $description ],
   ]);
 
-=head2 C<has_message>
-
-Assert there are messages, and this single message exists:
-
-  $test->has_message( $regex, $description );
-
 =head2 C<meta_path_deeply>
 
   $test->meta_path_deeply( $expression, $expected_data, $reason );
@@ -596,6 +531,71 @@ from C<distmeta>, and compare that I<LIST> vs C<$expected_data>
 
   # Matches all authors
   $test->meta_path_deeply('/author/*/*', ['SomeAuthorName <wadef@wath>','Author2', ..], $reason );
+
+=head2 C<test_has_built_file>
+
+Test ( as in, C<Test::More::ok> ) that a file exists in the C<dzil> build output directory.
+
+Also returns it if it exists.
+
+  $test->test_has_built_file('dist.ini');  # ok/fail
+
+  my $object = test->test_has_built_file('dist.ini'); # ok/fail + return
+
+=head2 C<source_file>
+
+Re-fetch content added with C<add_file>.
+
+You probably want C<built_file>.
+
+  $test->source_file( $path  );
+  $test->source_file( \@path );
+
+Returns C<undef> if the file does not exist.
+
+  if ( my $content = $test->source_file('dist.ini') ) {
+    print $content->slurp_raw;
+  }
+
+=head2 C<configure>
+
+Construct the internal builder object.
+
+  $test->configure;
+
+=head2 C<safe_configure>
+
+Construct the internal builder object safely. Returns exceptions or C<undef>.
+
+  if( $test->configure ) { say "configure failed" }
+
+=head2 C<safe_build>
+
+Ensure the distribution is built safely, returns exceptions or C<undef>.
+
+  if ( $test->safe_build ) {
+    say "Failed build";
+  }
+
+=head2 C<built_file>
+
+Returns the named file if it exists in the build, C<undef> otherwise.
+
+  my $file = $test->built_file('dist.ini');
+
+=head2 C<note_tempdir_files>
+
+Recursively walk C<tempdir> and note its contents.
+
+=head2 C<note_builddir_files>
+
+Recursively walk C<builddir>(output) and note its contents.
+
+=head2 C<has_message>
+
+Assert there are messages, and this single message exists:
+
+  $test->has_message( $regex, $description );
 
 =head1 AUTHOR
 
