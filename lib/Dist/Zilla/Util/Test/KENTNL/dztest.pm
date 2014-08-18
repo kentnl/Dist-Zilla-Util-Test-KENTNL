@@ -295,6 +295,17 @@ sub prereqs_deeply {
   );
 }
 
+
+
+
+
+
+
+
+
+
+
+
 sub _test_has_message {
   my ( $self, $log, $regex, $reason ) = @_;
   my $i = 0;
@@ -355,6 +366,14 @@ sub _subtest_has_message {
   return;
 }
 
+
+
+
+
+
+
+
+
 sub has_message {
   my ( $self, $regex, $reason ) = @_;
   $reason = ": $reason" if $reason;
@@ -366,6 +385,21 @@ sub has_message {
     },
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 sub meta_path_deeply {
   my ( $self, $expression, $expected, $reason ) = @_;
@@ -534,6 +568,34 @@ Demand C<distmeta> C<prereqs> exactly match those specified.
 This is just a more memorable version of
 
   $test->meta_path_deeply('/prereqs/', { });
+
+=head2 C<has_messages>
+
+Test that there are messages, and all the given rules match messages.
+
+  $test->has_messages( 'Some descriptor', [ 
+     [ $regex, $description ],
+     [ $regex, $description ],
+  ]);
+
+=head2 C<has_message>
+
+Assert there are messages, and this single message exists:
+
+  $test->has_message( $regex, $description );
+
+=head2 C<meta_path_deeply>
+
+  $test->meta_path_deeply( $expression, $expected_data, $reason );
+
+Uses C<$expression> as a L<< C<Data::DPath>|Data::DPath >> expression to pick a I<LIST> of nodes
+from C<distmeta>, and compare that I<LIST> vs C<$expected_data>
+
+  # Matches only the first author.
+  $test->meta_path_deeply('/author/*/[1]', ['SomeAuthorName <wadef@wath>'], $reason );
+
+  # Matches all authors
+  $test->meta_path_deeply('/author/*/*', ['SomeAuthorName <wadef@wath>','Author2', ..], $reason );
 
 =head1 AUTHOR
 

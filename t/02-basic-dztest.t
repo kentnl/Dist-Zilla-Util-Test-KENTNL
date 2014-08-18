@@ -23,7 +23,7 @@ $test->has_messages(
 );
 $test->has_message( qr/beginning\s*to\s*build/imsx, 'Got build log note' );
 $test->meta_path_deeply( '/prereqs', [ {} ], 'Simple prereqs using dpath' );
-$test->meta_path_deeply( '/author/*/[1]', ['E. Xavier Ample <example@example.org>'], );
+$test->meta_path_deeply( '/author/*/*', ['E. Xavier Ample <example@example.org>'], );
 $test->test_has_built_file('dist.ini');
 
 done_testing;
