@@ -185,7 +185,7 @@ sub test_config {
 sub dztest {
   my (@args) = @_;
   require Dist::Zilla::Util::Test::KENTNL::dztest;
-  return Dist::Zilla::Util::Test::KENTNL::_dztest->new(@args);
+  return Dist::Zilla::Util::Test::KENTNL::dztest->new(@args);
 }
 
 1;

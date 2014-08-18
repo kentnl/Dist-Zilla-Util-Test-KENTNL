@@ -15,8 +15,9 @@ use Carp qw( croak );
 use Moose qw( has );
 use Test::DZil qw( Builder );
 use Test::Fatal qw( exception );
-use Test::More qw( is_deeply );
+use Test::More qw( );
 use Path::Tiny qw(path);
+use Data::DPath qw( dpath );
 
 has tb => (
   is      => ro =>,
@@ -57,10 +58,12 @@ sub add_file {
   return;
 }
 
-sub has_source_file {
+sub source_file {
   my ( $self, $path ) = @_;
-  return unless -e $self->tempdir->child($path);
-  return not -d $self->tempdir->child($path);
+  my $file = $self->tempdir->child($path);
+  return unless -e $file;
+  return if -d $file;
+  return $file;
 }
 
 sub _build_builder {
@@ -101,6 +104,23 @@ sub _note_path_files {
     $self->tb->note( "$path : " . $path->stat->size . q[ ] . $path->stat->mode );
   }
   return;
+}
+
+sub test_has_built_file {
+  my ( $self, @path ) = @_;
+  my $file = $self->_build_root->child(@path);
+  my $ok = defined $file and -e $file and not -d $file;
+  $self->tb->ok( defined $file, "$file exists" );
+  return $file if $ok;
+  return;
+}
+
+sub built_file {
+  my ( $self, @path ) = @_;
+  my $file = $self->_build_root->child(@path);
+  return unless -e $file;
+  return if -d $file;
+  return $file;
 }
 
 sub note_tempdir_files {
@@ -147,7 +167,7 @@ sub prereqs_deeply {
       $self->tb->ok( defined $self->built_json, 'distmeta defined' );
       my $meta = $self->built_json;
       $self->tb->note( $self->tb->explain( $meta->{prereqs} ) );
-      is_deeply( $meta->{prereqs}, $prereqs, 'Prereqs match expected set' );
+      Test::More::is_deeply( $meta->{prereqs}, $prereqs, 'Prereqs match expected set' );
       return;
     },
   );
@@ -177,13 +197,13 @@ sub has_messages {
         for my $item ( @{$log} ) {
           if ( $item =~ $regex ) {
             $self->tb->note( qq[item $i: ], $self->tb->explain($item) );
-            $self->tb->pass("log message $i matched $regex$reason");
+            $self->tb->ok( 1, "log message $i matched $regex$reason" );
             next MESSAGETEST;
           }
           $i++;
         }
         $need_diag = 1;
-        $self->tb->fail("No log messages matched $regex$reason");
+        $self->tb->ok( undef, "No log messages matched $regex$reason" );
       }
       if ($need_diag) {
         $self->tb->diag( $self->tb->explain($log) );
@@ -193,7 +213,7 @@ sub has_messages {
 
 }
 
-sub had_message {
+sub has_message {
   my ( $self, $regex, $reason ) = @_;
   $reason = ": $reason" if $reason;
   $reason = q[] unless $reason;
@@ -206,14 +226,31 @@ sub had_message {
       for my $item ( @{$log} ) {
         if ( $item =~ $regex ) {
           $self->tb->note( qq[item $i: ], $self->tb->explain($item) );
-          $self->tb->pass("log message $i matched $regex");
+          $self->tb->ok( 1, "log message $i matched $regex" );
           return;
         }
         $i++;
       }
       $self->tb->diag( $self->tb->explain($log) );
-      $self->tb->fail("No log messages matched $regex");
+      $self->tb->ok( undef, "No log messages matched $regex" );
     },
+  );
+}
+
+sub meta_path_deeply {
+  my ( $self, $expression, $expected, $reason ) = @_;
+  if ( not $reason ) {
+    $reason = "distmeta at $expression matches expected";
+  }
+  return $self->tb->subtest(
+    $reason => sub {
+      $self->tb->plan( tests => 2 );
+      my (@results) = dpath($expression)->match( $self->builder->distmeta );
+      $self->tb->ok( @results > 0, "distmeta matched expression $expression" );
+      $self->tb->note( $self->tb->explain( \@results ) );
+      Test::More::is_deeply( \@results, $expected, "distmeta matched expectations" );
+      return;
+    }
   );
 }
 

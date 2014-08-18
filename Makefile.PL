@@ -21,6 +21,7 @@ my %WriteMakefileArgs = (
   "NAME" => "Dist::Zilla::Util::Test::KENTNL",
   "PREREQ_PM" => {
     "Carp" => 0,
+    "Data::DPath" => 0,
     "Dist::Zilla::Tester" => 0,
     "Moose" => 0,
     "Path::Tiny" => 0,
@@ -47,6 +48,7 @@ my %WriteMakefileArgs = (
 
 my %FallbackPrereqs = (
   "Carp" => 0,
+  "Data::DPath" => 0,
   "Dist::Zilla::Tester" => 0,
   "ExtUtils::MakeMaker" => 0,
   "File::Spec" => 0,
