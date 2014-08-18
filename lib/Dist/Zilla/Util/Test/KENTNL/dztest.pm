@@ -87,6 +87,15 @@ sub build_ok {
 
 
 
+sub _subtest_prereqs_deeply {
+  my ( $self, $prereqs ) = @_;
+  my $meta = $self->distmeta;
+  $self->tb->ok( defined $meta, 'distmeta defined' );
+  $self->tb->note( $self->tb->explain( $meta->{prereqs} ) );
+  Test::More::is_deeply( $meta->{prereqs}, $prereqs, 'Prereqs match expected set' );
+  return;
+}
+
 sub prereqs_deeply {
   my ( $self, $prereqs ) = @_;
   return $self->tb->subtest(
@@ -378,15 +387,6 @@ sub note_tempdir_files {
 sub note_builddir_files {
   my ($self) = @_;
   return $self->_note_path_files( $self->_build_root );
-}
-
-sub _subtest_prereqs_deeply {
-  my ( $self, $prereqs ) = @_;
-  my $meta = $self->distmeta;
-  $self->tb->ok( defined $meta, 'distmeta defined' );
-  $self->tb->note( $self->tb->explain( $meta->{prereqs} ) );
-  Test::More::is_deeply( $meta->{prereqs}, $prereqs, 'Prereqs match expected set' );
-  return;
 }
 
 sub _subtest_has_message {
