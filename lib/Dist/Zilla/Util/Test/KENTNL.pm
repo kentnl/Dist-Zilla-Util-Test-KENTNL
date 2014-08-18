@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::Util::Test::KENTNL;
 
-our $VERSION = '1.000003';
+our $VERSION = '1.001000';
 
 #ABSTRACT: KENTNL's DZil plugin testing tool
 
@@ -14,10 +14,24 @@ our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 use Try::Tiny qw( try catch );
 use Dist::Zilla::Tester qw( Builder );
 use Sub::Exporter -setup => {
-  exports => [ 'test_config', ],
-  groups  => [ default => [qw( -all )] ],
+  exports => [ 'test_config', 'dztest' ],
+  groups => [ default => [qw( -all )] ],
 };
 use Test::DZil qw(simple_ini);
+
+
+
+
+
+
+
+
+
+sub dztest {
+  my (@args) = @_;
+  require Dist::Zilla::Util::Test::KENTNL::dztest;
+  return Dist::Zilla::Util::Test::KENTNL::dztest->new(@args);
+}
 
 
 
@@ -196,9 +210,15 @@ Dist::Zilla::Util::Test::KENTNL - KENTNL's DZil plugin testing tool
 
 =head1 VERSION
 
-version 1.000003
+version 1.001000
 
 =head1 METHODS
+
+=head2 C<dztest>
+
+Creates a L<< C<Dist::Zilla::Util::Test::KENTNL>|Dist::Zilla::Util::Test::KENTNL::dztest >> object.
+
+This is a much more sane approach to testing than C<test_config>
 
 =head2 test_config
 

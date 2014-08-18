@@ -2,9 +2,14 @@ NAME
     Dist::Zilla::Util::Test::KENTNL - KENTNL's DZil plugin testing tool
 
 VERSION
-    version 1.000003
+    version 1.001000
 
 METHODS
+  "dztest"
+    Creates a "Dist::Zilla::Util::Test::KENTNL" object.
+
+    This is a much more sane approach to testing than "test_config"
+
   test_config
     This is pretty much why this module exists. Its a little perverse, but
     makes testing WAY easier.

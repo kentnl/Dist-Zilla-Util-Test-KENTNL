@@ -1,6 +1,17 @@
 This file contains changes in REQUIRED dependencies for standard CPAN phases (configure/build/runtime/test)
 
-1.000003
+1.001000
+ [Added / runtime requires]
+ - Data::DPath
+ - Moose
+ - Path::Tiny
+ - Test::Fatal
+ - Test::More 0.89
+
+ [Removed / test requires]
+ - Test::Fatal
+
+1.000003 2014-08-03T12:37:40Z
  [Changed / configure requires]
  - ExtUtils::MakeMaker 6.30 → 0
 
