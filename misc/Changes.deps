@@ -2,11 +2,7 @@ This file contains changes in REQUIRED dependencies for standard CPAN phases (co
 
 1.001001
  [Added / runtime requires]
- - Module::Runtime
  - constant
-
- [Removed / runtime requires]
- - Data::DPath
 
 1.001000 2014-08-18T21:14:28Z
  [Added / runtime requires]

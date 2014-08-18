@@ -2,11 +2,7 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
 
 1.001001
  [Added / runtime requires]
- - Module::Runtime
  - constant
-
- [Removed / runtime requires]
- - Data::DPath
 
 1.001000 2014-08-18T21:14:28Z
  [Added / develop requires]
