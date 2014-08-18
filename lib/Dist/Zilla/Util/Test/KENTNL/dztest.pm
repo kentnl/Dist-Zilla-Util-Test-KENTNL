@@ -22,11 +22,11 @@ use Module::Runtime qw( require_module );
 ## no critic (ValuesAndExpressions::ProhibitConstantPragma,ErrorHandling::RequireCheckingReturnValueOfEval)
 use constant CAN_DPATH => eval { require_module('Data::DPath'); 1 };
 use subs 'dpath';
-BEGIN { 
+BEGIN {
   if ( CAN_DPATH ) {
     Data::DPath->import('dpath');
   }
-};
+}
 
 ## use critic
 
@@ -207,10 +207,10 @@ sub _todo_meta_path_deeply {
   my ( $self, $expression ) = @_;
   if ( not $self->{diaged} ) {
     $self->{diaged} = 1;
-    $self->tb->diag("Data::DPath needed to accurately perform some of this test");
+    $self->tb->diag('Data::DPath needed to accurately perform some of this test');
   }
   $self->tb->todo_skip("distmeta matched expression $expression needs Data::DPath");
-  $self->tb->todo_skip("distmeta matched expectations needs Data::DPath");
+  $self->tb->todo_skip('distmeta matched expectations needs Data::DPath');
 }
 
 sub meta_path_deeply {
