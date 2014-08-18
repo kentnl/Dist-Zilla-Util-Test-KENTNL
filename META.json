@@ -95,6 +95,7 @@
             "Test::Fatal" : "0",
             "Test::More" : "0.89",
             "Try::Tiny" : "0",
+            "constant" : "0",
             "perl" : "5.008",
             "strict" : "0",
             "utf8" : "0",
@@ -117,11 +118,11 @@
    "provides" : {
       "Dist::Zilla::Util::Test::KENTNL" : {
          "file" : "lib/Dist/Zilla/Util/Test/KENTNL.pm",
-         "version" : "1.001000"
+         "version" : "1.001001"
       },
       "Dist::Zilla::Util::Test::KENTNL::dztest" : {
          "file" : "lib/Dist/Zilla/Util/Test/KENTNL/dztest.pm",
-         "version" : "1.001000"
+         "version" : "1.001001"
       }
    },
    "release_status" : "stable",
@@ -136,7 +137,7 @@
          "web" : "https://github.com/kentnl/Dist-Zilla-Util-Test-KENTNL"
       }
    },
-   "version" : "1.001000",
+   "version" : "1.001001",
    "x_BuiltWith" : {
       "modules" : {
          "CPAN::Meta" : "2.142060",
@@ -204,6 +205,7 @@
          "Test::Pod" : "1.48",
          "Test::Pod::Coverage" : "1.10",
          "Try::Tiny" : "0.22",
+         "constant" : "1.31",
          "strict" : "1.08",
          "utf8" : "1.14",
          "warnings" : "1.24"
@@ -659,7 +661,7 @@
                "Dist::Zilla::Plugin::Git::Tag" : {
                   "branch" : null,
                   "signed" : 0,
-                  "tag" : "1.001000-source",
+                  "tag" : "1.001001-source",
                   "tag_format" : "%v-source",
                   "tag_message" : "v%v",
                   "time_zone" : "local"
@@ -730,7 +732,7 @@
                "Dist::Zilla::Plugin::Git::Tag" : {
                   "branch" : "releases",
                   "signed" : 0,
-                  "tag" : "1.001000",
+                  "tag" : "1.001001",
                   "tag_format" : "%v",
                   "tag_message" : "v%v",
                   "time_zone" : "local"

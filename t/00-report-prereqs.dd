@@ -80,6 +80,7 @@ do { my $x = {
                                       'Test::Fatal' => '0',
                                       'Test::More' => '0.89',
                                       'Try::Tiny' => '0',
+                                      'constant' => '0',
                                       'perl' => '5.008',
                                       'strict' => '0',
                                       'utf8' => '0',
