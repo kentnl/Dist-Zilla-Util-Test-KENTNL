@@ -483,13 +483,13 @@ Construct the internal builder object.
 
 =head2 C<csafe_configure>
 
-Construct the internal builder object safely. Returns exceptions or undef.
+Construct the internal builder object safely. Returns exceptions or C<undef>.
 
   if( $test->configure ) { say "configure failed" }
 
 =head2 C<safe_build>
 
-Ensure the distribution is built safely, returns exceptions or undef.
+Ensure the distribution is built safely, returns exceptions or C<undef>.
 
   if ( $test->safe_build ) {
     say "Failed build";
@@ -507,7 +507,7 @@ Also returns it if it exists.
 
 =head2 C<built_file>
 
-Returns the named file if it exists in the build, undef otherwise.
+Returns the named file if it exists in the build, C<undef> otherwise.
 
   my $file = $test->built_file('dist.ini');
 
@@ -521,7 +521,7 @@ Recursively walk C<builddir>(output) and note its contents.
 
 =head2 C<build_ok>
 
-Build the dist safely, and report "Ok" if the dist builds ok, spewing file listings via C<note>
+Build the dist safely, and report C<ok> if the dist builds C<ok>, spewing file listings via C<note>
 
 C<BAIL_OUT> is triggered if any of C<add_file> don't arrive in the intended location.
 
