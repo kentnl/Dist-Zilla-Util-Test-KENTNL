@@ -155,7 +155,7 @@ sub has_messages {
     my $log = $self->builder->log_messages;
     ok( scalar @{$log}, ' has messages' );
     my $need_diag;
-  test: for my $entry ( @{$map} ) {
+  MESSAGETEST: for my $entry ( @{$map} ) {
       my ( $regex, $reason ) = @{$entry};
       $reason = ": $reason" if $reason;
       $reason = q[] unless $reason;
@@ -164,7 +164,7 @@ sub has_messages {
         if ( $item =~ $regex ) {
           note qq[item $i: ], explain $item;
           pass("log message $i matched $regex$reason");
-          next test;
+          next MESSAGETEST;
         }
         $i++;
       }
