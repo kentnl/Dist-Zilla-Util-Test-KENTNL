@@ -81,11 +81,18 @@
          }
       },
       "runtime" : {
+         "recommends" : {
+            "Test::More" : "1.001003"
+         },
          "requires" : {
             "Carp" : "0",
             "Dist::Zilla::Tester" : "0",
+            "Moose" : "0",
+            "Path::Tiny" : "0",
             "Sub::Exporter" : "0",
             "Test::DZil" : "0",
+            "Test::Fatal" : "0",
+            "Test::More" : "0.89",
             "Try::Tiny" : "0",
             "perl" : "5.008",
             "strict" : "0",
@@ -102,7 +109,6 @@
          "requires" : {
             "ExtUtils::MakeMaker" : "0",
             "File::Spec" : "0",
-            "Test::Fatal" : "0",
             "Test::More" : "0.89"
          }
       }
@@ -179,6 +185,8 @@
          "Dist::Zilla::Tester" : "5.020",
          "ExtUtils::MakeMaker" : "6.98",
          "File::Spec" : "3.48",
+         "Moose" : "2.1211",
+         "Path::Tiny" : "0.056",
          "Pod::Coverage::TrustPod" : "0.100003",
          "Sub::Exporter" : "0.987",
          "Test::CPAN::Changes" : "0.30",
