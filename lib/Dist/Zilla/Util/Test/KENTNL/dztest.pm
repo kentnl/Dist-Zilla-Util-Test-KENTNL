@@ -19,7 +19,7 @@ use Test::More qw( );
 use Path::Tiny qw(path);
 use Module::Runtime qw( require_module );
 
-## no critic (ValuesAndExpressions::ProhibitConstantPragma,ErrorHandling::RequireCheckingReturnValueOfEval)
+## no critic (ValuesAndExpressions::ProhibitConstantPragma,ErrorHandling::RequireCheckingReturnValueOfEval,Subroutines::ProhibitSubroutinePrototypes)
 use constant CAN_DPATH => eval { require_module('Data::DPath'); 1 };
 sub dpath($);
 BEGIN { CAN_DPATH and Data::DPath->import('dpath') }
