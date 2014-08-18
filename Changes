@@ -1,5 +1,7 @@
 Revision history for Dist-Zilla-Util-Test-KENTNL
 
+1.001001 2014-08-18T21:14:52Z
+
 1.001000 2014-08-18T21:14:28Z
  [00 Major]
  - add `dztest` function.
