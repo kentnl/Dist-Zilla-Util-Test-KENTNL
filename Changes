@@ -1,6 +1,6 @@
 Revision history for Dist-Zilla-Util-Test-KENTNL
 
-1.001002 2014-08-21T05:33:57Z
+1.001002 2014-08-21T05:37:40Z
  [Bugfix]
  - make sure build is in fact, always invoked when builder is required.
 

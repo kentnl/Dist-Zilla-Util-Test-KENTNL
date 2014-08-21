@@ -310,9 +310,9 @@ has builder => (
   lazy_build => 1,
   handles    => {
     distmeta => 'distmeta',
-    build    => 'build',
   },
 );
+sub build { my ($self) = @_; return $self->builder }
 
 sub _build_builder {
   my ($self) = @_;
