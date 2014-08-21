@@ -272,15 +272,6 @@ sub _build_tempdir {
   return $tempdir;
 }
 
-has builder => (
-  is         => ro =>,
-  lazy_build => 1,
-  handles    => {
-    distmeta => 'distmeta',
-    build    => 'build',
-  },
-);
-
 sub _file_list {
   my ($file) = @_;
   if ( 'ARRAY' eq ref $file ) {
@@ -314,35 +305,20 @@ sub source_file {
   return $file;
 }
 
+has builder => (
+  is         => ro =>,
+  lazy_build => 1,
+  handles    => {
+    distmeta => 'distmeta',
+    build    => 'build',
+  },
+);
+
 sub _build_builder {
   my ($self) = @_;
-  return Builder->from_config( { dist_root => q[] . $self->tempdir } );
-}
-
-
-
-
-
-
-
-
-
-sub configure {
-  my ($self) = @_;
-  return $self->builder;
-}
-
-
-
-
-
-
-
-
-
-sub safe_configure {
-  my ($self) = @_;
-  return exception { $self->configure };
+  my $b = $self->configure;
+  $b->build;
+  return $b;
 }
 
 
@@ -358,6 +334,38 @@ sub safe_configure {
 sub safe_build {
   my ($self) = @_;
   return exception { $self->build };
+}
+
+
+
+
+
+
+
+
+
+has configure => (
+  is         => ro =>,
+  lazy_build => 1,
+);
+
+sub _build_configure {
+  my ($self) = @_;
+  my $b = Builder->from_config( { dist_root => q[] . $self->tempdir } );
+  return $b;
+}
+
+
+
+
+
+
+
+
+
+sub safe_configure {
+  my ($self) = @_;
+  return exception { $self->configure };
 }
 
 sub _build_root {
@@ -581,18 +589,6 @@ Returns C<undef> if the file does not exist.
     print $content->slurp_raw;
   }
 
-=head2 C<configure>
-
-Construct the internal builder object.
-
-  $test->configure;
-
-=head2 C<safe_configure>
-
-Construct the internal builder object safely. Returns exceptions or C<undef>.
-
-  if( $test->configure ) { say "configure failed" }
-
 =head2 C<safe_build>
 
 Ensure the distribution is built safely, returns exceptions or C<undef>.
@@ -600,6 +596,12 @@ Ensure the distribution is built safely, returns exceptions or C<undef>.
   if ( $test->safe_build ) {
     say "Failed build";
   }
+
+=head2 C<safe_configure>
+
+Construct the internal builder object safely. Returns exceptions or C<undef>.
+
+  if( $test->configure ) { say "configure failed" }
 
 =head2 C<built_file>
 
@@ -620,6 +622,14 @@ Recursively walk C<builddir>(output) and note its contents.
 Assert there are messages, and this single message exists:
 
   $test->has_message( $regex, $description );
+
+=head1 ATTRIBUTES
+
+=head2 C<configure>
+
+Construct the internal builder object.
+
+  $test->configure;
 
 =for Pod::Coverage CAN_DPATH
 
