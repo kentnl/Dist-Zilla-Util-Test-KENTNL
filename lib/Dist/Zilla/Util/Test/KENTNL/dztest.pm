@@ -272,15 +272,6 @@ sub _build_tempdir {
   return $tempdir;
 }
 
-has builder => (
-  is         => ro =>,
-  lazy_build => 1,
-  handles    => {
-    distmeta => 'distmeta',
-    build    => 'build',
-  },
-);
-
 sub _file_list {
   my ($file) = @_;
   if ( 'ARRAY' eq ref $file ) {
@@ -314,35 +305,20 @@ sub source_file {
   return $file;
 }
 
+has builder => (
+  is         => ro =>,
+  lazy_build => 1,
+  handles    => {
+    distmeta => 'distmeta',
+  },
+);
+sub build { my ($self) = @_; return $self->builder }
+
 sub _build_builder {
   my ($self) = @_;
-  return Builder->from_config( { dist_root => q[] . $self->tempdir } );
-}
-
-=method C<configure>
-
-Construct the internal builder object.
-
-  $test->configure;
-
-=cut
-
-sub configure {
-  my ($self) = @_;
-  return $self->builder;
-}
-
-=method C<safe_configure>
-
-Construct the internal builder object safely. Returns exceptions or C<undef>.
-
-  if( $test->configure ) { say "configure failed" }
-
-=cut
-
-sub safe_configure {
-  my ($self) = @_;
-  return exception { $self->configure };
+  my $b = $self->configure;
+  $b->build;
+  return $b;
 }
 
 =method C<safe_build>
@@ -358,6 +334,38 @@ Ensure the distribution is built safely, returns exceptions or C<undef>.
 sub safe_build {
   my ($self) = @_;
   return exception { $self->build };
+}
+
+=attr C<configure>
+
+Construct the internal builder object.
+
+  $test->configure;
+
+=cut
+
+has configure => (
+  is         => ro =>,
+  lazy_build => 1,
+);
+
+sub _build_configure {
+  my ($self) = @_;
+  my $b = Builder->from_config( { dist_root => q[] . $self->tempdir } );
+  return $b;
+}
+
+=method C<safe_configure>
+
+Construct the internal builder object safely. Returns exceptions or C<undef>.
+
+  if( $test->configure ) { say "configure failed" }
+
+=cut
+
+sub safe_configure {
+  my ($self) = @_;
+  return exception { $self->configure };
 }
 
 sub _build_root {
@@ -449,7 +457,7 @@ __PACKAGE__->meta->make_immutable;
 
 =begin Pod::Coverage
 
-CAN_DPATH
+CAN_DPATH build
 
 =end Pod::Coverage
 
