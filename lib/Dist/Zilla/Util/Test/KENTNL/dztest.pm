@@ -631,7 +631,7 @@ Construct the internal builder object.
 
   $test->configure;
 
-=for Pod::Coverage CAN_DPATH
+=for Pod::Coverage CAN_DPATH build
 
 =head1 AUTHOR
 
