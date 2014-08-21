@@ -1,6 +1,12 @@
 Revision history for Dist-Zilla-Util-Test-KENTNL
 
-1.001002 2014-08-18T23:32:54Z
+1.001002 2014-08-21T05:33:57Z
+ [Bugfix]
+ - make sure build is in fact, always invoked when builder is required.
+
+ [Dependencies::Stats]
+ - Dependencies changed since 1.001001, see misc/*.deps* for details
+ - develop: (suggests: ↑1)
 
 1.001001 2014-08-18T23:05:17Z
  [Bugfix]
