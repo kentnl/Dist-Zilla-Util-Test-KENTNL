@@ -1,6 +1,8 @@
 This file contains changes to DEVELOPMENT dependencies only ( both REQUIRED and OPTIONAL )
 
 1.001003
+ [Added / develop requires]
+ - Test::Differences
 
 1.001002 2014-08-21T05:38:29Z
  [Changed / develop suggests]
