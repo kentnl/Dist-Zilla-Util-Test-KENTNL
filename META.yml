@@ -23,6 +23,7 @@ provides:
     file: lib/Dist/Zilla/Util/Test/KENTNL/dztest.pm
     version: '1.001003'
 recommends:
+  Test::Differences: '0'
   Test::More: '1.001003'
 requires:
   Carp: '0'
@@ -32,7 +33,6 @@ requires:
   Path::Tiny: '0'
   Sub::Exporter: '0'
   Test::DZil: '0'
-  Test::Differences: '0'
   Test::Fatal: '0'
   Test::More: '0.89'
   Try::Tiny: '0'
@@ -587,6 +587,18 @@ x_Dist_Zilla:
           type: requires
       name: Prereqs
       version: '5.020'
+    -
+      class: Dist::Zilla::Plugin::Prereqs::Soften
+      config:
+        Dist::Zilla::Plugin::Prereqs::Soften:
+          copy_to:
+            - develop.requires
+          modules:
+            - Test::Differences
+          modules_from_features: ~
+          to_relationship: recommends
+      name: Prereqs::Soften
+      version: '0.004002'
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':InstallModules'

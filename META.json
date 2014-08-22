@@ -71,6 +71,7 @@
             "Pod::Coverage::TrustPod" : "0",
             "Test::CPAN::Changes" : "0.19",
             "Test::CPAN::Meta" : "0",
+            "Test::Differences" : "0",
             "Test::Kwalitee" : "1.21",
             "Test::Pod" : "1.41",
             "Test::Pod::Coverage" : "1.08"
@@ -82,6 +83,7 @@
       },
       "runtime" : {
          "recommends" : {
+            "Test::Differences" : "0",
             "Test::More" : "1.001003"
          },
          "requires" : {
@@ -92,7 +94,6 @@
             "Path::Tiny" : "0",
             "Sub::Exporter" : "0",
             "Test::DZil" : "0",
-            "Test::Differences" : "0",
             "Test::Fatal" : "0",
             "Test::More" : "0.89",
             "Try::Tiny" : "0",
@@ -825,6 +826,23 @@
             },
             "name" : "Prereqs",
             "version" : "5.020"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::Prereqs::Soften",
+            "config" : {
+               "Dist::Zilla::Plugin::Prereqs::Soften" : {
+                  "copy_to" : [
+                     "develop.requires"
+                  ],
+                  "modules" : [
+                     "Test::Differences"
+                  ],
+                  "modules_from_features" : null,
+                  "to_relationship" : "recommends"
+               }
+            },
+            "name" : "Prereqs::Soften",
+            "version" : "0.004002"
          },
          {
             "class" : "Dist::Zilla::Plugin::FinderCode",
