@@ -77,6 +77,7 @@ do { my $x = {
                                       'Path::Tiny' => '0',
                                       'Sub::Exporter' => '0',
                                       'Test::DZil' => '0',
+                                      'Test::Differences' => '0',
                                       'Test::Fatal' => '0',
                                       'Test::More' => '0.89',
                                       'Try::Tiny' => '0',
