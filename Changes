@@ -1,5 +1,7 @@
 Revision history for Dist-Zilla-Util-Test-KENTNL
 
+1.002001 2014-08-22T17:40:56Z
+
 1.002000 2014-08-22T17:40:28Z
  [00 Minor]
  - Prefer Test::Differences everywhere it is possible.
