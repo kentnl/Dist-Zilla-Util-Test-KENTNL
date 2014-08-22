@@ -643,7 +643,7 @@ Construct the internal builder object.
 
   $test->configure;
 
-=for Pod::Coverage CAN_DPATH build
+=for Pod::Coverage CAN_DPATH build CAN_EQORDIFF
 
 =head1 AUTHOR
 
