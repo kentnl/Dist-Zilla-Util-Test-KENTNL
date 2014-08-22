@@ -28,3 +28,8 @@ srcreadme        = mkdn
 ;version_rel_time_zone = Pacific/Auckland
 
 [Prereqs]
+
+[Prereqs::Soften]
+to_relationship = recommends
+copy_to = develop.requires
+module = Test::Differences

@@ -18,11 +18,12 @@ name: Dist-Zilla-Util-Test-KENTNL
 provides:
   Dist::Zilla::Util::Test::KENTNL:
     file: lib/Dist/Zilla/Util/Test/KENTNL.pm
-    version: '1.001002'
+    version: '1.002000'
   Dist::Zilla::Util::Test::KENTNL::dztest:
     file: lib/Dist/Zilla/Util/Test/KENTNL/dztest.pm
-    version: '1.001002'
+    version: '1.002000'
 recommends:
+  Test::Differences: '0'
   Test::More: '1.001003'
 requires:
   Carp: '0'
@@ -44,14 +45,14 @@ resources:
   bugtracker: https://github.com/kentnl/Dist-Zilla-Util-Test-KENTNL/issues
   homepage: https://github.com/kentnl/Dist-Zilla-Util-Test-KENTNL
   repository: https://github.com/kentnl/Dist-Zilla-Util-Test-KENTNL.git
-version: '1.001002'
+version: '1.002000'
 x_BuiltWith:
   modules:
     CPAN::Meta: '2.142060'
     Carp: '1.34'
     Data::DPath: '0.50'
     Dist::Zilla::App::Command::bakeini: '0.001002'
-    Dist::Zilla::Plugin::Author::KENTNL::RecommendFixes: '0.002002'
+    Dist::Zilla::Plugin::Author::KENTNL::RecommendFixes: '0.002003'
     Dist::Zilla::Plugin::Authority: '1.006'
     Dist::Zilla::Plugin::AutoPrereqs: '5.020'
     Dist::Zilla::Plugin::BumpVersionAfterRelease: '0.002'
@@ -106,6 +107,7 @@ x_BuiltWith:
     Test::CPAN::Changes: '0.30'
     Test::CPAN::Meta: '0.23'
     Test::DZil: '5.020'
+    Test::Differences: '0.62'
     Test::Fatal: '0.013'
     Test::Kwalitee: '1.22'
     Test::More: '1.001003'
@@ -399,7 +401,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::Author::KENTNL::RecommendFixes
       name: '@Author::KENTNL/Author::KENTNL::RecommendFixes'
-      version: '0.002002'
+      version: '0.002003'
     -
       class: Dist::Zilla::Plugin::ReadmeFromPod
       name: '@Author::KENTNL/ReadmeFromPod'
@@ -465,7 +467,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: ~
           signed: '0'
-          tag: 1.001002-source
+          tag: 1.002000-source
           tag_format: '%v-source'
           tag_message: v%v
           time_zone: local
@@ -519,7 +521,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: releases
           signed: '0'
-          tag: '1.001002'
+          tag: '1.002000'
           tag_format: '%v'
           tag_message: v%v
           time_zone: local
@@ -585,6 +587,18 @@ x_Dist_Zilla:
           type: requires
       name: Prereqs
       version: '5.020'
+    -
+      class: Dist::Zilla::Plugin::Prereqs::Soften
+      config:
+        Dist::Zilla::Plugin::Prereqs::Soften:
+          copy_to:
+            - develop.requires
+          modules:
+            - Test::Differences
+          modules_from_features: ~
+          to_relationship: recommends
+      name: Prereqs::Soften
+      version: '0.004002'
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':InstallModules'

@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::Util::Test::KENTNL::dztest;
 
-our $VERSION = '1.001002';
+our $VERSION = '1.002000';
 
 # ABSTRACT: Shared dist testing logic for easy dzil things
 
@@ -19,7 +19,8 @@ use Test::More qw( );
 use Path::Tiny qw(path);
 
 ## no critic (ValuesAndExpressions::ProhibitConstantPragma,ErrorHandling::RequireCheckingReturnValueOfEval,Subroutines::ProhibitSubroutinePrototypes)
-use constant CAN_DPATH => eval { require Data::DPath; 1 };
+use constant CAN_DPATH    => eval { require Data::DPath;       1 };
+use constant CAN_EQORDIFF => eval { require Test::Differences; 1 };
 sub dpath($);
 BEGIN { CAN_DPATH and Data::DPath->import('dpath') }
 ## use critic
@@ -97,7 +98,13 @@ sub _subtest_prereqs_deeply {
   my $meta = $self->distmeta;
   $self->tb->ok( defined $meta, 'distmeta defined' );
   $self->tb->note( $self->tb->explain( $meta->{prereqs} ) );
-  Test::More::is_deeply( $meta->{prereqs}, $prereqs, 'Prereqs match expected set' );
+
+  if (CAN_EQORDIFF) {
+    Test::Differences::eq_or_diff( $meta->{prereqs}, $prereqs, 'Prereqs match expected set' );
+  }
+  else {
+    Test::More::is_deeply( $meta->{prereqs}, $prereqs, 'Prereqs match expected set' );
+  }
   return;
 }
 
@@ -193,7 +200,12 @@ sub _subtest_meta_path_deeply {
   my (@results) = dpath($expression)->match( $self->builder->distmeta );
   $self->tb->ok( @results > 0, "distmeta matched expression $expression" );
   $self->tb->note( $self->tb->explain( \@results ) );
-  Test::More::is_deeply( \@results, $expected, 'distmeta matched expectations' );
+  if (CAN_EQORDIFF) {
+    Test::Differences::eq_or_diff( \@results, $expected, 'distmeta matched expectations' );
+  }
+  else {
+    Test::More::is_deeply( \@results, $expected, 'distmeta matched expectations' );
+  }
   return;
 }
 
@@ -467,7 +479,7 @@ Dist::Zilla::Util::Test::KENTNL::dztest - Shared dist testing logic for easy dzi
 
 =head1 VERSION
 
-version 1.001002
+version 1.002000
 
 =head1 SYNOPSIS
 
@@ -631,7 +643,7 @@ Construct the internal builder object.
 
   $test->configure;
 
-=for Pod::Coverage CAN_DPATH build
+=for Pod::Coverage CAN_DPATH build CAN_EQORDIFF
 
 =head1 AUTHOR
 

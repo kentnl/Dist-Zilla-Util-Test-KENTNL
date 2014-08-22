@@ -1,5 +1,14 @@
 Revision history for Dist-Zilla-Util-Test-KENTNL
 
+1.002000 2014-08-22T17:40:28Z
+ [00 Minor]
+ - Prefer Test::Differences everywhere it is possible.
+
+ [Dependencies::Stats]
+ - Dependencies changed since 1.001002, see misc/*.deps* for details
+ - develop: +1
+ - runtime: (recommends: +1)
+
 1.001002 2014-08-21T05:38:29Z
  [Bugfix]
  - make sure build is in fact, always invoked when builder is required.
