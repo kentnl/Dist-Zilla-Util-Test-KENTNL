@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::Util::Test::KENTNL;
 
-our $VERSION = '1.002000';
+our $VERSION = '1.002001';
 
 #ABSTRACT: KENTNL's DZil plugin testing tool
 
