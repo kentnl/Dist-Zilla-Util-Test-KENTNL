@@ -1,5 +1,17 @@
 Revision history for Dist-Zilla-Util-Test-KENTNL
 
+1.003000 2014-08-29T07:46:22Z
+ [00 Minor]
+ - Add create_plugin utility.
+ - Test enhancements.
+
+ [Dependencies::Stats]
+ - Dependencies changed since 1.002000, see misc/*.deps* for details
+ - runtime: +2
+
+ [Tests]
+ - Test coverage improved.
+
 1.002000 2014-08-22T17:40:28Z
  [00 Minor]
  - Prefer Test::Differences everywhere it is possible.

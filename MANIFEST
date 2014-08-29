@@ -26,6 +26,7 @@ t/00-report-prereqs.dd
 t/00-report-prereqs.t
 t/01-basic.t
 t/02-basic-dztest.t
+t/03-basic-dztest-createplugin.t
 weaver.ini
 xt/author/critic.t
 xt/release/cpan-changes.t
