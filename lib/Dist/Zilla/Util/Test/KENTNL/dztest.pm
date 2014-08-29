@@ -17,6 +17,8 @@ use Test::DZil qw( Builder );
 use Test::Fatal qw( exception );
 use Test::More qw( );
 use Path::Tiny qw(path);
+use Dist::Zilla::Util;
+use Module::Runtime qw();
 
 ## no critic (ValuesAndExpressions::ProhibitConstantPragma,ErrorHandling::RequireCheckingReturnValueOfEval,Subroutines::ProhibitSubroutinePrototypes)
 use constant CAN_DPATH    => eval { require Data::DPath;       1 };
@@ -257,6 +259,50 @@ sub test_has_built_file {
   }
   $self->tb->ok( undef, "$file exists" );
   return;
+}
+
+=method C<create_plugin>
+
+Create an instance of the named plugin and return it.
+
+  my $t = dztest();
+  $t->add_file('dist.ini', simple_ini( ... ));
+  my $plugin = $t->create_plugin('GatherDir' => { ignore_dotfiles => 1 });
+  # poke at $plugin here
+
+Note: This lets you test plugins outside the requirement of inter-operating
+with C<dzil> phases, but has the downside of not interacting with C<dzil> phases,
+or even being I<*seen*> by C<dzil> phases.
+
+But this is OK if you want to directly test a modules interface instead of doing
+it through the proxy of C<dzil>
+
+You can also subsequently create many such objects without requiring a C<dzil build> penalty.
+
+=cut
+
+sub create_plugin {
+  my $nargs = ( my ( $self, $package, $name, $args ) = @_ );
+  if ( 2 == $nargs ) {
+    $name = $package;
+    $args = {};
+  }
+  if ( 3 == $nargs ) {
+    if ( ref $name ) {
+      $args = $name;
+      $name = $package;
+    }
+    else {
+      $args = {};
+    }
+  }
+  my $expanded = Dist::Zilla::Util->expand_config_package_name($package);
+  Module::Runtime::require_module($expanded);
+  return $expanded->new(
+    zilla       => $self->configure,
+    plugin_name => $name,
+    %{$args},
+  );
 }
 
 has tb => (
