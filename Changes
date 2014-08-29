@@ -1,6 +1,12 @@
 Revision history for Dist-Zilla-Util-Test-KENTNL
 
-1.003001 2014-08-29T07:47:20Z
+1.003001 2014-08-29T09:25:37Z
+ [00 Bugfix]
+ - Make sure failing to create a build dir is handled properly
+
+ [Dependencies::Stats]
+ - Dependencies changed since 1.003000, see misc/*.deps* for details
+ - runtime: ↑1
 
 1.003000 2014-08-29T07:46:22Z
  [00 Minor]
