@@ -26,7 +26,7 @@ my %WriteMakefileArgs = (
     "Dist::Zilla::Util" => 0,
     "Module::Runtime" => 0,
     "Moose" => 0,
-    "Path::Tiny" => 0,
+    "Path::Tiny" => "0.050",
     "Sub::Exporter" => 0,
     "Test::DZil" => 0,
     "Test::Fatal" => 0,
@@ -42,7 +42,7 @@ my %WriteMakefileArgs = (
     "File::Spec" => 0,
     "Test::More" => "0.89"
   },
-  "VERSION" => "1.003000",
+  "VERSION" => "1.003001",
   "test" => {
     "TESTS" => "t/*.t t/00-compile/*.t"
   }
@@ -58,7 +58,7 @@ my %FallbackPrereqs = (
   "File::Spec" => 0,
   "Module::Runtime" => 0,
   "Moose" => 0,
-  "Path::Tiny" => 0,
+  "Path::Tiny" => "0.050",
   "Sub::Exporter" => 0,
   "Test::DZil" => 0,
   "Test::Fatal" => 0,

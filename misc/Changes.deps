@@ -1,6 +1,10 @@
 This file contains changes in REQUIRED dependencies for standard CPAN phases (configure/build/runtime/test)
 
-1.003000
+1.003001
+ [Changed / runtime requires]
+ - Path::Tiny 0 → 0.050
+
+1.003000 2014-08-29T07:46:22Z
  [Added / runtime requires]
  - Dist::Zilla::Util
  - Module::Runtime
