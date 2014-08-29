@@ -14,7 +14,7 @@ our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 use Try::Tiny qw( try catch );
 use Dist::Zilla::Tester qw( Builder );
 use Sub::Exporter -setup => {
-  exports => [ 'test_config', 'dztest', ],
+  exports => [ 'test_config', 'dztest' ],
   groups => [ default => [qw( -all )] ],
 };
 use Test::DZil qw(simple_ini);
