@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.003000 2014-08-29T07:46:22Z
  [00 Minor]
  - Add create_plugin utility.
  - Test enhancements.
