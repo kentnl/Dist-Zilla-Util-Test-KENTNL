@@ -65,9 +65,12 @@ sub _subtest_build_ok {
   }
   $self->note_tempdir_files;
 
-  $self->tb->is_eq( $self->safe_configure, undef, 'Can load config' );
+  my $exception;
+  $self->tb->is_eq( $exception = $self->safe_configure, undef, 'Can load config' );
+  $self->tb->diag($exception) if $exception;
 
-  $self->tb->is_eq( $self->safe_build, undef, 'Can build' );
+  $self->tb->is_eq( $exception = $self->safe_build, undef, 'Can build' );
+  $self->tb->diag($exception) if $exception;
 
   $self->note_builddir_files;
   return;
@@ -433,6 +436,9 @@ sub _build_root {
 
 sub _note_path_files {
   my ( $self, $root_path ) = @_;
+  if ( not -e $root_path ) {
+    $self->tb->diag("$root_path does not exist, not noting its contents");
+  }
   my $i = path($root_path)->iterator( { recurse => 1 } );
   while ( my $path = $i->() ) {
     next if -d $path;
@@ -476,7 +482,10 @@ sub note_tempdir_files {
 
 sub note_builddir_files {
   my ($self) = @_;
-  return $self->_note_path_files( $self->_build_root );
+  if ( -e $self->_build_root ) {
+    return $self->_note_path_files( $self->_build_root );
+  }
+  $self->tb->note('No Build Root, probably due to no file gatherers');
 }
 
 sub _subtest_has_message {
