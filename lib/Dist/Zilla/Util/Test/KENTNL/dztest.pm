@@ -255,8 +255,8 @@ sub meta_path_deeply {
 
 sub test_has_built_file {
   my ( $self, $path ) = @_;
-  unless ( -e $self->_build_root and -d $self->_build_root ) {
-    $self->tb->ok( undef, "build root does not exist, cant have files");
+  if ( not -e $self->_build_root or not -d $self->_build_root ) {
+    $self->tb->ok( undef, 'build root does not exist, cant have files' );
     return;
   }
   my $file = $self->_build_root->child( _file_list($path) );
@@ -493,6 +493,7 @@ sub note_builddir_files {
     return $self->_note_path_files( $self->_build_root );
   }
   $self->tb->note('No Build Root, probably due to no file gatherers');
+  return;
 }
 
 sub _subtest_has_message {
