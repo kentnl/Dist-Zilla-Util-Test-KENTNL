@@ -1,6 +1,8 @@
 This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL dependencies for all phases (configure/build/runtime/test/develop)
 
-1.003001
+1.003002
+
+1.003001 2014-08-29T09:27:43Z
  [Changed / runtime requires]
  - Path::Tiny 0 → 0.050
 
