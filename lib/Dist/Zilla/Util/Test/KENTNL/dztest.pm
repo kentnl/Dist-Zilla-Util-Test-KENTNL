@@ -255,6 +255,10 @@ sub meta_path_deeply {
 
 sub test_has_built_file {
   my ( $self, $path ) = @_;
+  unless ( -e $self->_build_root and -d $self->_build_root ) {
+    $self->tb->ok( undef, "build root does not exist, cant have files");
+    return;
+  }
   my $file = $self->_build_root->child( _file_list($path) );
   if ( defined $file and -e $file and not -d $file ) {
     $self->tb->ok( 1, "$file exists" );
@@ -457,7 +461,10 @@ sub _note_path_files {
 
 sub built_file {
   my ( $self, $path ) = @_;
-  my $file = $self->_build_root->child( _file_list($path) );
+  my $root = $self->_build_root;
+  return unless -e $root;
+  return unless -d $root;
+  my $file = $root->child( _file_list($path) );
   return unless -e $file;
   return if -d $file;
   return $file;
