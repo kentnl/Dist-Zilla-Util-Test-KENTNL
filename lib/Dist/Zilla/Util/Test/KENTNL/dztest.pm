@@ -301,7 +301,7 @@ sub create_plugin {
   return $expanded->new(
     zilla       => $self->configure,
     plugin_name => $name,
-    %{$args}
+    %{$args},
   );
 }
 
@@ -641,7 +641,7 @@ Create an instance of the named plugin and return it.
   my $plugin = $t->create_plugin('GatherDir' => { ignore_dotfiles => 1 });
   # poke at $plugin here
 
-Note: This lets you test plugins outside the requirement of interoperating
+Note: This lets you test plugins outside the requirement of inter-operating
 with C<dzil> phases, but has the downside of not interacting with C<dzil> phases,
 or even being I<*seen*> by C<dzil> phases.
 
