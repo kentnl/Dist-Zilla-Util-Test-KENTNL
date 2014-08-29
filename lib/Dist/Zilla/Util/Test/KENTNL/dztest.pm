@@ -65,9 +65,12 @@ sub _subtest_build_ok {
   }
   $self->note_tempdir_files;
 
-  $self->tb->is_eq( $self->safe_configure, undef, 'Can load config' );
+  my $exception;
+  $self->tb->is_eq( $exception = $self->safe_configure, undef, 'Can load config' );
+  $self->tb->diag($exception) if $exception;
 
-  $self->tb->is_eq( $self->safe_build, undef, 'Can build' );
+  $self->tb->is_eq( $exception = $self->safe_build, undef, 'Can build' );
+  $self->tb->diag($exception) if $exception;
 
   $self->note_builddir_files;
   return;
@@ -252,6 +255,10 @@ Also returns it if it exists.
 
 sub test_has_built_file {
   my ( $self, $path ) = @_;
+  if ( not -e $self->_build_root or not -d $self->_build_root ) {
+    $self->tb->ok( undef, 'build root does not exist, cant have files' );
+    return;
+  }
   my $file = $self->_build_root->child( _file_list($path) );
   if ( defined $file and -e $file and not -d $file ) {
     $self->tb->ok( 1, "$file exists" );
@@ -433,6 +440,9 @@ sub _build_root {
 
 sub _note_path_files {
   my ( $self, $root_path ) = @_;
+  if ( not -e $root_path ) {
+    $self->tb->diag("$root_path does not exist, not noting its contents");
+  }
   my $i = path($root_path)->iterator( { recurse => 1 } );
   while ( my $path = $i->() ) {
     next if -d $path;
@@ -451,7 +461,10 @@ Returns the named file if it exists in the build, C<undef> otherwise.
 
 sub built_file {
   my ( $self, $path ) = @_;
-  my $file = $self->_build_root->child( _file_list($path) );
+  my $root = $self->_build_root;
+  return unless -e $root;
+  return unless -d $root;
+  my $file = $root->child( _file_list($path) );
   return unless -e $file;
   return if -d $file;
   return $file;
@@ -476,7 +489,11 @@ Recursively walk C<builddir>(output) and note its contents.
 
 sub note_builddir_files {
   my ($self) = @_;
-  return $self->_note_path_files( $self->_build_root );
+  if ( -e $self->_build_root ) {
+    return $self->_note_path_files( $self->_build_root );
+  }
+  $self->tb->note('No Build Root, probably due to no file gatherers');
+  return;
 }
 
 sub _subtest_has_message {
