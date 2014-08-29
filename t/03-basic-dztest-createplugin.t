@@ -18,4 +18,3 @@ my $plugin_d = $test->create_plugin( 'MetaConfig', 'Lizzard', {} );
 is( ref $plugin_a->metadata, 'HASH', 'Constructed metaconfig returned a hash ;)' );
 
 done_testing;
-
