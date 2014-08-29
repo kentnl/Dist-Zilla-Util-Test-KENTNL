@@ -8,7 +8,7 @@ use Dist::Zilla::Util::Test::KENTNL qw( dztest );
 # FILENAME: 02-basic-dztest.t
 # ABSTRACT: Make sure dztest works
 
-plan tests => 7;
+plan tests => 11;
 
 my $test = dztest;
 $test->add_file( 'dist.ini', simple_ini( ['GatherDir'] ) );
@@ -23,8 +23,12 @@ $test->has_messages(
 );
 $test->has_message( qr/beginning\s*to\s*build/imsx, 'Got build log note' );
 $test->meta_path_deeply( '/prereqs', [ {} ], 'Simple prereqs using dpath' );
+diag("Next diag warning is spurious and is just a test that diag happens");
+$test->_todo_meta_path_deeply( '/prereqs', [ {} ], 'Simple prereqs using dpath' );
 $test->meta_path_deeply( '/author/*/*', ['E. Xavier Ample <example@example.org>'], );
 $test->test_has_built_file('dist.ini');
 
+ok( -e ( my $file  = $test->source_file('dist.ini') ), 'source file exists' );
+ok( -e ( my $xfile = $test->built_file('dist.ini') ),  'built file exists' );
 done_testing;
 
