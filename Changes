@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.003001 2014-08-29T09:27:43Z
  [00 Bugfix]
  - Make sure failing to create a build dir is handled properly
 
