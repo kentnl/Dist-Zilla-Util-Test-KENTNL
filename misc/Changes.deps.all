@@ -1,6 +1,16 @@
 This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL dependencies for all phases (configure/build/runtime/test/develop)
 
-1.003001
+1.003002
+ [Changed / develop suggests]
+ - Dist::Zilla::PluginBundle::Author::KENTNL 2.020000 → 2.020001
+
+ [Changed / runtime recommends]
+ - Test::More 1.001003 → 1.001006
+
+ [Changed / test recommends]
+ - Test::More 1.001003 → 1.001006
+
+1.003001 2014-08-29T09:27:43Z
  [Changed / runtime requires]
  - Path::Tiny 0 → 0.050
 

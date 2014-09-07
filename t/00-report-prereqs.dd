@@ -63,13 +63,13 @@ do { my $x = {
                                     },
                       'suggests' => {
                                       'Dist::Zilla::App::Command::bakeini' => '0.001002',
-                                      'Dist::Zilla::PluginBundle::Author::KENTNL' => '2.020000'
+                                      'Dist::Zilla::PluginBundle::Author::KENTNL' => '2.020001'
                                     }
                     },
        'runtime' => {
                       'recommends' => {
                                         'Test::Differences' => '0',
-                                        'Test::More' => '1.001003'
+                                        'Test::More' => '1.001006'
                                       },
                       'requires' => {
                                       'Carp' => '0',
@@ -95,7 +95,7 @@ do { my $x = {
                    'recommends' => {
                                      'CPAN::Meta' => '2.120900',
                                      'ExtUtils::MakeMaker' => '6.98',
-                                     'Test::More' => '1.001003'
+                                     'Test::More' => '1.001006'
                                    },
                    'requires' => {
                                    'ExtUtils::MakeMaker' => '0',

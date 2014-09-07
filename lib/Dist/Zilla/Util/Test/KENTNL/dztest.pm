@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::Util::Test::KENTNL::dztest;
 
-our $VERSION = '1.003001';
+our $VERSION = '1.003002';
 
 # ABSTRACT: Shared dist testing logic for easy dzil things
 
@@ -202,6 +202,12 @@ sub has_messages {
 
 sub _subtest_meta_path_deeply {
   my ( $self, $expression, $expected ) = @_;
+  if ( not 'ARRAY' eq ref $expected ) {
+    $self->tb->diag(<<'EOF');
+WARNING: Author appears to have forgotten to wrap $expected with [], and this may cause a bug.
+EOF
+    $expected = [$expected];
+  }
   my (@results) = dpath($expression)->match( $self->builder->distmeta );
   $self->tb->ok( @results > 0, "distmeta matched expression $expression" );
   $self->tb->note( $self->tb->explain( \@results ) );
@@ -542,7 +548,7 @@ Dist::Zilla::Util::Test::KENTNL::dztest - Shared dist testing logic for easy dzi
 
 =head1 VERSION
 
-version 1.003001
+version 1.003002
 
 =head1 SYNOPSIS
 
