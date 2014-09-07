@@ -203,7 +203,9 @@ sub has_messages {
 sub _subtest_meta_path_deeply {
   my ( $self, $expression, $expected ) = @_;
   if ( not 'ARRAY' eq ref $expected ) {
-    $self->tb->diag('WARNING: Author appears to have forgotten to wrap $expected with [], and this may cause a bug.');
+    $self->tb->diag(<<'EOF');
+WARNING: Author appears to have forgotten to wrap $expected with [], and this may cause a bug.
+EOF
     $expected = [$expected];
   }
   my (@results) = dpath($expression)->match( $self->builder->distmeta );
