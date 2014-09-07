@@ -202,6 +202,12 @@ from C<distmeta>, and compare that I<LIST> vs C<$expected_data>
 
 sub _subtest_meta_path_deeply {
   my ( $self, $expression, $expected ) = @_;
+  if ( not 'ARRAY' eq ref $expected ) {
+    $self->tb->diag(<<'EOF');
+WARNING: Author appears to have forgotten to wrap $expected with [], and this may cause a bug.
+EOF
+    $expected = [$expected];
+  }
   my (@results) = dpath($expression)->match( $self->builder->distmeta );
   $self->tb->ok( @results > 0, "distmeta matched expression $expression" );
   $self->tb->note( $self->tb->explain( \@results ) );

@@ -1,6 +1,15 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ [00 Bugfix]
+ - Warn and auto-wrap $expected in meta_path_deeply to avoid other instances of
+   kentnl/Dist-Zilla-Plugin-Prereqs-MatchInstalled#3
+
+ [Dependencies::Stats]
+ - Dependencies changed since 1.003001, see misc/*.deps* for details
+ - develop: (suggests: ↑1)
+ - runtime: (recommends: ↑1)
+ - test: (recommends: ↑1)
 
 1.003001 2014-08-29T09:27:43Z
  [00 Bugfix]
