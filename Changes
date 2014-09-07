@@ -1,5 +1,7 @@
 Revision history for Dist-Zilla-Util-Test-KENTNL
 
+1.003003 2014-09-07T09:08:23Z
+
 1.003002 2014-09-07T09:07:01Z
  [00 Bugfix]
  - Warn and auto-wrap $expected in meta_path_deeply to avoid other instances of
