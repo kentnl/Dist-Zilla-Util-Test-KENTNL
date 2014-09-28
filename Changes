@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.003003 2014-09-28T07:27:06Z
  [Bugfix]
  - spew_raw to avoid \r\n translation on Win32
 
