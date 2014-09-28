@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::Util::Test::KENTNL::dztest;
 
-our $VERSION = '1.003002';
+our $VERSION = '1.003003';
 
 # ABSTRACT: Shared dist testing logic for easy dzil things
 
@@ -43,7 +43,7 @@ sub add_file {
   my ( $self, $path, $content ) = @_;
   my $target = $self->tempdir->child( _file_list($path) );
   $target->parent->mkpath;
-  $target->spew($content);
+  $target->spew_raw($content);
   $self->files->{ $target->relative( $self->tempdir ) } = $target;
   return;
 }
@@ -548,7 +548,7 @@ Dist::Zilla::Util::Test::KENTNL::dztest - Shared dist testing logic for easy dzi
 
 =head1 VERSION
 
-version 1.003002
+version 1.003003
 
 =head1 SYNOPSIS
 
