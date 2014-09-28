@@ -1,5 +1,7 @@
 Revision history for Dist-Zilla-Util-Test-KENTNL
 
+1.003004 2014-09-28T07:30:09Z
+
 1.003003 2014-09-28T07:27:06Z
  [Bugfix]
  - spew_raw to avoid \r\n translation on Win32

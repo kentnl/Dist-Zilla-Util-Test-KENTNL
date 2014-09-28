@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::Util::Test::KENTNL::dztest;
 
-our $VERSION = '1.003003';
+our $VERSION = '1.003004';
 
 # ABSTRACT: Shared dist testing logic for easy dzil things
 
@@ -548,7 +548,7 @@ Dist::Zilla::Util::Test::KENTNL::dztest - Shared dist testing logic for easy dzi
 
 =head1 VERSION
 
-version 1.003003
+version 1.003004
 
 =head1 SYNOPSIS
 
