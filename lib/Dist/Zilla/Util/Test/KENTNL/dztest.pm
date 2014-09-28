@@ -43,7 +43,7 @@ sub add_file {
   my ( $self, $path, $content ) = @_;
   my $target = $self->tempdir->child( _file_list($path) );
   $target->parent->mkpath;
-  $target->spew($content);
+  $target->spew_raw($content);
   $self->files->{ $target->relative( $self->tempdir ) } = $target;
   return;
 }
