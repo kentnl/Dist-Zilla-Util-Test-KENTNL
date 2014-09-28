@@ -1,6 +1,9 @@
 Revision history for Dist-Zilla-Util-Test-KENTNL
 
-1.003003 2014-09-28T07:23:05Z
+1.003003 2014-09-28T07:27:06Z
+ [Bugfix]
+ - spew_raw to avoid \r\n translation on Win32
+
  [Dependencies::Stats]
  - Dependencies changed since 1.003002, see misc/*.deps* for details
  - develop: (suggests: ↑1)
