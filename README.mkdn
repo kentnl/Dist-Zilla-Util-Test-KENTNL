@@ -4,7 +4,7 @@ Dist::Zilla::Util::Test::KENTNL - KENTNL's DZil plugin testing tool
 
 # VERSION
 
-version 1.003004
+version 1.004000
 
 # METHODS
 

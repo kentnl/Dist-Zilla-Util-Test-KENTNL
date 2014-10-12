@@ -1,6 +1,11 @@
 This file contains changes in REQUIRED dependencies for standard CPAN phases (configure/build/runtime/test)
 
-1.003004
+1.004000
+ [Added / runtime requires]
+ - Dist::Zilla::App::Tester
+
+ [Added / test requires]
+ - Dist::Zilla::App::Command::authordeps
 
 1.003003 2014-09-28T07:27:06Z
 
