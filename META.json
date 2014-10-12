@@ -124,11 +124,11 @@
    "provides" : {
       "Dist::Zilla::Util::Test::KENTNL" : {
          "file" : "lib/Dist/Zilla/Util/Test/KENTNL.pm",
-         "version" : "1.003004"
+         "version" : "1.004000"
       },
       "Dist::Zilla::Util::Test::KENTNL::dztest" : {
          "file" : "lib/Dist/Zilla/Util/Test/KENTNL/dztest.pm",
-         "version" : "1.003004"
+         "version" : "1.004000"
       }
    },
    "release_status" : "stable",
@@ -143,7 +143,7 @@
          "web" : "https://github.com/kentnl/Dist-Zilla-Util-Test-KENTNL"
       }
    },
-   "version" : "1.003004",
+   "version" : "1.004000",
    "x_BuiltWith" : {
       "modules" : {
          "CPAN::Meta" : "2.142690",
@@ -675,7 +675,7 @@
                "Dist::Zilla::Plugin::Git::Tag" : {
                   "branch" : null,
                   "signed" : 0,
-                  "tag" : "1.003004-source",
+                  "tag" : "1.004000-source",
                   "tag_format" : "%v-source",
                   "tag_message" : "v%v",
                   "time_zone" : "local"
@@ -746,7 +746,7 @@
                "Dist::Zilla::Plugin::Git::Tag" : {
                   "branch" : "releases",
                   "signed" : 0,
-                  "tag" : "1.003004",
+                  "tag" : "1.004000",
                   "tag_format" : "%v",
                   "tag_message" : "v%v",
                   "time_zone" : "local"
