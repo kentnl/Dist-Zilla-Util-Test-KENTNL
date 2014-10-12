@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::Util::Test::KENTNL::dztest;
 
-our $VERSION = '1.003003';
+our $VERSION = '1.004000';
 
 # ABSTRACT: Shared dist testing logic for easy dzil things
 
@@ -18,6 +18,7 @@ use Test::Fatal qw( exception );
 use Test::More qw( );
 use Path::Tiny qw(path);
 use Dist::Zilla::Util;
+use Dist::Zilla::App::Tester qw( test_dzil );
 use Module::Runtime qw();
 
 ## no critic (ValuesAndExpressions::ProhibitConstantPragma,ErrorHandling::RequireCheckingReturnValueOfEval,Subroutines::ProhibitSubroutinePrototypes)
@@ -531,6 +532,25 @@ sub has_message {
   );
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sub run_command {
+  my ( $self, $argv, $arg ) = @_;
+  return test_dzil( $self->tempdir, $argv, $arg );
+}
+
 no Moose;
 __PACKAGE__->meta->make_immutable;
 
@@ -548,7 +568,7 @@ Dist::Zilla::Util::Test::KENTNL::dztest - Shared dist testing logic for easy dzi
 
 =head1 VERSION
 
-version 1.003003
+version 1.004000
 
 =head1 SYNOPSIS
 
@@ -721,6 +741,18 @@ Recursively walk C<builddir>(output) and note its contents.
 Assert there are messages, and this single message exists:
 
   $test->has_message( $regex, $description );
+
+=head2 C<run_command>
+
+Execute a Dist::Zilla command in the constructed scratch directory.
+
+  $test->run_command(['build','foo']);
+
+The syntax is technically:
+
+  $test->run_command( $argv, $arg );
+
+But I'm yet to work out the meaning of the latter.
 
 =head1 ATTRIBUTES
 

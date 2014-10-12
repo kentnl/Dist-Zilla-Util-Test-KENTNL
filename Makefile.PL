@@ -22,6 +22,7 @@ my %WriteMakefileArgs = (
   "PREREQ_PM" => {
     "Carp" => 0,
     "Data::DPath" => 0,
+    "Dist::Zilla::App::Tester" => 0,
     "Dist::Zilla::Tester" => 0,
     "Dist::Zilla::Util" => 0,
     "Module::Runtime" => 0,
@@ -38,11 +39,12 @@ my %WriteMakefileArgs = (
     "warnings" => 0
   },
   "TEST_REQUIRES" => {
+    "Dist::Zilla::App::Command::authordeps" => 0,
     "ExtUtils::MakeMaker" => 0,
     "File::Spec" => 0,
     "Test::More" => "0.89"
   },
-  "VERSION" => "1.003003",
+  "VERSION" => "1.004000",
   "test" => {
     "TESTS" => "t/*.t t/00-compile/*.t"
   }
@@ -52,6 +54,8 @@ my %WriteMakefileArgs = (
 my %FallbackPrereqs = (
   "Carp" => 0,
   "Data::DPath" => 0,
+  "Dist::Zilla::App::Command::authordeps" => 0,
+  "Dist::Zilla::App::Tester" => 0,
   "Dist::Zilla::Tester" => 0,
   "Dist::Zilla::Util" => 0,
   "ExtUtils::MakeMaker" => 0,
