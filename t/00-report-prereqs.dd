@@ -99,6 +99,7 @@ do { my $x = {
                                      'Test::More' => '1.001006'
                                    },
                    'requires' => {
+                                   'Dist::Zilla::App::Command::authordeps' => '0',
                                    'ExtUtils::MakeMaker' => '0',
                                    'File::Spec' => '0',
                                    'Test::More' => '0.89'
