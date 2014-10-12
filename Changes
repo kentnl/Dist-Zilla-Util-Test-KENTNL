@@ -1,6 +1,14 @@
 Revision history for Dist-Zilla-Util-Test-KENTNL
 
-1.003004 2014-09-28T07:30:20Z
+1.003004 2014-10-12T14:41:04Z
+ [Dependencies::Stats]
+ - Dependencies changed since 1.003003, see misc/*.deps* for details
+ - develop: (suggests: ↑1)
+ - runtime: +1
+ - test: +1
+
+ [Features]
+ - dztest now has ->run_command() proxy for DZ:App::Tester::test_dzil
 
 1.003003 2014-09-28T07:27:06Z
  [Bugfix]

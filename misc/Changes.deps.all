@@ -1,6 +1,14 @@
 This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL dependencies for all phases (configure/build/runtime/test/develop)
 
 1.003004
+ [Added / runtime requires]
+ - Dist::Zilla::App::Tester
+
+ [Added / test requires]
+ - Dist::Zilla::App::Command::authordeps
+
+ [Changed / develop suggests]
+ - Dist::Zilla::PluginBundle::Author::KENTNL 2.020003 → 2.021000
 
 1.003003 2014-09-28T07:27:06Z
  [Changed / develop suggests]
