@@ -18,6 +18,7 @@ use Test::Fatal qw( exception );
 use Test::More qw( );
 use Path::Tiny qw(path);
 use Dist::Zilla::Util;
+use Dist::Zilla::App::Tester qw( test_dzil );
 use Module::Runtime qw();
 
 ## no critic (ValuesAndExpressions::ProhibitConstantPragma,ErrorHandling::RequireCheckingReturnValueOfEval,Subroutines::ProhibitSubroutinePrototypes)
@@ -529,6 +530,11 @@ sub has_message {
       $self->_subtest_has_message( $regex, $reason );
     },
   );
+}
+
+sub run_command {
+  my ( $self, $argv, $arg ) = @_;
+  return test_dzil( $self->tempdir, $argv, $arg );
 }
 
 no Moose;
