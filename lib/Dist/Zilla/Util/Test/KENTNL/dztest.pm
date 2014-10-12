@@ -532,6 +532,20 @@ sub has_message {
   );
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 sub run_command {
   my ( $self, $argv, $arg ) = @_;
   return test_dzil( $self->tempdir, $argv, $arg );
@@ -727,6 +741,18 @@ Recursively walk C<builddir>(output) and note its contents.
 Assert there are messages, and this single message exists:
 
   $test->has_message( $regex, $description );
+
+=head2 C<run_command>
+
+Execute a Dist::Zilla command in the constructed scratch directory.
+
+  $test->run_command(['build','foo']);
+
+The syntax is technically:
+
+  $test->run_command( $argv, $arg );
+
+But I'm yet to work out the meaning of the latter.
 
 =head1 ATTRIBUTES
 
