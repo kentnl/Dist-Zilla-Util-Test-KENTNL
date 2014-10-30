@@ -5,6 +5,7 @@ This file contains changes to DEVELOPMENT dependencies only ( both REQUIRED and 
  - Test::More 1.001008
 
  [Added / develop requires]
+ - Data::DPath
  - Dist::Zilla::Plugin::Test::EOL
  - Test::EOL
  - Test::More

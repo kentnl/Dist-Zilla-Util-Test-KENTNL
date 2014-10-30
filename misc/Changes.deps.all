@@ -8,9 +8,13 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  - Test::More 1.001008
 
  [Added / develop requires]
+ - Data::DPath
  - Dist::Zilla::Plugin::Test::EOL
  - Test::EOL
  - Test::More
+
+ [Added / runtime recommends]
+ - Data::DPath
 
  [Added / test requires]
  - perl 5.008
@@ -31,6 +35,9 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
 
  [Removed / develop requires]
  - Dist::Zilla::Plugin::EOLTests
+
+ [Removed / runtime requires]
+ - Data::DPath
 
 1.004000 2014-10-12T15:44:27Z
  [Added / develop requires]
