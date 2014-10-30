@@ -34,3 +34,4 @@ Path::Tiny = 0.050 ; No fatalized iterators
 to_relationship = recommends
 copy_to = develop.requires
 module = Test::Differences
+module = Data::DPath ; Until there's a version that installs cleanly before 5.10
