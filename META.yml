@@ -26,11 +26,11 @@ provides:
     file: lib/Dist/Zilla/Util/Test/KENTNL/dztest.pm
     version: '1.004001'
 recommends:
+  Data::DPath: '0'
   Test::Differences: '0'
   Test::More: '1.001008'
 requires:
   Carp: '0'
-  Data::DPath: '0'
   Dist::Zilla::App::Tester: '0'
   Dist::Zilla::Tester: '0'
   Dist::Zilla::Util: '0'
@@ -633,6 +633,7 @@ x_Dist_Zilla:
             - develop.requires
           modules:
             - Test::Differences
+            - Data::DPath
           modules_from_features: ~
           to_relationship: recommends
       name: Prereqs::Soften
