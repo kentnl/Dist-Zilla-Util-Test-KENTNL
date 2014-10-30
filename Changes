@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.004001 2014-10-30T12:56:17Z cab1d68
  [Bugfix]
  - Soften DPath dependency till upstream can fix it for 5.8
 
