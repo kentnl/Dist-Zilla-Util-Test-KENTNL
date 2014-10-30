@@ -1,6 +1,9 @@
 Revision history for Dist-Zilla-Util-Test-KENTNL
 
-1.004001 2014-10-30T12:53:58Z adf05ed
+1.004001 2014-10-30T12:56:17Z cab1d68
+ [Bugfix]
+ - Soften DPath dependency till upstream can fix it for 5.8
+
  [Dependencies::Stats]
  - Dependencies changed since 1.004000, see misc/*.deps* for details
  - configure: +1 (recommends: ↑1)
