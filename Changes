@@ -1,5 +1,7 @@
 Revision history for Dist-Zilla-Util-Test-KENTNL
 
+1.004003 2014-11-01T11:43:55Z bba0d70
+
 1.004002 2014-11-01T11:43:22Z dc767c8
  [Bugfix]
  - Require a version of Test::More with a useable subtest.
