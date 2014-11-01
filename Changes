@@ -1,9 +1,14 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ [Bugfix]
+ - Require a version of Test::More with a useable subtest.
+
  [Dependencies::Stats]
  - Dependencies changed since 1.004001, see misc/*.deps* for details
  - develop: (suggests: ↑1)
+ - runtime: ↑1
+ - test: ↑1
 
 1.004001 2014-10-30T12:56:17Z cab1d68
  [Bugfix]
