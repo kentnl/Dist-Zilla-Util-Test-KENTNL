@@ -1,9 +1,14 @@
 Revision history for Dist-Zilla-Util-Test-KENTNL
 
-1.004002 2014-11-01T11:39:31Z 3838d48
+1.004002 2014-11-01T11:43:22Z dc767c8
+ [Bugfix]
+ - Require a version of Test::More with a useable subtest.
+
  [Dependencies::Stats]
  - Dependencies changed since 1.004001, see misc/*.deps* for details
  - develop: (suggests: ↑1)
+ - runtime: ↑1
+ - test: ↑1
 
 1.004001 2014-10-30T12:56:17Z cab1d68
  [Bugfix]
