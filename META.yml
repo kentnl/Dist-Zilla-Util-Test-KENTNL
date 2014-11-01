@@ -6,7 +6,7 @@ build_requires:
   Dist::Zilla::App::Command::authordeps: '0'
   ExtUtils::MakeMaker: '0'
   File::Spec: '0'
-  Test::More: '0.89'
+  Test::More: '0.96'
   perl: '5.008'
 configure_requires:
   ExtUtils::MakeMaker: '0'
@@ -40,7 +40,7 @@ requires:
   Sub::Exporter: '0'
   Test::DZil: '0'
   Test::Fatal: '0'
-  Test::More: '0.89'
+  Test::More: '0.96'
   Try::Tiny: '0'
   constant: '0'
   perl: '5.008'

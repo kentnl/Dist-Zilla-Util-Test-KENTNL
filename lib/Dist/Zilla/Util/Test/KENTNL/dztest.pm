@@ -15,7 +15,7 @@ use Carp qw( croak );
 use Moose qw( has );
 use Test::DZil qw( Builder );
 use Test::Fatal qw( exception );
-use Test::More qw(); #0.96 qw( ); # subtest
+use Test::More 0.96 qw( ); # subtest
 use Path::Tiny qw(path);
 use Dist::Zilla::Util;
 use Dist::Zilla::App::Tester qw( test_dzil );
