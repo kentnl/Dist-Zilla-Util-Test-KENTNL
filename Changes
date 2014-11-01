@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.004002 2014-11-01T11:43:22Z dc767c8
  [Bugfix]
  - Require a version of Test::More with a useable subtest.
 
