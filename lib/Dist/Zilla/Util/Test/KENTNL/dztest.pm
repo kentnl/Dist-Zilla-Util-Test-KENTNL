@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::Util::Test::KENTNL::dztest;
 
-our $VERSION = '1.004001';
+our $VERSION = '1.004002';
 
 # ABSTRACT: Shared dist testing logic for easy dzil things
 
@@ -15,7 +15,7 @@ use Carp qw( croak );
 use Moose qw( has );
 use Test::DZil qw( Builder );
 use Test::Fatal qw( exception );
-use Test::More qw( );
+use Test::More 0.96 qw( );    # subtest
 use Path::Tiny qw(path);
 use Dist::Zilla::Util;
 use Dist::Zilla::App::Tester qw( test_dzil );
@@ -568,7 +568,7 @@ Dist::Zilla::Util::Test::KENTNL::dztest - Shared dist testing logic for easy dzi
 
 =head1 VERSION
 
-version 1.004001
+version 1.004002
 
 =head1 SYNOPSIS
 
