@@ -29,6 +29,7 @@ recommends:
   Data::DPath: '0'
   Test::Differences: '0'
   Test::More: '1.001009'
+  Test::TempDir::Tiny: '0'
 requires:
   Carp: '0'
   Dist::Zilla::App::Tester: '0'
@@ -126,6 +127,7 @@ x_BuiltWith:
     Test::More: '1.001009'
     Test::Pod: '1.48'
     Test::Pod::Coverage: '1.10'
+    Test::TempDir::Tiny: '0.002'
     Try::Tiny: '0.22'
     recommended: '0.002'
     strict: '1.08'
