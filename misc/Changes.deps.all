@@ -1,6 +1,8 @@
 This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL dependencies for all phases (configure/build/runtime/test/develop)
 
-1.005000
+1.005001
+
+1.005000 2014-11-06T15:24:12Z
  [Added / develop requires]
  - Test::TempDir::Tiny
 
