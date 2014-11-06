@@ -10,6 +10,15 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  [Added / runtime requires]
  - recommended
 
+ [Changed / develop recommends]
+ - Test::More 1.001008 → 1.001009
+
+ [Changed / runtime recommends]
+ - Test::More 1.001008 → 1.001009
+
+ [Changed / test recommends]
+ - Test::More 1.001008 → 1.001009
+
  [Removed / develop requires]
  - Dist::Zilla::Plugin::Prereqs::Soften
 

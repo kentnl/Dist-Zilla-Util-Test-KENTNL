@@ -4,6 +4,9 @@ This file contains changes to DEVELOPMENT dependencies only ( both REQUIRED and 
  [Added / develop requires]
  - Test::TempDir::Tiny
 
+ [Changed / develop recommends]
+ - Test::More 1.001008 → 1.001009
+
  [Removed / develop requires]
  - Dist::Zilla::Plugin::Prereqs::Soften
 
