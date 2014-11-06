@@ -1,6 +1,16 @@
 This file contains changes in OPTIONAL dependencies for standard CPAN phases (configure/build/runtime/test)
 
-1.004002
+1.005000
+ [Added / runtime recommends]
+ - Test::TempDir::Tiny
+
+ [Changed / runtime recommends]
+ - Test::More 1.001008 → 1.001009
+
+ [Changed / test recommends]
+ - Test::More 1.001008 → 1.001009
+
+1.004002 2014-11-01T11:43:22Z
 
 1.004001 2014-10-30T12:56:17Z
  [Added / runtime recommends]
