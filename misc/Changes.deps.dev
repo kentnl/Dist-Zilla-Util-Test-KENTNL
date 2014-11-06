@@ -1,6 +1,12 @@
 This file contains changes to DEVELOPMENT dependencies only ( both REQUIRED and OPTIONAL )
 
 1.004003
+ [Changed / develop recommends]
+ - Test::More 1.001008 → 1.301001_070
+
+ [Removed / develop requires]
+ - Data::DPath
+ - Test::Differences
 
 1.004002 2014-11-01T11:43:22Z
  [Changed / develop suggests]

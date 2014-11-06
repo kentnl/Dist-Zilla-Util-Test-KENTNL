@@ -26,7 +26,7 @@ provides:
     file: lib/Dist/Zilla/Util/Test/KENTNL/dztest.pm
     version: '1.004003'
 recommends:
-  Test::More: 1.301001_070
+  Test::More: '1.001009'
 requires:
   Carp: '0'
   Dist::Zilla::App::Tester: '0'
@@ -120,7 +120,7 @@ x_BuiltWith:
     Test::EOL: '1.5'
     Test::Fatal: '0.013'
     Test::Kwalitee: '1.22'
-    Test::More: 1.301001_070
+    Test::More: '1.001009'
     Test::Pod: '1.48'
     Test::Pod::Coverage: '1.10'
     Try::Tiny: '0.22'

@@ -1,6 +1,28 @@
 This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL dependencies for all phases (configure/build/runtime/test/develop)
 
 1.004003
+ [Added / runtime requires]
+ - recommended
+
+ [Changed / develop recommends]
+ - Test::More 1.001008 → 1.301001_070
+
+ [Changed / runtime recommends]
+ - Test::More 1.001008 → 1.301001_070
+
+ [Changed / test recommends]
+ - Test::More 1.001008 → 1.301001_070
+
+ [Removed / develop requires]
+ - Data::DPath
+ - Test::Differences
+
+ [Removed / runtime recommends]
+ - Data::DPath
+ - Test::Differences
+
+ [Removed / runtime requires]
+ - constant
 
 1.004002 2014-11-01T11:43:22Z
  [Changed / develop suggests]

@@ -10,7 +10,7 @@ do { my $x = {
                       },
        'develop' => {
                       'recommends' => {
-                                        'Test::More' => '1.301001_070'
+                                        'Test::More' => '1.001009'
                                       },
                       'requires' => {
                                       'Dist::Zilla' => '5',
@@ -76,7 +76,7 @@ do { my $x = {
                     },
        'runtime' => {
                       'recommends' => {
-                                        'Test::More' => '1.301001_070'
+                                        'Test::More' => '1.001009'
                                       },
                       'requires' => {
                                       'Carp' => '0',
@@ -102,7 +102,7 @@ do { my $x = {
                    'recommends' => {
                                      'CPAN::Meta' => '2.120900',
                                      'ExtUtils::MakeMaker' => '7.00',
-                                     'Test::More' => '1.301001_070'
+                                     'Test::More' => '1.001009'
                                    },
                    'requires' => {
                                    'Dist::Zilla::App::Command::authordeps' => '0',
