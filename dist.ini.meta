@@ -30,8 +30,10 @@ srcreadme        = mkdn
 [Prereqs]
 Path::Tiny = 0.050 ; No fatalized iterators
 
-[Prereqs::Soften]
-to_relationship = recommends
-copy_to = develop.requires
-module = Test::Differences
-module = Data::DPath ; Until there's a version that installs cleanly before 5.10
+[Prereqs / RuntimeRecommends ]
+Test::Differences = 0
+Data::DPath = 0 ; Until there's a version that installs cleanly before 5.10
+
+[Prereqs / DevelopRequires ]
+Test::Differences = 0
+Data::DPath = 0 ; Until there's a version that installs cleanly before 5.10

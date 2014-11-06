@@ -22,10 +22,9 @@ use Dist::Zilla::App::Tester qw( test_dzil );
 use Module::Runtime qw();
 
 ## no critic (ValuesAndExpressions::ProhibitConstantPragma,ErrorHandling::RequireCheckingReturnValueOfEval,Subroutines::ProhibitSubroutinePrototypes)
-use constant CAN_DPATH    => eval { require Data::DPath;       1 };
-use constant CAN_EQORDIFF => eval { require Test::Differences; 1 };
+use recommended 'Data::DPath', 'Test::Differences';
 sub dpath($);
-BEGIN { CAN_DPATH and Data::DPath->import('dpath') }
+BEGIN { recommended->has('Data::DPath') and Data::DPath->import('dpath') }
 ## use critic
 
 =method C<add_file>
@@ -105,7 +104,7 @@ sub _subtest_prereqs_deeply {
   $self->tb->ok( defined $meta, 'distmeta defined' );
   $self->tb->note( $self->tb->explain( $meta->{prereqs} ) );
 
-  if (CAN_EQORDIFF) {
+  if ( recommended->has('Test::Differences') ) {
     Test::Differences::eq_or_diff( $meta->{prereqs}, $prereqs, 'Prereqs match expected set' );
   }
   else {
@@ -212,7 +211,7 @@ EOF
   my (@results) = dpath($expression)->match( $self->builder->distmeta );
   $self->tb->ok( @results > 0, "distmeta matched expression $expression" );
   $self->tb->note( $self->tb->explain( \@results ) );
-  if (CAN_EQORDIFF) {
+  if ( recommended->has('Test::Differences') ) {
     Test::Differences::eq_or_diff( \@results, $expected, 'distmeta matched expectations' );
   }
   else {
@@ -240,7 +239,7 @@ sub meta_path_deeply {
   return $self->tb->subtest(
     $reason => sub {
       $self->tb->plan( tests => 2 );
-      if (CAN_DPATH) {
+      if ( recommended->has('Data::DPath') ) {
         return $self->_subtest_meta_path_deeply( $expression, $expected );
       }
       return $self->_todo_meta_path_deeply($expression);
@@ -558,7 +557,7 @@ __PACKAGE__->meta->make_immutable;
 
 =begin Pod::Coverage
 
-CAN_DPATH build CAN_EQORDIFF
+build
 
 =end Pod::Coverage
 

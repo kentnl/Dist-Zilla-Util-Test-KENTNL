@@ -1,6 +1,14 @@
 This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL dependencies for all phases (configure/build/runtime/test/develop)
 
 1.004003
+ [Added / runtime requires]
+ - recommended
+
+ [Removed / develop requires]
+ - Dist::Zilla::Plugin::Prereqs::Soften
+
+ [Removed / runtime requires]
+ - constant
 
 1.004002 2014-11-01T11:43:22Z
  [Changed / develop suggests]

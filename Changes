@@ -1,6 +1,13 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ [Dependencies::Stats]
+ - Dependencies changed since 1.004002, see misc/*.deps* for details
+ - develop: -1
+ - runtime: +1 -1
+
+ [Internals]
+ - use recommended.pm to load optional modules.
 
 1.004002 2014-11-01T11:43:22Z dc767c8
  [Bugfix]
