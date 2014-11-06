@@ -5,21 +5,16 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  - recommended
 
  [Changed / develop recommends]
- - Test::More 1.001008 → 1.301001_070
+ - Test::More 1.001008 → 1.001009
 
  [Changed / runtime recommends]
- - Test::More 1.001008 → 1.301001_070
+ - Test::More 1.001008 → 1.001009
 
  [Changed / test recommends]
- - Test::More 1.001008 → 1.301001_070
+ - Test::More 1.001008 → 1.001009
 
  [Removed / develop requires]
- - Data::DPath
- - Test::Differences
-
- [Removed / runtime recommends]
- - Data::DPath
- - Test::Differences
+ - Dist::Zilla::Plugin::Prereqs::Soften
 
  [Removed / runtime requires]
  - constant

@@ -104,7 +104,7 @@ sub _subtest_prereqs_deeply {
   $self->tb->ok( defined $meta, 'distmeta defined' );
   $self->tb->note( $self->tb->explain( $meta->{prereqs} ) );
 
-  if (recommended->has('Test::Differences')) {
+  if ( recommended->has('Test::Differences') ) {
     Test::Differences::eq_or_diff( $meta->{prereqs}, $prereqs, 'Prereqs match expected set' );
   }
   else {
@@ -211,7 +211,7 @@ EOF
   my (@results) = dpath($expression)->match( $self->builder->distmeta );
   $self->tb->ok( @results > 0, "distmeta matched expression $expression" );
   $self->tb->note( $self->tb->explain( \@results ) );
-  if (recommended->has('Test::Differences')) {
+  if ( recommended->has('Test::Differences') ) {
     Test::Differences::eq_or_diff( \@results, $expected, 'distmeta matched expectations' );
   }
   else {
@@ -239,7 +239,7 @@ sub meta_path_deeply {
   return $self->tb->subtest(
     $reason => sub {
       $self->tb->plan( tests => 2 );
-      if (recommended->has('Data::DPath')) {
+      if ( recommended->has('Data::DPath') ) {
         return $self->_subtest_meta_path_deeply( $expression, $expected );
       }
       return $self->_todo_meta_path_deeply($expression);
