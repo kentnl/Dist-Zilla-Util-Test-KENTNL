@@ -1,6 +1,6 @@
 This file contains changes to DEVELOPMENT dependencies only ( both REQUIRED and OPTIONAL )
 
-1.004003
+1.005000
  [Added / develop requires]
  - Test::TempDir::Tiny
 
