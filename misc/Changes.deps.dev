@@ -1,6 +1,9 @@
 This file contains changes to DEVELOPMENT dependencies only ( both REQUIRED and OPTIONAL )
 
 1.004003
+ [Added / develop requires]
+ - Test::TempDir::Tiny
+
  [Removed / develop requires]
  - Dist::Zilla::Plugin::Prereqs::Soften
 
