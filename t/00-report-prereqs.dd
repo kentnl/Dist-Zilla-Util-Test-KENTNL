@@ -10,10 +10,9 @@ do { my $x = {
                       },
        'develop' => {
                       'recommends' => {
-                                        'Test::More' => '1.001008'
+                                        'Test::More' => '1.301001_070'
                                       },
                       'requires' => {
-                                      'Data::DPath' => '0',
                                       'Dist::Zilla' => '5',
                                       'Dist::Zilla::Plugin::Author::KENTNL::RecommendFixes' => '0.001001',
                                       'Dist::Zilla::Plugin::Authority' => '1.006',
@@ -64,7 +63,6 @@ do { my $x = {
                                       'Pod::Coverage::TrustPod' => '0',
                                       'Test::CPAN::Changes' => '0.19',
                                       'Test::CPAN::Meta' => '0',
-                                      'Test::Differences' => '0',
                                       'Test::EOL' => '0',
                                       'Test::Kwalitee' => '1.21',
                                       'Test::More' => '0',
@@ -78,9 +76,7 @@ do { my $x = {
                     },
        'runtime' => {
                       'recommends' => {
-                                        'Data::DPath' => '0',
-                                        'Test::Differences' => '0',
-                                        'Test::More' => '1.001008'
+                                        'Test::More' => '1.301001_070'
                                       },
                       'requires' => {
                                       'Carp' => '0',
@@ -95,8 +91,8 @@ do { my $x = {
                                       'Test::Fatal' => '0',
                                       'Test::More' => '0.96',
                                       'Try::Tiny' => '0',
-                                      'constant' => '0',
                                       'perl' => '5.008',
+                                      'recommended' => '0',
                                       'strict' => '0',
                                       'utf8' => '0',
                                       'warnings' => '0'
@@ -106,7 +102,7 @@ do { my $x = {
                    'recommends' => {
                                      'CPAN::Meta' => '2.120900',
                                      'ExtUtils::MakeMaker' => '7.00',
-                                     'Test::More' => '1.001008'
+                                     'Test::More' => '1.301001_070'
                                    },
                    'requires' => {
                                    'Dist::Zilla::App::Command::authordeps' => '0',
