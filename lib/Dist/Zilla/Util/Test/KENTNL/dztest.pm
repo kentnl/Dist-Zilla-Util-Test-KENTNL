@@ -22,7 +22,7 @@ use Dist::Zilla::App::Tester qw( test_dzil );
 use Module::Runtime qw();
 
 ## no critic (ValuesAndExpressions::ProhibitConstantPragma,ErrorHandling::RequireCheckingReturnValueOfEval,Subroutines::ProhibitSubroutinePrototypes)
-use recommended 'Data::DPath', 'Test::Differences';
+use recommended 'Data::DPath', 'Test::Differences', 'Test::TempDir::Tiny';
 sub dpath($);
 BEGIN { recommended->has('Data::DPath') and Data::DPath->import('dpath') }
 ## use critic
@@ -338,7 +338,13 @@ has tempdir => (
 
 sub _build_tempdir {
   my ($self) = @_;
-  my $tempdir = Path::Tiny->tempdir;
+  my $tempdir;
+  if ( recommended->has('Test::TempDir::Tiny') ) {
+    $tempdir = path( Test::TempDir::Tiny::tempdir() );
+  }
+  else {
+    $tempdir = Path::Tiny->tempdir;
+  }
   $self->tb->note("Creating fake dist in $tempdir");
   return $tempdir;
 }
