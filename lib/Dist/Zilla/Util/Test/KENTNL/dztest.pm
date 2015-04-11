@@ -13,7 +13,6 @@ our $VERSION = '1.005001';
 
 use Carp qw( croak );
 use Moose qw( has );
-use Test::DZil qw( Builder );
 use Test::Fatal qw( exception );
 use Test::More 0.96 qw( );    # subtest
 use Path::Tiny qw(path);
@@ -428,7 +427,8 @@ has configure => (
 
 sub _build_configure {
   my ($self) = @_;
-  my $b = Builder->from_config( { dist_root => q[] . $self->tempdir } );
+  require Dist::Zilla::Tester;
+  my $b = Dist::Zilla::Tester->builder()->from_config( { dist_root => q[] . $self->tempdir } );
   return $b;
 }
 
