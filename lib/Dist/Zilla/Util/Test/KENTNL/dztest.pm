@@ -333,7 +333,7 @@ has files => (
 has tempdir => (
   is      => ro =>,
   lazy    => 1,
-  builder => _build_tempdir,
+  builder => '_build_tempdir',
 );
 
 sub _build_tempdir {
