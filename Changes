@@ -3,8 +3,8 @@ Revision history for {{$dist->name}}
 {{$NEXT}}
  [Dependencies::Stats]
  - Dependencies changed since 1.005000, see misc/*.deps* for details
- - develop: +3 ↑3 -1 (recommends: ↓1, suggests: ↑2)
- - runtime: +1 -1 (recommends: +2 ↓1)
+ - develop: +3 ↑3 -2 (recommends: ↓1, suggests: ↑2)
+ - runtime: +2 -1 (recommends: +2 ↓1 -1)
  - test: (recommends: ↓1)
 
 1.005000 2014-11-06T15:24:12Z 0194343
