@@ -12,7 +12,7 @@ our $VERSION = '1.005001';
 # AUTHORITY
 
 use Carp qw( croak );
-use Moose qw( has );
+use Moo qw( has );
 use Test::Fatal qw( exception );
 use Test::More 0.96 qw( );    # subtest
 use Path::Tiny qw(path);
@@ -331,8 +331,9 @@ has files => (
 );
 
 has tempdir => (
-  is         => ro =>,
-  lazy_build => 1,
+  is      => ro =>,
+  lazy    => 1,
+  builder => '_build_tempdir',
 );
 
 sub _build_tempdir {
@@ -382,9 +383,10 @@ sub source_file {
 }
 
 has builder => (
-  is         => ro =>,
-  lazy_build => 1,
-  handles    => {
+  is      => ro =>,
+  lazy    => 1,
+  builder => '_build_builder',
+  handles => {
     distmeta => 'distmeta',
   },
 );
@@ -421,8 +423,9 @@ Construct the internal builder object.
 =cut
 
 has configure => (
-  is         => ro =>,
-  lazy_build => 1,
+  is      => ro =>,
+  lazy    => 1,
+  builder => '_build_configure',
 );
 
 sub _build_configure {
@@ -556,8 +559,7 @@ sub run_command {
   return test_dzil( $self->tempdir, $argv, $arg );
 }
 
-no Moose;
-__PACKAGE__->meta->make_immutable;
+no Moo;
 
 1;
 
