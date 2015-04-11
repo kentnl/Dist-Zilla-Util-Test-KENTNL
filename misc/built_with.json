@@ -78,7 +78,6 @@
       "Try::Tiny" : "0.22",
       "recommended" : "0.002",
       "strict" : "1.09",
-      "utf8" : "1.14",
       "warnings" : "1.31"
    },
    "perl" : {
