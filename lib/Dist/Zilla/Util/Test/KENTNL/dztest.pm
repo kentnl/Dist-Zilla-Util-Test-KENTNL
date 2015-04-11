@@ -5,15 +5,14 @@ use utf8;
 
 package Dist::Zilla::Util::Test::KENTNL::dztest;
 
-our $VERSION = '1.005000';
+our $VERSION = '1.005010';
 
 # ABSTRACT: Shared dist testing logic for easy dzil things
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
 use Carp qw( croak );
-use Moose qw( has );
-use Test::DZil qw( Builder );
+use Moo qw( has );
 use Test::Fatal qw( exception );
 use Test::More 0.96 qw( );    # subtest
 use Path::Tiny qw(path);
@@ -22,9 +21,8 @@ use Dist::Zilla::App::Tester qw( test_dzil );
 use Module::Runtime qw();
 
 ## no critic (ValuesAndExpressions::ProhibitConstantPragma,ErrorHandling::RequireCheckingReturnValueOfEval,Subroutines::ProhibitSubroutinePrototypes)
-use recommended 'Data::DPath', 'Test::Differences', 'Test::TempDir::Tiny';
-sub dpath($);
-BEGIN { recommended->has('Data::DPath') and Data::DPath->import('dpath') }
+use recommended 'Test::Differences', 'Test::TempDir::Tiny';
+use Data::DPath qw( dpath );
 ## use critic
 
 
@@ -108,6 +106,7 @@ sub _subtest_prereqs_deeply {
     Test::Differences::eq_or_diff( $meta->{prereqs}, $prereqs, 'Prereqs match expected set' );
   }
   else {
+    ## no critic (Subroutines::ProhibitCallsToUnexportedSubs)
     Test::More::is_deeply( $meta->{prereqs}, $prereqs, 'Prereqs match expected set' );
   }
   return;
@@ -215,19 +214,9 @@ EOF
     Test::Differences::eq_or_diff( \@results, $expected, 'distmeta matched expectations' );
   }
   else {
+    ## no critic (Subroutines::ProhibitCallsToUnexportedSubs)
     Test::More::is_deeply( \@results, $expected, 'distmeta matched expectations' );
   }
-  return;
-}
-
-sub _todo_meta_path_deeply {
-  my ( $self, $expression ) = @_;
-  if ( not $self->{diaged} ) {
-    $self->{diaged} = 1;
-    $self->tb->diag('Data::DPath needed to accurately perform some of this test');
-  }
-  $self->tb->todo_skip("distmeta matched expression $expression needs Data::DPath");
-  $self->tb->todo_skip('distmeta matched expectations needs Data::DPath');
   return;
 }
 
@@ -239,10 +228,7 @@ sub meta_path_deeply {
   return $self->tb->subtest(
     $reason => sub {
       $self->tb->plan( tests => 2 );
-      if ( recommended->has('Data::DPath') ) {
-        return $self->_subtest_meta_path_deeply( $expression, $expected );
-      }
-      return $self->_todo_meta_path_deeply($expression);
+      return $self->_subtest_meta_path_deeply( $expression, $expected );
     },
   );
 }
@@ -332,8 +318,9 @@ has files => (
 );
 
 has tempdir => (
-  is         => ro =>,
-  lazy_build => 1,
+  is      => ro =>,
+  lazy    => 1,
+  builder => '_build_tempdir',
 );
 
 sub _build_tempdir {
@@ -383,9 +370,10 @@ sub source_file {
 }
 
 has builder => (
-  is         => ro =>,
-  lazy_build => 1,
-  handles    => {
+  is      => ro =>,
+  lazy    => 1,
+  builder => '_build_builder',
+  handles => {
     distmeta => 'distmeta',
   },
 );
@@ -422,13 +410,15 @@ sub safe_build {
 
 
 has configure => (
-  is         => ro =>,
-  lazy_build => 1,
+  is      => ro =>,
+  lazy    => 1,
+  builder => '_build_configure',
 );
 
 sub _build_configure {
   my ($self) = @_;
-  my $b = Builder->from_config( { dist_root => q[] . $self->tempdir } );
+  require Dist::Zilla::Tester;
+  my $b = Dist::Zilla::Tester->builder()->from_config( { dist_root => q[] . $self->tempdir } );
   return $b;
 }
 
@@ -556,8 +546,7 @@ sub run_command {
   return test_dzil( $self->tempdir, $argv, $arg );
 }
 
-no Moose;
-__PACKAGE__->meta->make_immutable;
+no Moo;
 
 1;
 
@@ -573,7 +562,7 @@ Dist::Zilla::Util::Test::KENTNL::dztest - Shared dist testing logic for easy dzi
 
 =head1 VERSION
 
-version 1.005000
+version 1.005010
 
 =head1 SYNOPSIS
 
@@ -775,7 +764,7 @@ Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2014 by Kent Fredric <kentnl@cpan.org>.
+This software is copyright (c) 2015 by Kent Fredric <kentnl@cpan.org>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

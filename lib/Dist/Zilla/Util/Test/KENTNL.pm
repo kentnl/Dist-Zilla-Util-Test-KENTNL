@@ -5,19 +5,17 @@ use utf8;
 
 package Dist::Zilla::Util::Test::KENTNL;
 
-our $VERSION = '1.005000';
+our $VERSION = '1.005010';
 
 #ABSTRACT: KENTNL's DZil plugin testing tool
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
 use Try::Tiny qw( try catch );
-use Dist::Zilla::Tester qw( Builder );
 use Sub::Exporter -setup => {
   exports => [ 'test_config', 'dztest' ],
   groups => [ default => [qw( -all )] ],
 };
-use Test::DZil qw(simple_ini);
 
 
 
@@ -133,12 +131,16 @@ sub test_config {
   if ( $conf->{ini} ) {
     $args->[1] ||= {};
     $args->[1]->{add_files} ||= {};
-    $args->[1]->{add_files}->{'source/dist.ini'} = simple_ini( @{ $conf->{ini} } );
+    require Test::DZil;
+    ## no critic (Subroutines::ProhibitCallsToUnexportedSubs)
+    ## no critic (Subroutines::ProtectPrivateSubs)
+    $args->[1]->{add_files}->{'source/dist.ini'} = Test::DZil::_simple_ini()->( @{ $conf->{ini} } );
   }
   my $build_error = undef;
   my $instance;
   try {
-    $instance = Builder()->from_config( @{$args} );
+    require Dist::Zilla::Tester;
+    $instance = Dist::Zilla::Tester->builder()->from_config( @{$args} );
 
     if ( $conf->{build} ) {
       $instance->build();
@@ -210,7 +212,7 @@ Dist::Zilla::Util::Test::KENTNL - KENTNL's DZil plugin testing tool
 
 =head1 VERSION
 
-version 1.005000
+version 1.005010
 
 =head1 METHODS
 
@@ -315,7 +317,7 @@ Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2014 by Kent Fredric <kentnl@cpan.org>.
+This software is copyright (c) 2015 by Kent Fredric <kentnl@cpan.org>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

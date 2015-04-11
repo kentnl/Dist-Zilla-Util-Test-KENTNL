@@ -1,6 +1,20 @@
 This file contains changes in OPTIONAL dependencies for standard CPAN phases (configure/build/runtime/test)
 
-1.005000
+1.005010
+ [Added / runtime recommends]
+ - Moo 1.000008
+ - Path::Tiny 0.058
+
+ [Changed / runtime recommends]
+ - Test::More 1.001009 → 0.99
+
+ [Changed / test recommends]
+ - Test::More 1.001009 → 0.99
+
+ [Removed / runtime recommends]
+ - Data::DPath
+
+1.005000 2014-11-06T15:24:12Z
  [Added / runtime recommends]
  - Test::TempDir::Tiny
 

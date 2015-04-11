@@ -32,10 +32,8 @@ Path::Tiny = 0.050 ; No fatalized iterators
 
 [Prereqs / RuntimeRecommends ]
 Test::Differences = 0
-Data::DPath = 0 ; Until there's a version that installs cleanly before 5.10
 Test::TempDir::Tiny = 0
 
 [Prereqs / DevelopRequires ]
 Test::Differences = 0
-Data::DPath = 0 ; Until there's a version that installs cleanly before 5.10
 Test::TempDir::Tiny = 0
