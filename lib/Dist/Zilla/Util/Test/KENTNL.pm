@@ -132,13 +132,15 @@ sub test_config {
     $args->[1] ||= {};
     $args->[1]->{add_files} ||= {};
     require Test::DZil;
+    ## no critic (Subroutines::ProhibitCallsToUnexportedSubs)
+    ## no critic (Subroutines::ProtectPrivateSubs)
     $args->[1]->{add_files}->{'source/dist.ini'} = Test::DZil::_simple_ini()->( @{ $conf->{ini} } );
   }
   my $build_error = undef;
   my $instance;
   try {
     require Dist::Zilla::Tester;
-    $instance = Dist::Zilla::Tester::builder()->from_config( @{$args} );
+    $instance = Dist::Zilla::Tester->builder()->from_config( @{$args} );
 
     if ( $conf->{build} ) {
       $instance->build();
