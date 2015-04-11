@@ -106,6 +106,7 @@ sub _subtest_prereqs_deeply {
     Test::Differences::eq_or_diff( $meta->{prereqs}, $prereqs, 'Prereqs match expected set' );
   }
   else {
+    ## no critic (Subroutines::ProhibitCallsToUnexportedSubs)
     Test::More::is_deeply( $meta->{prereqs}, $prereqs, 'Prereqs match expected set' );
   }
   return;
@@ -213,6 +214,7 @@ EOF
     Test::Differences::eq_or_diff( \@results, $expected, 'distmeta matched expectations' );
   }
   else {
+    ## no critic (Subroutines::ProhibitCallsToUnexportedSubs)
     Test::More::is_deeply( \@results, $expected, 'distmeta matched expectations' );
   }
   return;
