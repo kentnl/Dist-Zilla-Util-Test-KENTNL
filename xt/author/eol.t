@@ -16,7 +16,8 @@ my @files = (
     't/01-basic.t',
     't/02-basic-dztest.t',
     't/03-basic-dztest-createplugin.t',
-    't/04-run-command.t'
+    't/04-run-command.t',
+    't/05-runcommand-nomoose.t'
 );
 
 eol_unix_ok($_, { trailing_whitespace => 1 }) foreach @files;
