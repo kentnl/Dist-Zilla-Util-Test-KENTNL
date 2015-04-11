@@ -12,7 +12,6 @@ our $VERSION = '1.005001';
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
 use Try::Tiny qw( try catch );
-use Dist::Zilla::Tester qw( Builder );
 use Sub::Exporter -setup => {
   exports => [ 'test_config', 'dztest' ],
   groups => [ default => [qw( -all )] ],
@@ -138,7 +137,8 @@ sub test_config {
   my $build_error = undef;
   my $instance;
   try {
-    $instance = Builder()->from_config( @{$args} );
+    require Dist::Zilla::Tester;
+    $instance = Dist::Zilla::Tester::builder()->from_config( @{$args} );
 
     if ( $conf->{build} ) {
       $instance->build();
