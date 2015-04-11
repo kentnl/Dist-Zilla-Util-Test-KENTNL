@@ -21,9 +21,8 @@ use Dist::Zilla::App::Tester qw( test_dzil );
 use Module::Runtime qw();
 
 ## no critic (ValuesAndExpressions::ProhibitConstantPragma,ErrorHandling::RequireCheckingReturnValueOfEval,Subroutines::ProhibitSubroutinePrototypes)
-use recommended 'Data::DPath', 'Test::Differences', 'Test::TempDir::Tiny';
-sub dpath($);
-BEGIN { recommended->has('Data::DPath') and Data::DPath->import('dpath') }
+use recommended 'Test::Differences', 'Test::TempDir::Tiny';
+use Data::DPath qw( dpath );
 ## use critic
 
 
@@ -219,17 +218,6 @@ EOF
   return;
 }
 
-sub _todo_meta_path_deeply {
-  my ( $self, $expression ) = @_;
-  if ( not $self->{diaged} ) {
-    $self->{diaged} = 1;
-    $self->tb->diag('Data::DPath needed to accurately perform some of this test');
-  }
-  $self->tb->todo_skip("distmeta matched expression $expression needs Data::DPath");
-  $self->tb->todo_skip('distmeta matched expectations needs Data::DPath');
-  return;
-}
-
 sub meta_path_deeply {
   my ( $self, $expression, $expected, $reason ) = @_;
   if ( not $reason ) {
@@ -238,10 +226,7 @@ sub meta_path_deeply {
   return $self->tb->subtest(
     $reason => sub {
       $self->tb->plan( tests => 2 );
-      if ( recommended->has('Data::DPath') ) {
-        return $self->_subtest_meta_path_deeply( $expression, $expected );
-      }
-      return $self->_todo_meta_path_deeply($expression);
+      return $self->_subtest_meta_path_deeply( $expression, $expected );
     },
   );
 }

@@ -13,7 +13,6 @@ do { my $x = {
                                         'Test::More' => '0.99'
                                       },
                       'requires' => {
-                                      'Data::DPath' => '0',
                                       'Dist::Zilla' => '5',
                                       'Dist::Zilla::Plugin::Author::KENTNL::RecommendFixes' => '0.004002',
                                       'Dist::Zilla::Plugin::Author::KENTNL::TravisCI' => '0.001002',
@@ -80,7 +79,6 @@ do { my $x = {
                     },
        'runtime' => {
                       'recommends' => {
-                                        'Data::DPath' => '0',
                                         'Moo' => '1.000008',
                                         'Path::Tiny' => '0.058',
                                         'Test::Differences' => '0',
@@ -89,6 +87,7 @@ do { my $x = {
                                       },
                       'requires' => {
                                       'Carp' => '0',
+                                      'Data::DPath' => '0',
                                       'Dist::Zilla::App::Tester' => '0',
                                       'Dist::Zilla::Tester' => '0',
                                       'Dist::Zilla::Util' => '0',

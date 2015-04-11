@@ -16,7 +16,6 @@ use Sub::Exporter -setup => {
   exports => [ 'test_config', 'dztest' ],
   groups => [ default => [qw( -all )] ],
 };
-use Test::DZil qw(simple_ini);
 
 
 
@@ -132,7 +131,8 @@ sub test_config {
   if ( $conf->{ini} ) {
     $args->[1] ||= {};
     $args->[1]->{add_files} ||= {};
-    $args->[1]->{add_files}->{'source/dist.ini'} = simple_ini( @{ $conf->{ini} } );
+    require Test::DZil;
+    $args->[1]->{add_files}->{'source/dist.ini'} = Test::DZil::_simple_ini()->( @{ $conf->{ini} } );
   }
   my $build_error = undef;
   my $instance;
