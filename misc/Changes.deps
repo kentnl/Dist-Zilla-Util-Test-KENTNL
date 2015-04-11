@@ -1,6 +1,6 @@
 This file contains changes in REQUIRED dependencies for standard CPAN phases (configure/build/runtime/test)
 
-1.005001
+1.006000
  [Added / runtime requires]
  - Data::DPath
  - Moo

@@ -1,11 +1,15 @@
 Revision history for Dist-Zilla-Util-Test-KENTNL
 
-1.006000 2015-04-11T09:19:31Z e1d20b9
+1.005010 2015-04-11T10:02:10Z dcce5d3
  [Dependencies::Stats]
  - Dependencies changed since 1.005000, see misc/*.deps* for details
  - develop: +3 ↑3 -2 (recommends: ↓1, suggests: ↑2)
  - runtime: +2 -1 (recommends: +2 ↓1 -1)
  - test: (recommends: ↓1)
+
+ [Minor]
+ - Moved to Moo where Moose was required
+ - Load Dzil lazier for App::Commands'
 
 1.005000 2014-11-06T15:24:12Z 0194343
  [Dependencies::Stats]
