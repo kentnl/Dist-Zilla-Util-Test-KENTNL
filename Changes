@@ -9,6 +9,7 @@ Revision history for {{$dist->name}}
 
  [Minor]
  - Drop utf8 and 5.008 minimums. Had intended to do this in previous release, but slipped my mind.
+ - Some doc fixes too.
 
 1.005010 2015-04-11T10:03:55Z 63f0907
  [Dependencies::Stats]

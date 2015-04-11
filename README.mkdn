@@ -6,6 +6,13 @@ Dist::Zilla::Util::Test::KENTNL - KENTNL's DZil plugin testing tool
 
 version 1.005011
 
+# DESCRIPTION
+
+This module is KENTNL's kit for testing Dist::Zilla.
+
+Most of his modules should be moving to using the \`dztest\` model
+instead which is more flexible source side.
+
 # METHODS
 
 ## `dztest`

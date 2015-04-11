@@ -198,3 +198,12 @@ sub test_config {
 }
 
 1;
+
+=head1 DESCRIPTION
+
+This module is KENTNL's kit for testing Dist::Zilla.
+
+Most of his modules should be moving to using the `dztest` model
+instead which is more flexible source side.
+
+=cut
