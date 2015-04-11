@@ -19,6 +19,7 @@ This file contains changes to DEVELOPMENT dependencies only ( both REQUIRED and 
  - Dist::Zilla::PluginBundle::Author::KENTNL 2.022000 → 2.024001
 
  [Removed / develop requires]
+ - Data::DPath
  - Dist::Zilla::Plugin::ReadmeFromPod
 
 1.005000 2014-11-06T15:24:12Z

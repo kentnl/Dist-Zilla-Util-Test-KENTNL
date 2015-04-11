@@ -11,6 +11,9 @@ This file contains changes in OPTIONAL dependencies for standard CPAN phases (co
  [Changed / test recommends]
  - Test::More 1.001009 → 0.99
 
+ [Removed / runtime recommends]
+ - Data::DPath
+
 1.005000 2014-11-06T15:24:12Z
  [Added / runtime recommends]
  - Test::TempDir::Tiny

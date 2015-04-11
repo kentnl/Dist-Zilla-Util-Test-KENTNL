@@ -11,6 +11,7 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  - Path::Tiny 0.058
 
  [Added / runtime requires]
+ - Data::DPath
  - Moo
 
  [Changed / develop recommends]
@@ -32,7 +33,11 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  - Test::More 1.001009 → 0.99
 
  [Removed / develop requires]
+ - Data::DPath
  - Dist::Zilla::Plugin::ReadmeFromPod
+
+ [Removed / runtime recommends]
+ - Data::DPath
 
  [Removed / runtime requires]
  - Moose
