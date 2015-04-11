@@ -7,6 +7,10 @@ Revision history for {{$dist->name}}
  - runtime: +2 -1 (recommends: +2 ↓1 -1)
  - test: (recommends: ↓1)
 
+ [Minor]
+ - Moved to Moo where Moose was required
+ - Load Dzil lazier for App::Commands'
+
 1.005000 2014-11-06T15:24:12Z 0194343
  [Dependencies::Stats]
  - Dependencies changed since 1.004002, see misc/*.deps* for details
