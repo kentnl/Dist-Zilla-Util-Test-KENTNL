@@ -1,6 +1,6 @@
 Revision history for Dist-Zilla-Util-Test-KENTNL
 
-1.005011 2015-04-11T11:10:22Z 74bdb2d
+1.005011 2015-04-11T11:15:24Z fbc6361
  [Dependencies::Stats]
  - Dependencies changed since 1.005010, see misc/*.deps* for details
  - configure: ↓1
@@ -9,6 +9,7 @@ Revision history for Dist-Zilla-Util-Test-KENTNL
 
  [Minor]
  - Drop utf8 and 5.008 minimums. Had intended to do this in previous release, but slipped my mind.
+ - Some doc fixes too.
 
 1.005010 2015-04-11T10:03:55Z 63f0907
  [Dependencies::Stats]
