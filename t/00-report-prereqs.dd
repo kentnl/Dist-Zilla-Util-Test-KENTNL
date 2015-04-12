@@ -5,7 +5,7 @@ do { my $x = {
                                         },
                         'requires' => {
                                         'ExtUtils::MakeMaker' => '0',
-                                        'perl' => '5.008'
+                                        'perl' => '5.006'
                                       }
                       },
        'develop' => {
@@ -21,6 +21,7 @@ do { my $x = {
                                       'Dist::Zilla::Plugin::BumpVersionAfterRelease' => '0',
                                       'Dist::Zilla::Plugin::ConfirmRelease' => '0',
                                       'Dist::Zilla::Plugin::CopyFilesFromBuild' => '0',
+                                      'Dist::Zilla::Plugin::DynamicPrereqs' => '0',
                                       'Dist::Zilla::Plugin::Git::Check' => '0',
                                       'Dist::Zilla::Plugin::Git::Commit' => '0',
                                       'Dist::Zilla::Plugin::Git::CommitBuild' => '0',
@@ -99,10 +100,9 @@ do { my $x = {
                                       'Test::Fatal' => '0',
                                       'Test::More' => '0.96',
                                       'Try::Tiny' => '0',
-                                      'perl' => '5.008',
+                                      'perl' => '5.006',
                                       'recommended' => '0',
                                       'strict' => '0',
-                                      'utf8' => '0',
                                       'warnings' => '0'
                                     }
                     },
@@ -117,7 +117,7 @@ do { my $x = {
                                    'ExtUtils::MakeMaker' => '0',
                                    'File::Spec' => '0',
                                    'Test::More' => '0.96',
-                                   'perl' => '5.008'
+                                   'perl' => '5.006'
                                  }
                  }
      };

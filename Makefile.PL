@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 
-use 5.008;
+use 5.006;
 
 use ExtUtils::MakeMaker;
 
@@ -15,7 +15,7 @@ my %WriteMakefileArgs = (
   "DISTNAME" => "Dist-Zilla-Util-Test-KENTNL",
   "EXE_FILES" => [],
   "LICENSE" => "perl",
-  "MIN_PERL_VERSION" => "5.008",
+  "MIN_PERL_VERSION" => "5.006",
   "NAME" => "Dist::Zilla::Util::Test::KENTNL",
   "PREREQ_PM" => {
     "Carp" => 0,
@@ -33,7 +33,6 @@ my %WriteMakefileArgs = (
     "Try::Tiny" => 0,
     "recommended" => 0,
     "strict" => 0,
-    "utf8" => 0,
     "warnings" => 0
   },
   "TEST_REQUIRES" => {
@@ -42,7 +41,7 @@ my %WriteMakefileArgs = (
     "File::Spec" => 0,
     "Test::More" => "0.96"
   },
-  "VERSION" => "1.005010",
+  "VERSION" => "1.005011",
   "test" => {
     "TESTS" => "t/*.t t/00-compile/*.t"
   }
@@ -68,9 +67,39 @@ my %FallbackPrereqs = (
   "Try::Tiny" => 0,
   "recommended" => 0,
   "strict" => 0,
-  "utf8" => 0,
   "warnings" => 0
 );
+
+# inserted by Dist::Zilla::Plugin::DynamicPrereqs 0.010
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.53_03) } ) {
+  *MM::_installed_file_for_module = sub {
+    my $class  = shift;
+    my $prereq = shift;
+    my $file = "$prereq.pm";
+    $file =~ s{::}{/}g;
+    my $path;
+    for my $dir (@INC) {
+      my $tmp = File::Spec->catfile($dir, $file);
+      if ( -r $tmp ) {
+        $path = $tmp;
+        last;
+      }
+    }
+    return $path;
+  }
+}
+{
+  # Avoid issue with sanity bugs and Moose penalties
+  my $module = "Dist::Zilla::App::Command::chainsmoke";
+  if ( my $path = MM->_installed_file_for_module($module) ) {
+    my $version = MM->parse_version($path) || q[0];
+    require version;
+    if ( version->parse($version) < '1.15' ) {
+      $FallbackPrereqs{$module} = $WriteMakefileArgs{PREREQ_PM}->{$module} = '1.15';
+    }
+  }
+}
+
 
 
 unless ( eval { ExtUtils::MakeMaker->VERSION(6.63_03) } ) {

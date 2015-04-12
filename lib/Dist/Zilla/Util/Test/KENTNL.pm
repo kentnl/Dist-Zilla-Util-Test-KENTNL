@@ -1,11 +1,10 @@
-use 5.008;    # utf8
+use 5.006;
 use strict;
 use warnings;
-use utf8;
 
 package Dist::Zilla::Util::Test::KENTNL;
 
-our $VERSION = '1.005010';
+our $VERSION = '1.005011';
 
 #ABSTRACT: KENTNL's DZil plugin testing tool
 
@@ -212,7 +211,14 @@ Dist::Zilla::Util::Test::KENTNL - KENTNL's DZil plugin testing tool
 
 =head1 VERSION
 
-version 1.005010
+version 1.005011
+
+=head1 DESCRIPTION
+
+This module is KENTNL's kit for testing Dist::Zilla.
+
+Most of his modules should be moving to using the `dztest` model
+instead which is more flexible source side.
 
 =head1 METHODS
 
