@@ -4,7 +4,7 @@ use warnings;
 
 package Dist::Zilla::Util::Test::KENTNL;
 
-our $VERSION = '1.005011';
+our $VERSION = '1.005012';
 
 #ABSTRACT: KENTNL's DZil plugin testing tool
 
