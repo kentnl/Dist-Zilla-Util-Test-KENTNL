@@ -89,6 +89,7 @@ unless ( eval { ExtUtils::MakeMaker->VERSION(6.53_03) } ) {
   }
 }
 {
+  # Avoid issue with sanity bugs and Moose penalties
   my $module = "Dist::Zilla::App::Command::chainsmoke";
   if ( my $path = MM->_installed_file_for_module($module) ) {
     my $version = MM->parse_version($path) || q[0];
