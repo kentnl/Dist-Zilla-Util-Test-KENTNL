@@ -70,6 +70,36 @@ my %FallbackPrereqs = (
   "warnings" => 0
 );
 
+# inserted by Dist::Zilla::Plugin::DynamicPrereqs 0.010
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.53_03) } ) {
+  *MM::_installed_file_for_module = sub {
+    my $class  = shift;
+    my $prereq = shift;
+    my $file = "$prereq.pm";
+    $file =~ s{::}{/}g;
+    my $path;
+    for my $dir (@INC) {
+      my $tmp = File::Spec->catfile($dir, $file);
+      if ( -r $tmp ) {
+        $path = $tmp;
+        last;
+      }
+    }
+    return $path;
+  }
+}
+{
+  my $module = "Dist::Zilla::App::Command::chainsmoke";
+  if ( my $path = MM->_installed_file_for_module($module) ) {
+    my $version = MM->parse_version($path) || q[0];
+    require version;
+    if ( version->parse($version) < '1.15' ) {
+      $FallbackPrereqs{$module} = $WriteMakefileArgs{PREREQ_PM}->{$module} = '1.15';
+    }
+  }
+}
+
+
 
 unless ( eval { ExtUtils::MakeMaker->VERSION(6.63_03) } ) {
   delete $WriteMakefileArgs{TEST_REQUIRES};

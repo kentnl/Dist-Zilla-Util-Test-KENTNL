@@ -14,6 +14,7 @@
       "Dist::Zilla::Plugin::BumpVersionAfterRelease" : "0.009",
       "Dist::Zilla::Plugin::ConfirmRelease" : "5.034",
       "Dist::Zilla::Plugin::CopyFilesFromBuild" : "0.150250",
+      "Dist::Zilla::Plugin::DynamicPrereqs" : "0.010",
       "Dist::Zilla::Plugin::Git::Check" : "2.033",
       "Dist::Zilla::Plugin::Git::Commit" : "2.033",
       "Dist::Zilla::Plugin::Git::CommitBuild" : "2.033",
