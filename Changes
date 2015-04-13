@@ -1,5 +1,9 @@
 Revision history for Dist-Zilla-Util-Test-KENTNL
 
+1.005012 2015-04-13T03:25:53Z 2f733bb
+ [Tests]
+ - Todoize more of the "sniff out Moose loaders" test for now.
+
 1.005011 2015-04-12T03:04:32Z 5d69b6a
  [Dependencies::Stats]
  - Dependencies changed since 1.005010, see misc/*.deps* for details

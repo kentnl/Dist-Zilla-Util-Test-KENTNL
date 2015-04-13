@@ -4,7 +4,7 @@ use warnings;
 
 package Dist::Zilla::Util::Test::KENTNL::dztest;
 
-our $VERSION = '1.005011';
+our $VERSION = '1.005012';
 
 # ABSTRACT: Shared dist testing logic for easy dzil things
 
@@ -561,7 +561,7 @@ Dist::Zilla::Util::Test::KENTNL::dztest - Shared dist testing logic for easy dzi
 
 =head1 VERSION
 
-version 1.005011
+version 1.005012
 
 =head1 SYNOPSIS
 
