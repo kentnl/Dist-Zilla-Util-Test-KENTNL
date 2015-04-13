@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ [Tests]
+ - Todoize more of the "sniff out Moose loaders" test for now.
 
 1.005011 2015-04-12T03:04:32Z 5d69b6a
  [Dependencies::Stats]
