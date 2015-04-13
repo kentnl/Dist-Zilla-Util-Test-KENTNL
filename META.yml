@@ -21,10 +21,10 @@ name: Dist-Zilla-Util-Test-KENTNL
 provides:
   Dist::Zilla::Util::Test::KENTNL:
     file: lib/Dist/Zilla/Util/Test/KENTNL.pm
-    version: '1.005012'
+    version: '1.005013'
   Dist::Zilla::Util::Test::KENTNL::dztest:
     file: lib/Dist/Zilla/Util/Test/KENTNL/dztest.pm
-    version: '1.005012'
+    version: '1.005013'
 recommends:
   Moo: '1.000008'
   Path::Tiny: '0.058'
@@ -53,7 +53,7 @@ resources:
   bugtracker: https://github.com/kentnl/Dist-Zilla-Util-Test-KENTNL/issues
   homepage: https://github.com/kentnl/Dist-Zilla-Util-Test-KENTNL
   repository: https://github.com/kentnl/Dist-Zilla-Util-Test-KENTNL.git
-version: '1.005012'
+version: '1.005013'
 x_BuiltWith:
   external_file: misc/built_with.json
 x_Dist_Zilla:
@@ -419,7 +419,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: ~
           signed: 0
-          tag: 1.005012-source
+          tag: 1.005013-source
           tag_format: '%v-source'
           tag_message: v%v
           time_zone: local
@@ -473,7 +473,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: releases
           signed: 0
-          tag: '1.005012'
+          tag: '1.005013'
           tag_format: '%v'
           tag_message: v%v
           time_zone: local
