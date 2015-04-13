@@ -43,20 +43,16 @@ use Dist::Zilla::App::Command::authordeps;
 # FILENAME: 02-basic-dztest.t
 # ABSTRACT: Make sure dztest works
 
-my $test = dztest;
+my $test     = dztest;
+my $was_good = 0;
 $test->add_file( 'dist.ini', simple_ini( ['GatherDir'] ) );
 {
+  local $TODO = "This wont always pass on systems because things :(";
   my $result = $test->run_command( ['version'] );
   ok( ref $result, 'version executed' );
   is( $result->error,     undef, 'no errors' );
   is( $result->exit_code, 0,     'exit = 0' );
   note( $result->stdout );
-}
-
-my $was_good = 0;
-{
-  local $TODO = "This wont always pass on systems because things :(";
-
   $was_good = is( ( scalar @paths ), 0, "No Moose paths accidentally loaded" );
 }
 unless ($was_good) {
