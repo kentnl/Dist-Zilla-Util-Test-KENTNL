@@ -8,6 +8,9 @@ This file contains changes to DEVELOPMENT dependencies only ( both REQUIRED and 
  - English
  - Software::License::Perl_5
 
+ [Changed / develop requires]
+ - Dist::Zilla::Plugin::DynamicPrereqs 0 → 0.016
+
  [Changed / develop suggests]
  - Dist::Zilla::App::Command::bakeini 0.002000 → 0.002005
  - Dist::Zilla::PluginBundle::Author::KENTNL 2.024001 → 2.025002
