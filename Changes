@@ -1,6 +1,9 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ [Dependencies::Stats]
+ - Dependencies changed since 1.005012, see misc/*.deps* for details
+ - develop: +2 (suggests: ↑2)
 
 1.005012 2015-04-13T03:25:53Z 2f733bb
  [Tests]
@@ -316,4 +319,3 @@ Revision history for {{$dist->name}}
 
 0.01000001 2010-11-03T05:02:07Z
  - First version.
-
