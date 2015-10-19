@@ -3,7 +3,12 @@ Revision history for Dist-Zilla-Util-Test-KENTNL
 1.005013 2015-10-19T11:25:50Z d798176
  [Dependencies::Stats]
  - Dependencies changed since 1.005012, see misc/*.deps* for details
- - develop: +5 -1 (suggests: ↑2)
+ - configure: +2
+ - develop: +5 ↑1 -1 (suggests: ↑2)
+
+ [Packaging]
+ - Use a simpler version of DynamicPrereqs invokation, thanks @karenetheridge
+ - Closes #1
 
 1.005012 2015-04-13T03:25:53Z 2f733bb
  [Tests]

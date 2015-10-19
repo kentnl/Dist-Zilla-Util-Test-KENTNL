@@ -1,6 +1,9 @@
 This file contains changes in REQUIRED dependencies for standard CPAN phases (configure/build/runtime/test)
 
 1.005013
+ [Added / configure requires]
+ - CPAN::Meta::Requirements 2.120620
+ - Module::Metadata
 
 1.005012 2015-04-13T03:25:53Z
 
