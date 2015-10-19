@@ -1,6 +1,8 @@
 This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL dependencies for all phases (configure/build/runtime/test/develop)
 
-1.005013
+1.005014
+
+1.005013 2015-10-19T11:29:36Z
  [Added / configure requires]
  - CPAN::Meta::Requirements 2.120620
  - Module::Metadata
