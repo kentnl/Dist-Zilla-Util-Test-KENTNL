@@ -19,7 +19,9 @@
             "ExtUtils::MakeMaker" : "7.00"
          },
          "requires" : {
+            "CPAN::Meta::Requirements" : "2.120620",
             "ExtUtils::MakeMaker" : "0",
+            "Module::Metadata" : "0",
             "perl" : "5.006"
          }
       },
@@ -37,7 +39,7 @@
             "Dist::Zilla::Plugin::BumpVersionAfterRelease" : "0",
             "Dist::Zilla::Plugin::ConfirmRelease" : "0",
             "Dist::Zilla::Plugin::CopyFilesFromBuild" : "0",
-            "Dist::Zilla::Plugin::DynamicPrereqs" : "0",
+            "Dist::Zilla::Plugin::DynamicPrereqs" : "0.016",
             "Dist::Zilla::Plugin::Git::Check" : "0",
             "Dist::Zilla::Plugin::Git::Commit" : "0",
             "Dist::Zilla::Plugin::Git::CommitBuild" : "0",
@@ -954,6 +956,9 @@
          "version" : "5.039"
       }
    },
-   "x_authority" : "cpan:KENTNL"
+   "x_authority" : "cpan:KENTNL",
+   "x_contributors" : [
+      "Karen Etheridge <ether@cpan.org>"
+   ]
 }
 

@@ -9,7 +9,9 @@ build_requires:
   Test::More: '0.96'
   perl: '5.006'
 configure_requires:
+  CPAN::Meta::Requirements: '2.120620'
   ExtUtils::MakeMaker: '0'
+  Module::Metadata: '0'
   perl: '5.006'
 dynamic_config: 1
 generated_by: 'Dist::Zilla version 5.039, CPAN::Meta::Converter version 2.150005'

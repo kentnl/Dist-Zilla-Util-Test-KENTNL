@@ -1,6 +1,7 @@
 {
    "modules" : {
       "CPAN::Meta" : "2.150005",
+      "CPAN::Meta::Requirements" : "2.138",
       "Carp" : "1.36",
       "Data::DPath" : "0.54",
       "Dist::Zilla" : "5.039",
@@ -63,6 +64,7 @@
       "English" : "1.09",
       "ExtUtils::MakeMaker" : "7.10",
       "File::Spec" : "3.56_02",
+      "Module::Metadata" : "1.000027",
       "Module::Runtime" : "0.014",
       "Moo" : "2.000002",
       "Path::Tiny" : "0.072",
