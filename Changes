@@ -1,5 +1,15 @@
 Revision history for Dist-Zilla-Util-Test-KENTNL
 
+1.005013 2015-10-19T11:29:36Z 0343510
+ [Dependencies::Stats]
+ - Dependencies changed since 1.005012, see misc/*.deps* for details
+ - configure: +2
+ - develop: +5 ↑1 -1 (suggests: ↑2)
+
+ [Packaging]
+ - Use a simpler version of DynamicPrereqs invokation, thanks @karenetheridge
+ - Closes #1
+
 1.005012 2015-04-13T03:25:53Z 2f733bb
  [Tests]
  - Todoize more of the "sniff out Moose loaders" test for now.
@@ -314,4 +324,3 @@ Revision history for Dist-Zilla-Util-Test-KENTNL
 
 0.01000001 2010-11-03T05:02:07Z
  - First version.
-
