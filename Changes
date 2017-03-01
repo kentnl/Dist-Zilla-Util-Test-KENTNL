@@ -1,6 +1,13 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ [Bugfix]
+ - Update tooling to avoid test failures with '.' leaving @INC
+ - Closes https://github.com/kentnl/Dist-Zilla-Util-Test-KENTNL/issues/3
+
+ [Dependencies::Stats]
+ - Dependencies changed since 1.005013, see misc/*.deps* for details
+ - develop: +1 ↑1 (suggests: ↑1)
 
 1.005013 2015-10-19T11:29:36Z 0343510
  [Dependencies::Stats]
